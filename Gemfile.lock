@@ -103,6 +103,7 @@ GEM
     rake (10.4.2)
     rdoc (4.2.0)
       json (~> 1.4)
+    recaptcha (0.3.6)
     ref (1.0.5)
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
@@ -147,6 +148,7 @@ DEPENDENCIES
   less-rails
   mongoid (~> 4.0.0)
   rails (= 4.1.0)
+  recaptcha (~> 0.3.6)
   sdoc (~> 0.4.0)
   spring
   therubyracer
