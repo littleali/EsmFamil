@@ -76,6 +76,9 @@
 	    	</div>
 	    	<% if @validatable %><i>( گذرواژه حداقل به طول <%= @minimum_password_length %> و شامل عدد و حروف بزرگ و کوچک  انکلیسی باشد)</i><% end %><br />
 	    	</div>
+        <div>
+          <%= recaptcha_tags %>
+        </div>
 	  		<div><%= f.submit "Sign up" %></div>
 		<% end %>
 
