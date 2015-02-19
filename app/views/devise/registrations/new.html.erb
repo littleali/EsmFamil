@@ -41,21 +41,12 @@
                 <div class="form-group" id="hp-captcha">
                   <%= recaptcha_tags %>
                 </div>
-                <!-- BDay
+
                 <div class="form-inline form-group">
                   <input id="date_input_1" class="form-control" placeholder="تاریخ تولد: yyyy-mm-dd" type="text"/>
                   <%= image_tag("cal.png",:id=>"date_btn_1" ) %>
-                  <script type="text/javascript">
-                    Calendar.setup({
-                      inputField     :    "date_input_1",   // id of the input field
-                      button         :    "date_btn_1",   // trigger for the calendar (button ID)
-                          ifFormat       :    "%Y-%m-%d",       // format of the input field
-                          dateType     :  'jalali',
-                          weekNumbers    : false
-                    });
-                  </script>
+                  <%= javascript_include_tag ("cal.js")%>
                 </div>
-                <-->
                 <div>
                   <%= f.submit "ثبت نام", :class=>"btn btn-default btn-block" ,:id=>"hp-signup-btn"%>
                 </div>

@@ -13,4 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require_tree .
+// require_tree .
+
+//= require jalali
+//= require calendar
+//= require calendar-setup
+//= require calendar-fa
