@@ -13,3 +13,14 @@
  *= require_tree .
  *= require_self
  */
+ 
+ @font-face {
+  font-family: 'BYekan';
+  src: url('/assets/BYekan.eot');
+  src: url('/assets/BYekan.eot?#iefix') format('embedded-opentype'),
+  url('/assets/BYekan.woff') format('woff'),
+  url('/assets/BYekan.ttf') format('truetype');
+}
+body { 
+	font-family: 'BYekan',  Arial, Sans-serif;
+}
