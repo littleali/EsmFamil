@@ -1,12 +1,25 @@
-<h2>Resend confirmation instructions</h2>
 
-<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
+       <div class="row">
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, autofocus: true %></div>
+          <div class="col-md-4"></div>
+          <div class="col-md-4" id="hp-signup-form">
+          <div class="jumbotron" id = "hp-main-jumbotron" >
+	<h2 id="rs-signup-form-head">دریافت لینک تایید</h2>
+      <div class="container" >
 
-  <div><%= f.submit "Resend confirmation instructions" %></div>
-<% end %>
+			<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+  			<%= devise_error_messages! %>
+  			 <div class="form-group">
+				<%= f.email_field :email, autofocus: true,:placeholder => :'پست الکترونیکی' ,:class => 'form-control' %>
+			</div>
 
-<%= render "devise/shared/links" %>
+  			<div><%= f.submit "بفرست!" ,:class=>"btn btn-default btn-block",:id=>"login-btn"%></div>
+  			<% end %>
+  			  <div id= "hp-links">
+  			        <%= render "devise/shared/links" %>
+		      </div>
+  		</div>
+  	      <div class="col-md-4"></div>
+  	      </div>
+  	      </div>
+  	      </div>
