@@ -6,6 +6,8 @@
 }
 #hp-captcha{
 	width: 100%;
+	align: center;
+	background-color: #F2F2F3;  
 }
 #hp-main-jumbotron{
 	background-color: #F2F2F3;
@@ -31,21 +33,67 @@
 
 
 }*/
-div.transparent{
+#hp-transparent-box{
 	/*opacity: 0.6;*/
-	margin: 0%;
+	padding: 0;
+	margin: 3%;
     background-color: #ffffff;
     /*border: 1px solid black;*/
     opacity: 0.6;
     filter: alpha(opacity=60); 
 }
-div.transparent p {
+.transparent p {
 	 margin: 0%;
     /*font-weight: bold;*/
     color: #000000;
 }
-.hp-intro-jumbotron{
+
+#hp-intro-jumbotron{
+	padding: 3%;
+	border-color: #E9BC1B;
+	border-radius: 0px;
+	border-width: 2px;
+	border-style: solid;	
 	background-image: url('esmfamil.png');
 	background-size: 100% 100%;
+	text-align: justify;
 	/*opacity: 0.4;*/
+}
+#hp-intro-text-box{
+	margin: 5%;
+	margin-top: 0%;
+}
+#hp-intro-head{
+	/*color: #1FDA9A; */
+	text-align: center;
+}
+#hp-password-text{
+	color: #1FDA9A;
+	text-align: justify;	
+}
+#hp-links a{
+	color: #1FDA9A;
+	text-align: justify;
+}
+#login-btn{
+	background-color: #1FDA9A;	
+}
+#recaptcha_area{
+	margin: 0 auto;
+	background-color:#F2F2F3;
+}
+.calender{
+	/*font-family: 'BYekan',  Arial, Sans-serif;*/
+}
+.button{
+	font-family: 'BYekan',  Arial, Sans-serif;
+}
+.day{
+	font-family: 'BYekan',  Arial, Sans-serif;
+}
+.ttip{
+	font-family: 'BYekan',  Arial, Sans-serif;
+}
+.title{
+	font-family: 'BYekan',  Arial, Sans-serif;
 }
