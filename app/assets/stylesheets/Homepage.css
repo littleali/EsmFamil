@@ -4,6 +4,12 @@
 #hp-signup-btn{
 	background-color:#EE4B3E;
 }
+#confirmation-btn{
+	margin: 0px;
+	background-color:#F2F2F3;
+	border-color: #F2F2F3;
+	color: #1FDA9A;
+}
 #hp-captcha{
 	width: 100%;
 	align: center;
@@ -78,9 +84,12 @@
 }
 #hp-links a{
 	color: #1FDA9A;
-	text-align: justify;
+	text-align: center;
+	width: 100%;
+	margin: 0 auto;
 }
 #login-btn{
+	margin-bottom: 0px;
 	background-color: #1FDA9A;	
 }
 #recaptcha_area{
@@ -101,4 +110,7 @@
 }
 .title{
 	font-family: 'BYekan',  Arial, Sans-serif;
+}
+#hp-input-fields{
+	margin-bottom: 3px;
 }

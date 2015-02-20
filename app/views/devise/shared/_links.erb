@@ -11,7 +11,7 @@
 <% end -%>
 
 <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
-  <%= link_to "Didn't receive cosnfirmation instructions?", new_confirmation_path(resource_name) %><br />
+  <%= button_to "اطلاعات تأیید را دریافت نکرده‌اید؟", new_confirmation_path(resource_name), :class=>"btn btn-default btn-block" ,:id=>"confirmation-btn" %><br />
 <% end -%>
 
 <%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
