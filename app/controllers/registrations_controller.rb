@@ -7,7 +7,8 @@ class RegistrationsController < Devise::RegistrationsController
       clean_up_passwords(resource)
       flash.now[:alert] = "لطفا نوشته را دوباره وارد کنید."      
       flash.delete :recaptcha_error
-      render :new
+      # render :new
+      redirect_to :new_user_registration
     end
   end
 end
