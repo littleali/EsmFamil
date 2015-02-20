@@ -25,7 +25,7 @@
         <!-- <div><%=image_tag("logo.jpg", :alt =>"logo")%> </div> -->
         <div class="row">
           <div class="col-md-4" id="hp-signup-form">
-            <h2>فرم ثبت‌نام</h2>
+            <h2 id="hp-signup-form-head">فرم ثبت‌نام</h2>
             <form>
               <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
                 <%= devise_error_messages! %>
