@@ -13,7 +13,7 @@ div.calendar { position: relative; }
   color: #000;
   cursor: default;
   background: url("normal-bg.gif");
-  font-family: "trebuchet ms",verdana,tahoma,sans-serif;
+  font-family: 'BYekan',"trebuchet ms",verdana,tahoma,sans-serif;
 }
 
 .calendar {
@@ -30,7 +30,7 @@ div.calendar { position: relative; }
 }
 
 .calendar .nav {
-  font-family: verdana,tahoma,sans-serif;
+  font-family: 'BYekan',verdana,tahoma,sans-serif;
 }
 
 .calendar .nav div {
@@ -79,7 +79,7 @@ div.calendar { position: relative; }
 /* The body part -- contains all the days in month. */
 
 .calendar tbody .day { /* Cells <TD> containing month days dates */
-  font-family: verdana,tahoma,sans-serif;
+  font-family:'BYekan', verdana,tahoma,sans-serif;
   width: 2em;
   color: #000;
   text-align: right;
@@ -215,7 +215,7 @@ div.calendar { position: relative; }
 
 .calendar td.time .hour,
 .calendar td.time .minute {
-  font-family: monospace;
+  font-family:'BYekan', monospace;
 }
 
 .calendar td.time .ampm {

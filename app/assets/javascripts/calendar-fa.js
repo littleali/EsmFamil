@@ -131,13 +131,13 @@ Calendar._TT["ABOUT_TIME"] = "\n\n" +
 "- or Shift-click to decrease it\n" +
 "- or click and drag for faster selection.";
 
-Calendar._TT["PREV_YEAR"] = "سال قبل (hold for menu)";
-Calendar._TT["PREV_MONTH"] = "ماه قبل (hold for menu)";
+Calendar._TT["PREV_YEAR"] = "سال قبل";
+Calendar._TT["PREV_MONTH"] = "ماه قبل";
 Calendar._TT["GO_TODAY"] = "رفتن به امروز";
-Calendar._TT["NEXT_MONTH"] = "ماه بعد (hold for menu)";
-Calendar._TT["NEXT_YEAR"] = "سال بعد (hold for menu)";
+Calendar._TT["NEXT_MONTH"] = "ماه بعد";
+Calendar._TT["NEXT_YEAR"] = "سال بعد";
 Calendar._TT["SEL_DATE"] = "انتخاب تاریخ";
-Calendar._TT["DRAG_TO_MOVE"] = "Drag to move";
+Calendar._TT["DRAG_TO_MOVE"] = "برای حرکت دادن بکشید";
 Calendar._TT["PART_TODAY"] = " (امروز)";
 
 // the following is to inform that "%s" is to be the first day of week
