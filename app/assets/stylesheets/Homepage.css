@@ -20,16 +20,21 @@
 	border-color: #1FDA9A;
 	border-radius: 0px;
 	border-width: 10px;
-	border-style: solid; 
+	border-style: solid;
+	padding: 2%; 
 }
 #hp-signup-form{
 	/*padding: 1%;*/
 }
 #date_input_1{
-	width: 90%; 
+	/*width: 90%;*/
+	direction: rtl; 
 }
 #date_btn_1{
 	align: center;
+}
+#hp-basic-addon1{
+	direction: ltr;
 }
 /*
 #hp-inner-container{
@@ -113,4 +118,8 @@
 }
 #hp-input-fields{
 	margin-bottom: 3px;
+	direction: ltr;
+}
+#hp-inner-input-fields{
+	direction: rtl;
 }
