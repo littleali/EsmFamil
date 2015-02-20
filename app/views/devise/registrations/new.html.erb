@@ -20,7 +20,6 @@
       </div>
     </nav> -->
     
-<%= flash[:alert] %>
 
 
     <div class="jumbotron" id = "hp-main-jumbotron">
@@ -88,6 +87,12 @@
                   </div>
                 </div>
                 <div class="form-group" id="hp-captcha">
+                <% if flash[:alert] %>
+                    <div class="alert alert-danger" role="alert">
+                      <%= flash[:alert] %>
+                    </div>
+                <% end %>
+   
                   <%= recaptcha_tags %>
                 </div>
                 <div>
