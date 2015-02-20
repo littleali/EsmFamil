@@ -31,13 +31,21 @@
 
 
 }*/
-#hp-intro-jumbotron{
-	background-color: #F2F2F3;
-	background: rgba(80, 125, 200, 0.55);
-	background: rgba(100, 125, 175, 0);
+div.transparent{
+	/*opacity: 0.6;*/
+	margin: 0%;
+    background-color: #ffffff;
+    /*border: 1px solid black;*/
+    opacity: 0.6;
+    filter: alpha(opacity=60); 
+}
+div.transparent p {
+	 margin: 0%;
+    /*font-weight: bold;*/
+    color: #000000;
+}
+.hp-intro-jumbotron{
 	background-image: url('esmfamil.png');
 	background-size: 100% 100%;
-	opacity: 0.4;
-	filter: alpha(opacity=40);
-
+	/*opacity: 0.4;*/
 }
