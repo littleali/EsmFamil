@@ -1,14 +1,18 @@
 #hp-navbar{
-	background-color:#B9F1B8;
+	background-color:#F2F2F3;
 }
 #hp-signup-btn{
-	background-color:#B9F1B8;
+	background-color:#EE4B3E;
 }
 #hp-captcha{
 	width: 100%;
 }
 #hp-main-jumbotron{
-	background-color:#50BE4F;
+	background-color: #F2F2F3;
+	border-color: #1FDA9A;
+	border-radius: 0px;
+	border-width: 10px;
+	border-style: solid; 
 }
 #hp-signup-form{
 	padding: 1%;
@@ -19,6 +23,21 @@
 #date_btn_1{
 	align: center;
 }
+/*
+#hp-inner-container{
+	background-color: red;
+	width: 100%;
+	margin: 0;
+
+
+}*/
 #hp-intro-jumbotron{
-	background-color:#97E997;
+	background-color: #F2F2F3;
+	background: rgba(80, 125, 200, 0.55);
+	background: rgba(100, 125, 175, 0);
+	background-image: url('esmfamil.png');
+	background-size: 100% 100%;
+	opacity: 0.4;
+	filter: alpha(opacity=40);
+
 }
