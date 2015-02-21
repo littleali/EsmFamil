@@ -87,6 +87,7 @@ GEM
     optionable (0.2.0)
     origin (2.1.1)
     orm_adapter (0.5.0)
+    parsi-date (0.2.5)
     polyglot (0.3.5)
     rack (1.5.2)
     rack-test (0.6.3)
@@ -155,6 +156,7 @@ DEPENDENCIES
   jquery-rails
   less-rails
   mongoid (~> 4.0.0)
+  parsi-date
   rails (= 4.1.0)
   recaptcha (~> 0.3.6)
   sdoc (~> 0.4.0)

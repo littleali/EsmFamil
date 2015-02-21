@@ -3,16 +3,15 @@ class RegistrationsController < Devise::RegistrationsController
     if verify_recaptcha
       puts "Try to create"
       super
+
     else
       puts "Error in captcha"
       build_resource(sign_up_params)
       clean_up_passwords(resource)
       flash[:alert] = "لطفا نوشته را دوباره وارد کنید."
-      flash[:notice] = "لطفا نوشته را دوباره وارد کنید."
-      flash[:error] = "لطفا نوشته را دوباره وارد کنید."
       #flash.delete :recaptcha_error
-      render :new
-      #redirect_to :new_user_registration
+      #render :new
+      redirect_to :new_user_registration
     end
   end
 end

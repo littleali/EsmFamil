@@ -1,2 +1,7 @@
-<h1>Welcome#index</h1>
-<p>Find me in ssapp/views/welcome/index.html.erb</p>
+<% if flash[:notice] %>
+    <div class="alert alert-success" role="alert">
+      <%= flash[:notice] %>
+    </div>
+<% end %>
+<h1>Welcome</h1>
+<p>با موفقیت ثبت‌نام شدید لطفا تا ۲۴ ساعت دیگر نسبت به تایید حساب خود به وسیله‌ی ایمیل اقدام نمایید.</p>

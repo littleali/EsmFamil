@@ -34,6 +34,9 @@ gem 'devise'
 #Debugging
 gem 'byebug'
 
+#Persian
+gem 'parsi-date'
+
 gem 'recaptcha', '~> 0.3.6'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

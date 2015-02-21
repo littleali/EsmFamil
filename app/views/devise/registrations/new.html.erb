@@ -19,9 +19,13 @@
           </div>
       </div>
     </nav> -->
-    
 
 
+    <% if flash[:notice] %>
+      <div class="alert alert-success" role="alert">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
     <div class="jumbotron" id = "hp-main-jumbotron">
       <div class="container">
         <!-- <div><%=image_tag("logo.jpg", :alt =>"logo")%> </div> -->

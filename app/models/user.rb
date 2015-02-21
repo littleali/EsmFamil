@@ -62,19 +62,24 @@ class User
 
   def password_complexity
     if  (password.match(/^.*[a-z]/).blank?)
-      errors.add :password, "must include at least one lowercase letter!"
+      errors.add :password, "حداقل یک حرف کوچک  "
     end
     if  (password.match(/^.*[A-Z]/).blank?)
-      errors.add :password, "must include at least one uppercase letter!"
+      errors.add :password, "حداقل یک حرف بزرگ"
     end
     if  (password.match(/^.*\d/).blank?)
-      errors.add :password, "must include at least one digit!"
+      errors.add :password, "خداقل یک عدد!"
     end
   end
 
   def age_limit
+    birth_date = (Parsi::Date.parse bdate).to_gregorian
+    if  8.years.ago < birth_date
+      errors.add :birth_date, "سن شما کافی نیست!"
+    end
 
   end
+
 
 
 end
