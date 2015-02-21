@@ -13,6 +13,15 @@ module DeviseHelper
 
     return "" if resource.errors.empty? && flash_alerts.empty?
     errors = resource.errors.empty? ? flash_alerts : resource.errors.full_messages
+    #if not flash[:alert]
+    #  flash[:alert] = resource.errors.full_messages
+    #else
+    #  flash[:alert] += resource.errors.full_messages
+    #end
+    unless resource.errors.empty?
+      flash[:alert] = resource.errors.full_messages.join("<br>").html_safe
+    end
+
 
     messages = errors.map { |msg| content_tag(:li, msg) }.join
     sentence = I18n.t(error_key, :count    => errors.count,
