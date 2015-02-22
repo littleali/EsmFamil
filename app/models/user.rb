@@ -75,7 +75,7 @@ class User
   def age_limit
     birth_date = (Parsi::Date.parse bdate).to_gregorian
     if  8.years.ago < birth_date
-      errors.add :bdate, "سن شما کافی نیست!"
+      errors.add :bdate, "شما کافی نیست!"
     end
 
   end
