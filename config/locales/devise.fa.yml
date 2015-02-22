@@ -9,16 +9,29 @@ fa:
         one: '۱ خطا جلوی ذخیره %{resource} را گرفت:'
         other: '%{count} خطا جلوی ذخیره این %{resource} را گرفت:'
 
-
   mongoid:
+    attributes:
+      user:
+        password: 'گذرواژه'
+        email: 'ایمیل'
+        bdate: 'تاریخ تولد'
+        username: 'نام کاربری'
+        fname: 'نام کوچک'
+        lname: 'نام خانوادگی'
+        password_confirmation: 'تایید پسورد'
     errors:
       models:
         user:
           attributes:
             password:
               blank: "خالی است"
+              too_short: "کوتاه است"
             email:
               blank: "خالی است"
+            username:
+              taken: 'گرفته شده است'
+            password_confirmation:
+              confirmation: 'مطابقت ندارد'
   devise:
     failure:
       already_authenticated: 'وارد سیستم هستید.'

@@ -3,7 +3,7 @@ class RegistrationsController < Devise::RegistrationsController
     if verify_recaptcha
       puts "Try to create"
       super
-      redirect_to :new_user_registration
+      #redirect_to :new_user_registration
     else
       puts "Error in captcha"
       build_resource(sign_up_params)
