@@ -3,11 +3,12 @@
   
 <%= link_to "ورود", "#myModal", "data-toggle" => "modal" , 
 "data-target"=>"#myModal"%>
-	</br>
-   <%= render "devise/sessions/login_form" %>
+
+   <%= render "devise/sessions/login_modal" %>
 <% end -%>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+</br>
   <%= link_to "صفحه‌ی اول", new_registration_path(resource_name) %>
 <% end -%>
 
@@ -20,8 +21,8 @@
 -->
 
 <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
-  
-  <%= button_to "اطلاعات تأیید را دریافت نکرده‌اید؟", new_confirmation_path(resource_name), :method => 'get', :class=>"btn btn-default btn-block" ,:id=>"confirmation-btn" %> 
+  </br>
+  <%= link_to "اطلاعات تأیید را دریافت نکرده‌اید؟", new_confirmation_path(resource_name) %> 
 
   <!--<%= link_to "لینک تایید را دریافت نکرده‌اید؟", new_confirmation_path(resource_name) %>-->
 <% end -%>

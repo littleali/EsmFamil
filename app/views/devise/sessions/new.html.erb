@@ -1,22 +1,15 @@
-
-<h3>
-  <p>
-    حساب کاربری شما تایید شد. می‌توانید در اسپرینت بعدی لاگین کنید.
-  </p>
-</h3>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, autofocus: true %></div>
-
-  <div><%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %></div>
-
-  <% if devise_mapping.rememberable? -%>
-    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
-  <% end -%>
-
-  <div><%= f.submit "Log in" %></div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+<div class="row">
+  <div class="col-md-4"></div>
+    <div class="col-md-4" id="hp-signup-form">
+      <div class="jumbotron" id = "hp-main-jumbotron" >
+        <h2 id="signin-form-head">ورود</h2>
+        <div class="container" >
+          <%= render "devise/sessions/login_form" %>
+          <div id= "hp-links">
+            <%= render "devise/shared/links" %>
+          </div>
+        </div>
+      <div class="col-md-4"></div>
+    </div>
+  </div>
+</div>
