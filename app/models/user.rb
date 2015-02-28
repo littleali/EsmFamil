@@ -6,9 +6,17 @@ class User
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :confirmable, :timeoutable
+         :confirmable, :timeoutable , :authentication_keys => [:login]
   ## Database authenticatable
   field :email,              type: String, default: ""
+  def self.find_first_by_auth_conditions(warden_conditions)
+    conditions = warden_conditions.dup
+    if login = conditions.delete(:login)
+      self.any_of({ :username =>  /^#{Regexp.escape(login)}$/i }, { :email =>  /^#{Regexp.escape(login)}$/i }).first
+    else
+      super
+    end
+  end
   field :encrypted_password, type: String, default: ""
 
 
@@ -80,6 +88,13 @@ class User
 
   end
 
+  def login=(login)
+    @login = login
+  end
+
+  def login
+    @login || self.username || self.email
+  end
 
 
 end
