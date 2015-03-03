@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>EsmFamil</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	<!--
+-----------LOGIN STATUS-------------
+<br>
+<% if current_user %>
+    <%= current_user.email%>
+       <br>
+
+    <%= link_to "logout",destroy_user_session_path, :method => :delete %>
+<% else %>
+    You are not signed in!
+
+<br>
+    <%= link_to "login",new_user_session_path %>
+<% end %>
+<br>
+-----------LOGIN STATUS-------------
+<br>
+-->
+
+
+
+<%= yield %>
+
+</body>
+</html>
