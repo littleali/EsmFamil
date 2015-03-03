@@ -27,6 +27,7 @@ fa:
               blank: "خالی است"
               too_short: "کوتاه است"
             email:
+              taken: "قبلا ثبت شده است"
               blank: "خالی است"
             username:
               taken: 'گرفته شده است'
