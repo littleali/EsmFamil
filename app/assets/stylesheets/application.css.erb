@@ -10,6 +10,7 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+ *= require font-awesome.min.css.erb
  *= require_tree .
  *= require_self
  */
@@ -21,6 +22,10 @@
     src: url(<%= asset_data_uri 'BYekan.woff' %>) format('woff');
 }
 
+
 body { 
 	font-family: 'BYekan',  Arial, Sans-serif;
+}
+.main-container {
+    padding-top: 70px;
 }
