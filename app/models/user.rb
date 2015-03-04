@@ -17,6 +17,7 @@ class User
   field :lname,              type: String, default: ""
   field :username,              type: String
   field :bdate,              type: String
+  field :birthday,           type: Date
 
 
 

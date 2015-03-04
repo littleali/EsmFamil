@@ -1,3 +1,12 @@
 fa:
   bdate:  'تاریخ تولد'
   Bdate:  'تاریخ تولد'
+  date:
+    order: 'ترتیب'
+  mongoid:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              taken: 'شما قبلا با این پست الکترونیکی ثبت نام کرده‌اید'
