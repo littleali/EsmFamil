@@ -26,6 +26,8 @@ class User
   field :username,              type: String
   field :bdate,              type: String
 
+  ## one-to-many relation with room
+  has_many :rooms
 
 
   ## Recoverable

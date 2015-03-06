@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :rooms
+
   get 'profile/edit'
 
   get 'profile' => 'profile#show'
