@@ -27,7 +27,8 @@ class User
   field :bdate,              type: String
 
   ## one-to-many relation with room
-  has_many :rooms
+  has_many :owned_rooms , class_name: 'Room' , inverse_of: :admin
+  has_and_belongs_to_many :playing_rooms , class_name: 'Room' , inverse_of: :players
 
 
   ## Recoverable
@@ -67,7 +68,7 @@ class User
   validates_presence_of :username
   validates_presence_of :bdate
 
-  validate :password_complexity
+  # validate :password_complexity
   validate :age_limit
 
   def password_complexity
