@@ -1,30 +1,33 @@
-<%= form_for(@room) do |f| %>
-  <% if @room.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@room.errors.count, "error") %> prohibited this room from being saved:</h2>
-
-      <ul>
-      <% @room.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<div id="hp-signup-form">
+  <%= form_for(@room) do |f| %>
+    <div class="form-group" id="hp-input-fields">
+    <% if @room.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@room.errors.count, "error") %> prohibited this room from being saved:</h2>
+        <ul>
+          <% @room.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="form-group" id="hp-input-fields">
+      <%= f.text_field :name,autofocus: true, :placeholder => :'نام اتاق' ,:class => 'form-control', :id=>'hp-inner-input-fields'%>
     </div>
+    <div class="form-group" id="hp-input-fields">
+      <div class="row">
+        <div class="col-md-8">
+          <%= f.number_field :capacity,:class => 'form-control', :id=>'hp-inner-input-fields' %>
+        </div>
+        <div class="col-md-4">
+          <%= f.label :capacity,'ظرفیت اتاق', :class =>'cap-num' %>
+        </div>
+      </div>
+    </div>
+    <div class="field">
+      <%= f.check_box :enabled ,:id=>'enable'%>
+      <%= f.label :enabled,'اتاق فعال باشد؟',:class =>'cap-num' %>
+    </div>
+    <%= f.submit 'ساختن',:class=>"btn btn-default btn-block" ,:id=>"login-btn" %>
   <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :capacity %><br>
-    <%= f.number_field :capacity %>
-  </div>
-  <div class="field">
-    <%= f.label :enabled %><br>
-    <%= f.check_box :enabled %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>
