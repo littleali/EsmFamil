@@ -36,7 +36,7 @@ class Ability
     can :show_with_name, Room
     can :destroy, Room, :admin_id => user.id
     can :edit, Room, :admin_id => user.id
-
+    can :update, Room, :admin_id => user.id
     #Profile
     can :edit, Profile, :user_id => user.id
     can :show, Profile

@@ -21,3 +21,14 @@
 //= require calendar-setup
 //= require calendar-fa
 //= require pnotify.custom.min
+
+
+//= require jquery
+//= require best_in_place
+//= require best_in_place.jquery-ui
+
+$(document).ready(function() {
+    /* Activating Best In Place */
+    jQuery(".best_in_place").best_in_place();
+});
+$('.best_in_place').bind("ajax:success", function () {$(this).closest('tr').effect('highlight'); });

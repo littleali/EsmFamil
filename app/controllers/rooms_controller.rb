@@ -56,16 +56,35 @@ class RoomsController < ApplicationController
   # PATCH/PUT /rooms/1
   # PATCH/PUT /rooms/1.json
   def update
+    @room = Room.find params[:id]
     respond_to do |format|
       if @room.update(room_params)
         format.html { redirect_to @room, notice: 'Room was successfully updated.' }
-        format.json { render :show, status: :ok, location: @room }
+        #format.json { render :show, status: :ok, location: @room }
+        format.json { respond_with_bip(@room) }
       else
         format.html { render :edit }
-        format.json { render json: @room.errors, status: :unprocessable_entity }
+        #format.json { render json: @room.errors, status: :unprocessable_entity }
+        format.json { respond_with_bip(@room) }
       end
     end
   end
+
+=begin
+  def update
+    @user = User.find params[:id]
+
+    respond_to do |format|
+      if @user.update_attributes(params[:user])
+        format.html { redirect_to(@user, :notice => 'User was successfully updated.') }
+        format.json { respond_with_bip(@user) }
+      else
+        format.html { render :action => "edit" }
+        format.json { respond_with_bip(@user) }
+      end
+    end
+  end
+=end
 
   # DELETE /rooms/1
   # DELETE /rooms/1.json
