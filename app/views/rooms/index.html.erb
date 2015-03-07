@@ -1,0 +1,44 @@
+<div class="jumbotron" id = "hp-main-jumbotron">
+  <div class="container">
+    <h2 id="hp-signup-form-head">لیست اتاق‌های بازی</h2>
+    <br>
+    <div class="table-responsive">
+      <table class="table table-hover table-bordered">
+        <thead>
+          <tr>
+            <td><h4>نام اتاق</h4></td>
+            <td><h4>مدیر اتاق</h4></td>
+            <td><h4>ظرفیت اتاق</h4></td>
+            <td><h4>وضعیت فعال بودن اتاق</h4></td>
+            <td><h4>مشاهده‌ی اتاق</h4></td>
+          </tr>
+        </thead>
+        <tbody>
+          <% @rooms.each do |room| %>
+            <tr  class="success">
+              <td><%= room.name %></td>
+              <td><%= room.admin.username %></td>
+              <td><%= room.capacity %></td>
+              <%if room.enabled? %>
+                <td> فعال است</td>
+                <% else %>
+                <td> فعال نیست </td>
+                <%end%>
+              <td><%= button_to 'برو', room ,:method => "get", :class => "btn btn-success"%></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="row">
+          <div class="col-md-4">    
+          <%= button_to 'ایجاد اتاق جدید', new_room_path , { :method => "get",:class => "btn btn-info btn-block"}%>
+          </div>
+        </div>
+      </div>
+    <div class="col-md-4"></div>
+    <div class="col-md-4"></div>
+  </div>
+</div>

@@ -1,15 +1,14 @@
 
 <%- if controller_name != 'sessions' %>
   
-<%= link_to "ورود", "#myModal", "data-toggle" => "modal" , 
+<%= link_to "ورود", "#myModal", "data-toggle" => "modal" , :class=>"btn btn-default btn-block login-btn" ,:id=>"login-btn",
 "data-target"=>"#myModal"%>
 
    <%= render "devise/sessions/login_modal" %>
 <% end -%>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-</br>
-  <%= link_to "صفحه‌ی اول", new_registration_path(resource_name) %>
+  <%= link_to "صفحه‌ی اول", new_registration_path(resource_name),:class=>"btn btn-default btn-block login-btn" ,:id=>"login-btn" %>
 <% end -%>
 
 
@@ -21,10 +20,12 @@
 -->
 
 <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
-  </br>
-  <%= link_to "اطلاعات تأیید را دریافت نکرده‌اید؟", new_confirmation_path(resource_name) %> 
+  
+  <div>
+  <%= button_to "اطلاعات تأیید را دریافت نکرده‌اید؟", new_confirmation_path(resource_name), :method => 'get', :class=>"btn btn-default btn-block confirmation-btn" ,:id=>"confirmation-btn" %> 
 
   <!--<%= link_to "لینک تایید را دریافت نکرده‌اید؟", new_confirmation_path(resource_name) %>-->
+</div>
 <% end -%>
 
 <%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>

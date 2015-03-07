@@ -7,3 +7,12 @@ fa:
   logout: "خروج"
   edit: "ویرایش"
   copy_right: "تمامی حقوق برای گروه اسم‌فامیل محفوظ است."
+  date:
+    order: 'ترتیب'
+  mongoid:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              taken: 'شما قبلا با این پست الکترونیکی ثبت نام کرده‌اید'
