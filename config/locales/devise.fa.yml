@@ -43,6 +43,8 @@ fa:
       invalid_token: 'کلمه رمز نامعتبر.'
       timeout: 'نشست شما منقضی شده است. برای ادامه دوباره وارد شوید.'
       inactive: 'حساب شما هنوز فعال نشده است.'
+      user:
+        not_found_in_database: 'نام کاربری و یا گذرواژه‌ی شما نادرست است'
     sessions:
       signed_in: 'با موفقیت وارد شدید :)'
       signed_out: 'خروج موفق.'
@@ -78,3 +80,10 @@ fa:
         subject: 'راهنمای بازنشانی رمز عبور'
       unlock_instructions:
         subject: 'راهنمای باز کردن'
+  unauthorized:
+    default: "خطای دسترسی"
+    manage:
+      all: "شما اجازه‌ی این کار را ندارید"
+      user: "انجام این عمل برای شما مجاز نیست"
+    update:
+      project: "شما اجازه‌ی به‌روزرسانی را ندارید"

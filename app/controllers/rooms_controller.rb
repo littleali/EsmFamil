@@ -1,4 +1,5 @@
 class RoomsController < ApplicationController
+  load_and_authorize_resource
   before_action :set_room, only: [:show, :edit, :update, :destroy]
 
   # GET /rooms
@@ -10,7 +11,19 @@ class RoomsController < ApplicationController
   # GET /rooms/1
   # GET /rooms/1.json
   def show
+    redirect_to :action => :show_with_name, :name => @room.name
   end
+
+  def show_with_name
+    # @room = Room.find_by_name(params[:name])
+    @room = Room.find_by(:name => params[:name])
+    render 'rooms/show'
+  end
+
+  #for URLs
+  #def to_param
+  #  name
+  #end
 
   # GET /rooms/new
   def new
@@ -20,6 +33,8 @@ class RoomsController < ApplicationController
   # GET /rooms/1/edit
   def edit
   end
+
+
 
   # POST /rooms
   # POST /rooms.json
@@ -72,4 +87,5 @@ class RoomsController < ApplicationController
     def room_params
       params.require(:room).permit(:name, :capacity, :enabled)
     end
+
 end

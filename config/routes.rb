@@ -4,6 +4,10 @@ Rails.application.routes.draw do
 
   resources :rooms
 
+  get 'gamerooms/:name' => 'rooms#show_with_name'
+
+
+
   # devise_for :users
   devise_for :users, controllers: { registrations: 'registrations' }
   get 'welcome/index' => 'welcome#index'
