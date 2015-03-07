@@ -43,10 +43,9 @@
   				<div class="panel-heading">لیست اعضای اتاق</div>
   				<table class="table table-hover table-striped">
   					<tbody>
-  						<tr><td><h4>نام اتاق</h4></td></tr>
-  						<tr><td><h4>نام اتاق</h4></td></tr>
-  						<tr><td><h4>نام اتاق</h4></td></tr>
-  						<tr><td><h4>نام اتاق</h4></td></tr>
+  						<% @room.players.each do |player| %>
+  							<tr><td><h4><%=player.username%></h4></td></tr>
+  						<% end %>
   					</tbody>
   				</table>
 			</div>
