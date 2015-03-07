@@ -1,5 +1,5 @@
 class ProfilesController < ApplicationController
-  before_action :set_profile, only: [:show, :edit, :update, :destroy]
+  before_action :set_profile, only: [:show, :edit, :update, :destroy , :update_field]
 
   # GET /profiles
   # GET /profiles.json
@@ -19,6 +19,15 @@ class ProfilesController < ApplicationController
 
   # GET /profiles/1/edit
   def edit
+  end
+
+  def update_field
+    if @profile.has_attribute?(params[:title])
+      @profile.update(params[:title] => params[params[:title]])
+    else
+      @profile.user.update(params[:title] => params[params[:title]])
+    end
+    render :edit
   end
 
   # POST /profiles
@@ -41,6 +50,8 @@ class ProfilesController < ApplicationController
   # PATCH/PUT /profiles/1.json
   def update
     respond_to do |format|
+      @profile.user.username = params[:username]
+      @profile.user.email = params[:email]
       if @profile.update(profile_params)
         format.html { redirect_to @profile, notice: 'Profile was successfully updated.' }
         format.json { render :show, status: :ok, location: @profile }

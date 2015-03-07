@@ -65,6 +65,11 @@ class User
     end
   end
 
+
+
+  #cllbacks
+  after_create :create_profile
+
   #Validation
   validates :username, uniqueness: true
   validates_presence_of :username
@@ -101,5 +106,9 @@ class User
     @login || self.username || self.email
   end
 
+  def create_profile
+    profile = Profile.new
+    self.profile = profile 
+  end
 
 end
