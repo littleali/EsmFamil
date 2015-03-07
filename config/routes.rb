@@ -4,7 +4,9 @@ Rails.application.routes.draw do
 
   resources :rooms
 
-  #get '/:name' => 'rooms/show_with_name'
+  get 'gamerooms/:name' => 'rooms#show_with_name'
+
+
 
   # devise_for :users
   devise_for :users, controllers: { registrations: 'registrations' }

@@ -28,10 +28,19 @@ class Ability
     #
     # See the wiki for details:
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
+
+    #Room
     can :create, Room
     can :index, Room
     can :show, Room
+    can :show_with_name, Room
     can :destroy, Room, :admin_id => user.id
     can :edit, Room, :admin_id => user.id
+
+    #Profile
+    can :edit, Profile, :user_id => user.id
+    can :show, Profile
+    cannot :destroy, Profile
+
   end
 end

@@ -11,11 +11,13 @@ class RoomsController < ApplicationController
   # GET /rooms/1
   # GET /rooms/1.json
   def show
-   # redirect_to :action => :show_with_name, :name => Room.find(params[:id]).name
+    redirect_to :action => :show_with_name, :name => @room.name
   end
 
   def show_with_name
-    @room = Room.find_by_name(params[:name])
+    # @room = Room.find_by_name(params[:name])
+    @room = Room.find_by(:name => params[:name])
+    render 'rooms/show'
   end
 
   #for URLs
@@ -31,6 +33,7 @@ class RoomsController < ApplicationController
   # GET /rooms/1/edit
   def edit
   end
+
 
 
   # POST /rooms
