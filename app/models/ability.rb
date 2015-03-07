@@ -32,5 +32,6 @@ class Ability
     can :index, Room
     can :show, Room
     can :destroy, Room, :admin_id => user.id
+    can :edit, Room, :admin_id => user.id
   end
 end
