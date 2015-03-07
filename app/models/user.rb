@@ -20,10 +20,11 @@ class User
   field :encrypted_password, type: String, default: ""
 
 
-  ## Profile Info
-  field :fname,              type: String, default: ""
-  field :lname,              type: String, default: ""
-  field :username,              type: String
+  # ## Profile Info
+  has_one :profile , class_name: 'Profile' , inverse_of: :user
+  # field :fname,              type: String, default: ""
+  # field :lname,              type: String, default: ""
+  field :username,           type: String
   field :bdate,              type: String
   field :birthday,           type: Date
 
