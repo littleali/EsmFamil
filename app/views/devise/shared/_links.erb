@@ -1,21 +1,14 @@
 
 <%- if controller_name != 'sessions' %>
-<<<<<<< HEAD
-<div id="sign-in-btn">
-  <%= button_to "ورود" , new_session_path(resource_name) ,:class=>"btn btn-default btn-block login-btn" ,:id=>"login-btn"%>
-</div>
-=======
   
-<%= link_to "ورود", "#myModal", "data-toggle" => "modal" , 
+<%= link_to "ورود", "#myModal", "data-toggle" => "modal" , :class=>"btn btn-default btn-block login-btn" ,:id=>"login-btn",
 "data-target"=>"#myModal"%>
 
    <%= render "devise/sessions/login_modal" %>
->>>>>>> master
 <% end -%>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-</br>
-  <%= link_to "صفحه‌ی اول", new_registration_path(resource_name) %>
+  <%= link_to "صفحه‌ی اول", new_registration_path(resource_name),:class=>"btn btn-default btn-block login-btn" ,:id=>"login-btn" %>
 <% end -%>
 
 
