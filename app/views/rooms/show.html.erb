@@ -1,5 +1,61 @@
 <p id="notice"><%= notice %></p>
 
+<div class="jumbotron" id = "hp-main-jumbotron">
+	<div class="container">
+        <div class="row">
+          <div class="col-md-8 container">
+          	<div class="well well-sm" id ="room-well">
+          		<div class= "row">
+          			<div class="col-md-3">
+          				اتاق فعال
+          				<%if @room.enabled? %>
+                			است
+                		<% else %>
+                		 	نیست
+                		<%end%>
+          			</div>
+	      			<div class="col-md-3">
+          				ظرفیت اتاق: <%= @room.capacity %> نفر
+          			</div>
+
+          			<div class="col-md-3">
+          				مدیر اتاق: <%= @room.admin.username %>
+          			</div>
+          			<div class="col-md-3">
+          				نام اتاق: <%= @room.name %>
+          			</div>
+          		</div>
+          	</div>
+          	<div class="btn-group btn-group-justified room-btn-group" role="group">
+				<div class="btn-group" role="group">
+    				<%= button_to 'حذف اتاق', @room, method: :delete, data: { confirm: 'مطمئن هستید؟' } , :class=>"btn btn-success"%>
+  				</div>
+				<div class="btn-group" role="group">
+				  <%= button_to 'ویرایش اتاق',edit_room_path(@room), method: :get, :class=>"btn btn-default"%>
+				</div>
+				<div class="btn-group" role="group">
+					<%= button_to 'لیست اتاق‌ها', rooms_path, method: :get, :class=>"btn btn-success"%>
+				</div>
+			</div>	
+          </div>
+          <div class="col-md-4">
+          	<div class="panel panel-success">
+  				<div class="panel-heading">لیست اعضای اتاق</div>
+  				<table class="table table-hover table-striped">
+  					<tbody>
+  						<tr><td><h4>نام اتاق</h4></td></tr>
+  						<tr><td><h4>نام اتاق</h4></td></tr>
+  						<tr><td><h4>نام اتاق</h4></td></tr>
+  						<tr><td><h4>نام اتاق</h4></td></tr>
+  					</tbody>
+  				</table>
+			</div>
+          </div>
+        </div>
+    </div>
+</div>
+     
+<!--
 <p>
   <strong>Name:</strong>
   <%= @room.name %>
@@ -23,3 +79,5 @@
 <%= link_to 'Edit', edit_room_path(@room) %> |
 <%= link_to 'Back', rooms_path %>
 <%= link_to 'Destroy', @room, method: :delete, data: { confirm: 'Are you sure?' } %>
+
+-->
