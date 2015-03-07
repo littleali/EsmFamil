@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <div class="jumbotron" id = "hp-main-jumbotron">
 	<div class="container">
         <div class="row">
@@ -31,7 +29,8 @@
     				<%= button_to 'حذف اتاق', @room, method: :delete, data: { confirm: 'مطمئن هستید؟' } , :class=>"btn btn-success"%>
   				</div>
 				<div class="btn-group" role="group">
-				  <%= button_to 'ویرایش اتاق',edit_room_path(@room), method: :get, :class=>"btn btn-default"%>
+				  <%= link_to 'ویرایش اتاق',"#editRoomModal", "data-toggle" => "modal","data-target"=>"#editRoomModal", :class=>"btn btn-default"%>
+             <%= render 'rooms/edit_room_modal' %>
 				</div>
 				<div class="btn-group" role="group">
 					<%= button_to 'لیست اتاق‌ها', rooms_path, method: :get, :class=>"btn btn-success"%>
