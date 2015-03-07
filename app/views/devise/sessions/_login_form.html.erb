@@ -1,0 +1,25 @@
+<div id="hp-signup-form">
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="form-group" id="hp-input-fields">
+      <% devise_error_messages! %>
+      <%= f.text_field :login ,autofocus: true, :placeholder => :'پست الکترونیکی یا نام کاربری' ,:class => 'form-control', :id=>'hp-inner-input-fields' %>    
+    </div>
+    <div class="form-group" id="hp-input-fields"> 
+      <%= f.password_field :password, autocomplete: "off", :placeholder =>:'*گذرواژه',:class => 'form-control', :id=>'hp-inner-input-fields' %>
+    </div>
+    <% if devise_mapping.rememberable? -%>
+      <div><%= f.check_box :remember_me %> 
+      <%= f.label "مرا به خاطرت نگه دار" %></div>
+    <% end -%>
+    <% if flash[:alert] %>
+      <div class="alert alert-danger" role="alert">
+        <%= flash[:alert] %>
+      </div>
+    <% end %>
+    <br>
+    <div>
+      <%= f.submit "ورود", :class=>"btn btn-default btn-block" ,:id=>"login-btn"%>
+    </div>
+  <% end %>
+</div>
+

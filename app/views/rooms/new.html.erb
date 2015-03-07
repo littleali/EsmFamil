@@ -2,14 +2,15 @@
   <div class="col-md-4"></div>
     <div class="col-md-4" id="hp-signup-form">
       <div class="jumbotron" id = "hp-main-jumbotron" >
-        <h2 id="signin-form-head">ورود</h2>
+        <h2 id="signin-form-head">اتاق جدید</h2>
         <div class="container" >
-          <%= render "devise/sessions/login_form" %>
-          <div id= "hp-links">
-            <%= render "devise/shared/links" %>
-          </div>
+        	<%= render 'form' %>
+          	<div id= "hp-links">
+           		<%= link_to 'لیست اتاق‌ها', rooms_path %>
+          	</div>
         </div>
       <div class="col-md-4"></div>
     </div>
   </div>
 </div>
+

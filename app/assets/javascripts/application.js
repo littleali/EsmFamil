@@ -15,6 +15,7 @@
 //= require turbolinks
 // require_tree .
 
+//= require bootstrap.min
 //= require jalali
 //= require calendar
 //= require calendar-setup

@@ -6,9 +6,17 @@ class User
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :confirmable, :timeoutable
+         :confirmable, :timeoutable , :authentication_keys => [:login]
   ## Database authenticatable
   field :email,              type: String, default: ""
+  def self.find_first_by_auth_conditions(warden_conditions)
+    conditions = warden_conditions.dup
+    if login = conditions.delete(:login)
+      self.any_of({ :username =>  /^#{Regexp.escape(login)}$/i }, { :email =>  /^#{Regexp.escape(login)}$/i }).first
+    else
+      super
+    end
+  end
   field :encrypted_password, type: String, default: ""
 
 
@@ -19,6 +27,9 @@ class User
   field :bdate,              type: String
   field :birthday,           type: Date
 
+  ## one-to-many relation with room
+  has_many :owned_rooms , class_name: 'Room' , inverse_of: :admin
+  has_and_belongs_to_many :playing_rooms , class_name: 'Room' , inverse_of: :players
 
 
   ## Recoverable
@@ -58,7 +69,7 @@ class User
   validates_presence_of :username
   validates_presence_of :bdate
 
-  validate :password_complexity
+  # validate :password_complexity
   validate :age_limit
 
   def password_complexity
@@ -81,6 +92,13 @@ class User
 
   end
 
+  def login=(login)
+    @login = login
+  end
+
+  def login
+    @login || self.username || self.email
+  end
 
 
 end
