@@ -5,6 +5,11 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to(:back)
+    flash[:notice] = exception.message
+  end
+
   protected
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_in) {|u| u.permit(:signin,:username, :email, :password, :remember_me)}
