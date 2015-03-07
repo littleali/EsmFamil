@@ -11,7 +11,17 @@ class RoomsController < ApplicationController
   # GET /rooms/1
   # GET /rooms/1.json
   def show
+   # redirect_to :action => :show_with_name, :name => Room.find(params[:id]).name
   end
+
+  def show_with_name
+    @room = Room.find_by_name(params[:name])
+  end
+
+  #for URLs
+  #def to_param
+  #  name
+  #end
 
   # GET /rooms/new
   def new
@@ -21,6 +31,7 @@ class RoomsController < ApplicationController
   # GET /rooms/1/edit
   def edit
   end
+
 
   # POST /rooms
   # POST /rooms.json
@@ -73,4 +84,5 @@ class RoomsController < ApplicationController
     def room_params
       params.require(:room).permit(:name, :capacity, :enabled)
     end
+
 end

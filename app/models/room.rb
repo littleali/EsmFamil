@@ -9,4 +9,5 @@ class Room
   validates_presence_of :name
   validates_presence_of :admin
   validates_numericality_of :capacity, less_than_or_equal_to: 12, greater_than: 3
+
 end

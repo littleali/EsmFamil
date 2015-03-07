@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   get 'profile' => 'profile#show'
 
+  #get '/:name' => 'rooms/show_with_name'
+
   # devise_for :users
   devise_for :users, controllers: { registrations: 'registrations' }
   get 'welcome/index' => 'welcome#index'
