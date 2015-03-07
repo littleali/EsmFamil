@@ -20,10 +20,11 @@ class User
   field :encrypted_password, type: String, default: ""
 
 
-  ## Profile Info
-  field :fname,              type: String, default: ""
-  field :lname,              type: String, default: ""
-  field :username,              type: String
+  # ## Profile Info
+  has_one :profile , class_name: 'Profile' , inverse_of: :user
+  # field :fname,              type: String, default: ""
+  # field :lname,              type: String, default: ""
+  field :username,           type: String
   field :bdate,              type: String
   field :birthday,           type: Date
 
@@ -64,6 +65,11 @@ class User
     end
   end
 
+
+
+  #cllbacks
+  after_create :create_profile
+
   #Validation
   validates :username, uniqueness: true
   validates_presence_of :username
@@ -100,5 +106,9 @@ class User
     @login || self.username || self.email
   end
 
+  def create_profile
+    profile = Profile.new
+    self.profile = profile 
+  end
 
 end

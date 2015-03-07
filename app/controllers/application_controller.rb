@@ -7,6 +7,12 @@ class ApplicationController < ActionController::Base
   layout :layout_by_resource
 
 
+  rescue_from CanCan::AccessDenied do |exception|
+    flash[:alert] = exception.message
+    redirect_to(:back)
+
+  end
+
   protected
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_in) {|u| u.permit(:signin,:username, :email, :password, :remember_me)}

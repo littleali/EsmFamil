@@ -1,15 +1,19 @@
 Rails.application.routes.draw do
+
+  resources :profiles
+
   resources :rooms
 
-  get 'profile/edit'
+  get 'gamerooms/:name' => 'rooms#show_with_name'
 
-  get 'profile' => 'profile#show'
+
 
   # devise_for :users
   devise_for :users, controllers: { registrations: 'registrations' }
   get 'welcome/index' => 'welcome#index'
   get 'test' => 'welcome#test'
 
+  post 'profiles/:id/update_field/:title' => "profiles#update_field"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
