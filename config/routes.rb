@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
+
+  resources :profiles
+
   resources :rooms
-
-  get 'profile/edit'
-
-  get 'profile' => 'profile#show'
 
   #get '/:name' => 'rooms/show_with_name'
 
@@ -12,6 +11,7 @@ Rails.application.routes.draw do
   get 'welcome/index' => 'welcome#index'
   get 'test' => 'welcome#test'
 
+  post 'profiles/:id/update_field/:title' => "profiles#update_field"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
