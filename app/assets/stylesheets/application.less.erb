@@ -10,9 +10,12 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+ *= require font-awesome.min.css.erb
  *= require_tree .
  *= require_self
  */
+
+@import "color-palette";
 
 @font-face {
     font-family: 'BYekan';
@@ -23,4 +26,40 @@
 
 body { 
 	font-family: 'BYekan',  Arial, Sans-serif;
+    height: 100%;
+}
+.main-container {
+    padding-top: 70px;
+    background-color: @esm-white;
+    height: 100%;
+}
+
+.esm-navbar {
+    /*background-color: @esm-green;*/
+    border-color: @esm-green;
+    border-width: 1px;
+    border-bottom: 2px;
+}
+
+.right-pad-wrapper {
+
+    border-width: 3px;
+    border-color: black;
+    .user-list-header {
+
+    }
+    .user-list-table {
+
+    }
+
+}
+
+
+.right-pad {
+    background-color: @esm-green;
+    height: 100%;
+}
+
+.left-pad {
+    background-color: @esm-green;
 }

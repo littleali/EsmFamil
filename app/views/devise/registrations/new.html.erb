@@ -21,6 +21,7 @@
     </nav> -->
 
 
+
     <% if flash[:notice] %>
       <div class="alert alert-success" role="alert">
         <%= flash[:notice] %>
@@ -63,6 +64,7 @@
                 </div>
 
                 <!-- ina oon ezafiast -->
+                <!--
                 <div class="form-group" id="hp-input-fields">
                   <%= f.text_field :fname, :placeholder => :'نام' ,:class => 'form-control', :id=>'hp-inner-input-fields' %>
                 </div>
@@ -70,18 +72,43 @@
                 <div class="form-group" id="hp-input-fields">
                   <%= f.text_field :lname, :placeholder => :'نام خانوادگی' ,:class => 'form-control', :id=>'hp-inner-input-fields' %>
                 </div>
-
+                -->
                 <div class="form-group input-group" id="hp-input-fields">
                   <%= f.text_field :username, :placeholder => :'نام مستعار' ,:class => 'form-control', :id=>'hp-inner-input-fields' %>
                   <span class="input-group-addon" id="basic-addon2">
                     <span class="glyphicon glyphicon-star-empty" ></span>
                   </span>
                 </div>
-                
-                
+
+
+
+                <!--
+                <%= select :dolaki, :alaki, ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31' ].map{|c| [c, "#{c}"]}, {}, {class: 'form-control'} %>
+
+                <%= select :dolaki, :alaki, ['فروردین', 'اردیبهشت', 'خرداد', 'تیر', 'مرداد', 'شهریور', 'مهر', 'آبان', 'آذر', 'دی', 'بهمن', 'اسفند'].map{|c| [c, "#{c}"]}, {}, {class: 'form-control'} %>
+
+                <%= select :dolaki, :alaki, ['public', 'private'].map{|c| [c, "#{c}"]}, {}, {class: 'form-control'} %>
+                </div>
+                -->
+                <div >
+                  <div class="container" id="hp-date-fields-container">
+                    <m>
+                      <span class="glyphicon glyphicon-star-empty" ></span>
+تاریخ تولد:
+                    </m>
+                    <br>
+                    <div class="row">
+                        <% persian_month_names = ['فروردین', 'اردیبهشت', 'خرداد', 'تیر', 'مرداد', 'شهریور', 'مهر', 'آبان', 'آذر', 'دی', 'بهمن', 'اسفند'] %>
+                        <%= select_year(1300, {start_year: 1300, end_year: 1400}, {class:"col-md-5"}) %>
+                        <%= select_month(1,{use_month_names: persian_month_names}, {class:"col-md-5"}) %>
+                        <%= select_day(1, {class:"col-md-2"}) %>
+                    </div>
+                  </div>
+                 </div>
+
+                <!--
                 <div  id="hp-input-fields">
                   <div class="input-group" id="hp-date-field">
-                    <!--<input id="date_input_1" class="form-control" value="" name="user[" placeholder="تاریخ تولد: yyyy-mm-dd" type="text"/>-->
                     <%= f.date_field :bdate, :placeholder => "تاریخ تولد: yyyy-mm-dd",:id => 'date_input_1', :class => 'form-control' %>
                     <span class="input-group-addon" id="basic-addon2">
                       <span class="glyphicon glyphicon-star-empty" ></span>
@@ -92,6 +119,8 @@
                     
                   </div>
                 </div>
+
+                -->
 
                 <% if flash[:alert] %>
                     <div class="alert alert-danger" role="alert">

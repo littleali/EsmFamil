@@ -21,3 +21,9 @@
 
 en:
   hello: "Hello world"
+  esm_famil: "Esm Famil"
+  home_page: "Home"
+  login: "Login"
+  logout: "Logout"
+  edit: "Edit"
+  copy_right: "All right reserved by EsmFamil group."

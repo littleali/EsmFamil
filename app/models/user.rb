@@ -25,6 +25,7 @@ class User
   field :lname,              type: String, default: ""
   field :username,              type: String
   field :bdate,              type: String
+  field :birthday,           type: Date
 
   ## one-to-many relation with room
   has_many :owned_rooms , class_name: 'Room' , inverse_of: :admin

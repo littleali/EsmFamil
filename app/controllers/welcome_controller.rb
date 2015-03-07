@@ -10,4 +10,8 @@ class WelcomeController < ApplicationController
     end
   end
 
+  def test
+
+  end
+
 end

@@ -2,30 +2,52 @@
 <html>
 <head>
   <title>EsmFamil</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-	<!--
------------LOGIN STATUS-------------
-<br>
-<% if current_user %>
-    <%= current_user.email%>
-       <br>
 
-    <%= link_to "logout",destroy_user_session_path, :method => :delete %>
-<% else %>
-    You are not signed in!
 
-<br>
-    <%= link_to "login",new_user_session_path %>
-<% end %>
-<br>
------------LOGIN STATUS-------------
-<br>
--->
-<%= yield %>
+<%= render 'layouts/partials/navbar' %>
+<div class="row">
+  <div class="col-md-1 right-pad"></div>
+  <div class="col-md-10">
+    <div class="main-container">
+      <%= yield %>
+    </div>
+  </div>
+  <div class="col-md-1 left-pad"></div>
+</div>
+
+
+
+<%= render 'layouts/partials/footer' %>
 
 </body>
+<script language="javascript" type="text/javascript">
+    $(function () {
+        <% if notice %>
+        new PNotify({
+            text: '<%= notice %>',
+            type: 'success',
+//            styling: 'fontawesome',
+            icon: false
+            <% if I18n.locale.to_s == 'fa' %>, addclass: 'text-fa'
+            <%end %>
+        });
+        <% end %>
+        <% if alert %>
+        new PNotify({
+            text: '<%= alert %>',
+            type: 'danger',
+//            styling: 'fontawesome',
+            icon: false
+            <% if I18n.locale.to_s == 'fa' %>, addclass: 'text-fa'
+            <%end %>
+        });
+        <% end %>
+    });
+</script>
+
 </html>

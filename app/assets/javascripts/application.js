@@ -20,3 +20,4 @@
 //= require calendar
 //= require calendar-setup
 //= require calendar-fa
+//= require pnotify.custom.min
