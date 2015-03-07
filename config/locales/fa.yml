@@ -16,3 +16,9 @@ fa:
           attributes:
             email:
               taken: 'شما قبلا با این پست الکترونیکی ثبت نام کرده‌اید'
+  online_status: "آنلاین"
+  users: "کاربران"
+  information: "اطلاعات"
+  a_game_room: "یک اتاق بازی"
+  rooms: "اتاق‌های بازی"
+  private: "خصوصی"
