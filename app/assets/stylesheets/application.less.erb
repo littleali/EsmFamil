@@ -14,7 +14,6 @@
  *= require_tree .
  *= require_self
  */
-
 @import "color-palette";
 
 @font-face {
@@ -23,6 +22,7 @@
     font-weight: 400;
     src: url(<%= asset_data_uri 'BYekan.woff' %>) format('woff');
 }
+
 @font-face {
     font-family: 'Dastnevis';
     font-style: normal;
@@ -32,12 +32,22 @@
 
 }
 
-html, body{
+@font-face {
+    font-family: 'EDastnevis';
+    font-style: normal;
+    font-weight: 400;
+    src: url(<%= asset_data_uri 'EDastnevis.eot' %>);
+    src: url(<%= asset_data_uri 'EDastnevis.eot' %>) format('embedded-opentype'), url(<%= asset_data_uri 'EDastnevis.woff' %>) format('woff'), url(<%= asset_data_uri 'EDastnevis.ttf' %>) format('truetype'), url(<%= asset_data_uri 'EDastnevis.svg' %>) format('svg');
+
+}
+
+html, body {
     height: 100%;
     min-height: 100%
 }
+
 body {
-	font-family: 'BYekan',  Arial, Sans-serif;
+    font-family: 'BYekan', Arial, Sans-serif;
 
     background: url(<%= asset_data_uri 'paper.jpg' %>);
     /*background-repeat: no-repeat;*/
@@ -45,13 +55,13 @@ body {
     background-position: center top;
     /*background-attachment: fixed;*/
 }
+
 .main-row {
     height: 100%;
     .right-pad {
         height: 100%;
         border-left: 5px double @vertical-red;
     }
-
 
     .main-container {
         height: 100%;
@@ -64,8 +74,6 @@ body {
         border-right: 5px double @vertical-red;
     }
 }
-
-
 
 .esm-navbar {
     background-color: white;
@@ -80,43 +88,173 @@ body {
         font-size: 20px;
         border-left: 2px groove black;
         border-right: 2px groove black;
-        text-shadow: 1px 2px 0px rgba(40,40,40,0.4);
+        text-shadow: 1px 2px 0px rgba(40, 40, 40, 0.4);
         background-color: @esm-white;
     }
     .esm-dropdown {
         font-size: 25px;
     }
     /*.container {*/
-        /*height: 100%;*/
-        /*.navbar-header {*/
-            /*height: 100%;*/
-            /*font-size: 30px;*/
-        /*}*/
-        /*.navbar-collapse.collapse{*/
-            /*height: 120px;*/
-            /*background-color: black;*/
-            /*.nav.navbar-nav {*/
-                /*height: 120px;*/
-                /*.li {*/
-                    /*border: 3px solid black;*/
-                /*}*/
-                /*.active {*/
-                    /*height: 120px;*/
-                /*}*/
-            /*}*/
-        /*}*/
+    /*height: 100%;*/
+    /*.navbar-header {*/
+    /*height: 100%;*/
+    /*font-size: 30px;*/
+    /*}*/
+    /*.navbar-collapse.collapse{*/
+    /*height: 120px;*/
+    /*background-color: black;*/
+    /*.nav.navbar-nav {*/
+    /*height: 120px;*/
+    /*.li {*/
+    /*border: 3px solid black;*/
+    /*}*/
+    /*.active {*/
+    /*height: 120px;*/
+    /*}*/
+    /*}*/
+    /*}*/
 
     /*}*/
 }
+
 .user-list-box {
     .list-header {
-        font-family: 'Dastnevis',  Arial, Sans-serif;
+        font-family: 'Dastnevis', 'EDastnevis', Sans-serif;
         text-align: center;
-        font-size: 15px;
+        font-size: 21px;
         font-weight: bold;
-        border-bottom: 10px @esm-black solid;
+        border-bottom: 3px solid @esm-black;
+        /*border-bottom: 1px solid black;*/
+    }
+    .list-table {
+        font-family: 'Dastnevis', 'EDastnevis', Sans-serif;
+        text-align: center;
+        width: 100%;
+        .online-header {
+            text-align: center;
+            width: 55px;
+        }
+        .list-row {
+            margin-top: 10px;
+            padding: 5px;
+            border-bottom: 1px solid @trans-black;
+            background-color: @trans-white;
+            /*border-radius: 20px;*/
+            box-shadow: 2px 1px 0px @trans-black;
+            .list-dray {
+                padding: 10px;
+                font-size: 26px;
+            }
+        }
+
     }
     /*border-bottom: 1px black solid;*/
+}
+
+.room-list-box {
+    .list-header {
+        font-family: 'Dastnevis', 'EDastnevis', Sans-serif;
+        text-align: center;
+        font-size: 21px;
+        font-weight: bold;
+        border-bottom: 3px solid @esm-black;
+        /*border-bottom: 1px solid black;*/
+    }
+
+    .list-table {
+        text-align: center;
+        width: 100%;
+        .online-header {
+            text-align: center;
+            width: 55px;
+        }
+        .list-row {
+            font-family: 'Dastnevis', 'EDastnevis', Sans-serif;
+            margin-top: 10px;
+            padding: 5px;
+            border-bottom: 1px solid @trans-black;
+            background-color: @trans-white;
+            /*border-radius: 20px;*/
+            box-shadow: 2px 1px 0px @trans-black;
+            .list-dray {
+                padding: 10px;
+
+                font-size: 26px;
+            }
+        }
+
+    }
+    /*border-bottom: 1px black solid;*/
+}
+
+.info-list-box {
+    .list-header {
+        font-family: 'Dastnevis', 'EDastnevis', Sans-serif;
+        text-align: center;
+        font-size: 21px;
+        font-weight: bold;
+        border-bottom: 3px solid @esm-black;
+        /*border-bottom: 1px solid black;*/
+    }
+
+    .list-table {
+        text-align: center;
+        width: 100%;
+        .online-header {
+            text-align: center;
+            width: 55px;
+        }
+        .list-row {
+            font-family: 'Dastnevis', 'EDastnevis', Sans-serif;
+            margin-top: 10px;
+            padding: 5px;
+            border-bottom: 1px solid @trans-black;
+            background-color: @trans-white;
+            /*border-radius: 20px;*/
+            box-shadow: 2px 1px 0px @trans-black;
+
+            .list-dray {
+                padding: 10px;
+                font-size: 22px;
+            }
+            .list-dray-info {
+                padding: 10px;
+                font-size: 18px;
+            }
+        }
+
+    }
+    /*border-bottom: 1px black solid;*/
+}
+
+.challenge-list-box {
+    .list-header {
+        font-family: 'Dastnevis', 'EDastnevis', Sans-serif;
+        text-align: center;
+        font-size: 21px;
+        font-weight: bold;
+        border-bottom: 3px solid @esm-black;
+        /*border-bottom: 1px solid black;*/
+    }
+    .list-row {
+        margin-top: 3px;
+        border: 2px dashed black;
+        padding: 5px;
+        background-color: @trans-yellow;
+
+        .new-btn {
+            margin: 0 auto 0;
+            /*background-color: @trans-red;*/
+            font-family: 'Dastnevis', 'EDastnevis', Sans-serif;
+            font-size: 24px;
+            text-align: center;
+            /*border: 1px solid ;*/
+            /*box-shadow: 1px 0px 0px;*/
+            a {
+                color: @esm-red;
+            }
+        }
+    }
 }
 
 .right-pad-wrapper {
@@ -138,11 +276,11 @@ body {
         .user-header {
             text-align: center;
         }
-        .online-header{
+        .online-header {
             text-align: center;
             width: 55px;
         }
-        .user-list-row{
+        .user-list-row {
             margin-top: 10px;
             padding: 5px;
             /*height: 35px;*/
@@ -153,7 +291,7 @@ body {
             border-bottom-right-radius: 5px;
             /*display: block;*/
             box-shadow: 0px 0px 2px rgba(50, 50, 50, 0.5);
-            .user-list-dray{
+            .user-list-dray {
                 padding: 10px;
             }
         }
@@ -169,15 +307,15 @@ body {
             text-align: center;
             font-size: 20px;
         }
-        .room-capacity{
+        .room-capacity {
             text-align: center;
             width: 60px;
         }
-        .room-privacy{
+        .room-privacy {
             text-align: center;
             width: 40px;
         }
-        .room-list-row{
+        .room-list-row {
             margin-top: 10px;
             padding: 5px;
 
@@ -189,7 +327,7 @@ body {
             border-bottom-right-radius: 5px;
             /*display: block;*/
             box-shadow: 0px 0px 2px rgba(50, 50, 50, 0.5);
-            .room-list-dray{
+            .room-list-dray {
                 font-size: 16px;
                 padding: 10px;
             }
@@ -197,8 +335,9 @@ body {
 
     }
 }
+
 .left-pad-wrapper {
-    .room-generator-pad{
+    .room-generator-pad {
         /*height: 210px;*/
         /*background-color: @esm-green;*/
         /*padding: 0px 15px 0px 10px;*/
@@ -206,18 +345,18 @@ body {
         border-width: 3px;
         border-style: solid;
         /*.room-generator-container{*/
-            background-color: @esm-white;
-            .room-generator-info {
-                text-align: center;
-                h2 {
-                    padding-top: 3px;
-                    padding-bottom: 7px;
+        background-color: @esm-white;
+        .room-generator-info {
+            text-align: center;
+            h2 {
+                padding-top: 3px;
+                padding-bottom: 7px;
+                color: @esm-red;
+                a {
                     color: @esm-red;
-                    a {
-                        color: @esm-red;
-                    }
                 }
             }
+        }
         /*}*/
 
     }
@@ -226,13 +365,15 @@ body {
 .user-online {
     color: @esm-green;
 }
+
 .user-offline {
     color: @esm-red;
 }
 
-.room-available{
+.room-available {
     color: @esm-green;
 }
-.room-unavailable{
+
+.room-unavailable {
     color: @esm-red;
 }

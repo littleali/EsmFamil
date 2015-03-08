@@ -1,169 +1,101 @@
 <div class="row">
-  <div class="col-md-3">
-    S
+  <div class="col-md-2 info-list-box">
+    <div class="list-header">
+      <%= I18n.t("sum") %>
+    </div>
+    <table class="list-table">
+      <tr class="list-row">
+        <td class="list-dray">
+          <%= I18n.t("my_badge") %>
+        </td>
+        <td class="list-dray-info">
+          <strong>
+            <%= I18n.t("expert") %>
+          </strong>
+        </td>
+      </tr>
+      <tr class="list-row">
+        <td class="list-dray">
+          <%= link_to I18n.t("my_rooms"), "#" %>
+        </td>
+        <td class="list-dray-info">
+          <%= Room.where(:admin => current_user).count %>
+        </td>
+      </tr>
+      <tr class="list-row">
+        <td class="list-dray">
+          <%= link_to I18n.t("my_friends"), "#" %>
+        </td>
+        <td class="list-dray-info">
+          18
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="col-md-4">
+    <div class="challenge-list-box">
+      <div class="list-header">
+        <%= I18n.t("challenges") %>
+      </div>
+      <div class="list-row">
+        <div class="new-btn">
+          <%= link_to I18n.t("make_new_room"), new_room_path %>
+        </div>
+      </div>
+      <div class="list-row">
+        <div class="new-btn">
+          <%= link_to "اولین بازی را انجام بده!", "#" %>
+        </div>
+      </div>
+      <div class="list-row">
+        <div class="new-btn">
+          <%= link_to "سه بار پشت سر هم برنده شو!", "#" %>
+        </div>
+      </div>
+      <div class="list-row">
+        <div class="new-btn">
+          <%= link_to "با یک نفر با امتیاز ۱۸۰۰ بازی کن!", "#" %>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="col-md-3">
-    S
-  </div>
-  <div class="col-md-3" style="font-family: 'Dastnevis'">
+  <div class="col-md-3 room-list-box">
+    <div class="list-header">
 
+      <%= I18n.t("rooms") %>
+    </div>
+
+    <table class="list-table">
+      <% Room.all.each do |r| %>
+          <tr class="list-row">
+            <td class="list-dray"><%= link_to r.name, r %> </td>
+            <td class="room-capacity">
+              <span class="fa-stack fa-lg">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-inverse fa-stack-1x" style="font-size: 14px"><%= r.capacity %></i>
+              </span>
+            </td>
+            <td class="room-privacy"><span class="fa fa-lock fa-2x room-unavailable"></span></td>
+          </tr>
+
+      <% end %>
+    </table>
   </div>
   <div class="col-md-3 user-list-box">
     <div class="list-header">
 
       <%= I18n.t("users") %>
     </div>
+    <table class="list-table">
+      <% User.all.each do |u| %>
+          <tr class="list-row">
+            <td class="list-dray"><%= u.username %></td>
+            <td><span class="fa fa-circle fa-2x user-online"></span></td>
+          </tr>
+
+
+      <% end %>
+    </table>
   </div>
 </div>
-<!--<div class="row">-->
-<!--<div class="col-md-3" style="height: 100px; background-color: black">-->
-
-<!--</div>-->
-<!--<div class="col-md-3" style="height: 100px; background-color: yellow">-->
-
-<!--</div>-->
-<!--<div class="col-md-3" style="height: 100px; background-color: blue">-->
-
-<!--</div>-->
-<!--<div class="col-md-3" style="height: 100px; background-color: red; padding-right: 80px">-->
-<!--<div style="background-color: blueviolet; height: 100%">-->
-
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-
-<!--<div class="row">-->
-<!--<div class="col-md-9">-->
-<!--<div class="left-pad-wrapper">-->
-<!--<div class="col-md-3 room-generator-pad">-->
-<!--&lt;!&ndash;<div class="room-generator-container">&ndash;&gt;-->
-<!--<div class="room-generator-info">-->
-<!--<%= link_to new_room_path do %>-->
-    <!--<h2>-->
-    <!--همین الان-->
-    <!--</h2>-->
-
-    <!--<h2><strong>-->
-    <!--یک اتاق بازی-->
-    <!--</strong>-->
-    <!--</h2>-->
-
-    <!--<h2>-->
-    <!--بساز!-->
-    <!--</h2>-->
-    <!--
-<% end %>-->
-<!--</div>-->
-<!--&lt;!&ndash;</div>&ndash;&gt;-->
-
-<!--</div>-->
-
-<!--<div class="col-md-9" >-->
-
-
-<!--<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">-->
-<!--&lt;!&ndash; Indicators &ndash;&gt;-->
-<!--<ol class="carousel-indicators">-->
-<!--<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>-->
-<!--<li data-target="#carousel-example-generic" data-slide-to="1"></li>-->
-<!--<li data-target="#carousel-example-generic" data-slide-to="2"></li>-->
-<!--</ol>-->
-
-<!--&lt;!&ndash; Wrapper for slides &ndash;&gt;-->
-<!--<div class="carousel-inner" role="listbox">-->
-<!--<div class="item active">-->
-<!--&lt;!&ndash;<img src="..." alt="...">&ndash;&gt;-->
-<!--<%= image_tag 'esmfamil.png' %>-->
-<!--<div class="carousel-caption">-->
-<!--یک عکس زیبا-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="item">-->
-<!--<%= image_tag 'esmfamil.png' %>-->
-<!--<div class="carousel-caption">-->
-<!--عکسی زیبا‌تر-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-
-<!--&lt;!&ndash; Controls &ndash;&gt;-->
-<!--<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">-->
-<!--<span class="fa fa-angle-double-left" aria-hidden="true"></span>-->
-<!--<span class="sr-only">Previous</span>-->
-<!--</a>-->
-<!--<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">-->
-<!--<span class="fa fa-angle-double-right" aria-hidden="true"></span>-->
-<!--<span class="sr-only">Next</span>-->
-<!--</a>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-
-<!--<div class="col-md-3">-->
-<!--<div class="right-pad-wrapper">-->
-<!--<div class="info-header">-->
-<!--<%= I18n.t("information") %>-->
-<!--</div>-->
-<!--<table class="user-list-table">-->
-<!--<thead>-->
-<!--<tr class="user-list-header">-->
-<!--<th class="user-header">-->
-<!--<%= I18n.t("users") %>-->
-<!--</th>-->
-<!--<th class="online-header">-->
-<!--<span class="fa fa-user fa-2x"></span>-->
-<!--</th>-->
-<!--</tr>-->
-<!--</thead>-->
-<!--<tbody>-->
-<!--
-<% User.all.each do |u| %>-->
-    <!--<tr class="user-list-row">-->
-    <!--<td class="user-list-dray"><%= u.username %></td>-->
-    <!--<td><span class="fa fa-circle fa-2x user-online"></span></td>-->
-    <!--</tr>-->
-
-    <!--
-<% end %>-->
-<!--</tbody>-->
-<!--</table>-->
-<!--<hr>-->
-<!--<table class="room-list-table">-->
-<!--<thead>-->
-<!--<tr class="room-list-header">-->
-<!--<th class="room-header">-->
-<!--<%= I18n.t("rooms") %>-->
-<!--</th>-->
-<!--<th class="room-capacity">-->
-<!--<span class="fa fa-group fa-2x"></span>-->
-<!--</th>-->
-<!--<th class="room-privacy">-->
-<!--<span class="fa fa-lock fa-2x"></span>-->
-<!--</th>-->
-<!--</tr>-->
-<!--</thead>-->
-<!--<tbody>-->
-<!--
-<% Room.all.each do |r| %>-->
-    <!--<tr class="room-list-row">-->
-    <!--<td class="room-list-dray"><%= r.name %></td>-->
-    <!--<td>-->
-    <!--&lt;!&ndash;<span class="fa fa-circle room-available"> 4</span>&ndash;&gt;-->
-    <!--<span class="fa-stack fa-lg">-->
-    <!--<i class="fa fa-circle fa-stack-2x"></i>-->
-    <!--<i class="fa fa-inverse fa-stack-1x" style="font-size: 14px"><%= r.capacity %></i>-->
-    <!--</span>-->
-    <!--</td>-->
-    <!--<td><span class="fa fa-check fa-2x room-unavailable"></span></td>-->
-    <!--</tr>-->
-
-    <!--
-<% end %>-->
-<!--</tbody>-->
-<!--</table>-->
-<!--</div>-->
-<!--</div>-->
-
-<!--</div>-->
