@@ -4,7 +4,14 @@ class ProfilesController < ApplicationController
   # GET /profiles
   # GET /profiles.json
   def index
-    @profiles = Profile.all
+    # @profiles = Profile.all
+    if user_signed_in?
+      @profile = current_user.profile
+      render :show
+    else
+      #TODO remove it
+      redirect_to :new_user_registration
+    end
   end
 
   # GET /profiles/1
@@ -27,7 +34,6 @@ class ProfilesController < ApplicationController
     else
       @profile.user.update(params[:title] => params[params[:title]])
     end
-    render :edit
   end
 
   # POST /profiles
