@@ -27,7 +27,6 @@ class ProfilesController < ApplicationController
     else
       @profile.user.update(params[:title] => params[params[:title]])
     end
-    render :edit
   end
 
   # POST /profiles

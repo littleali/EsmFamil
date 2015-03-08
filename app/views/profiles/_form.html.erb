@@ -1,4 +1,4 @@
-<%= form_for :profile , :url => {:controller => "profiles" , :action => "update_field", :id => @profile.id , :title => :fname} do |f| %>
+<%= form_for :profile , remote: true, :url => {:controller => "profiles" , :action => "update_field", :id => @profile.id , :title => :fname} do |f| %>
   <% if @profile.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
@@ -22,7 +22,7 @@
 
 
 
-<%= form_for :profile , :url => {:controller => "profiles" , :action => "update_field", :id => @profile.id , :title => :lname} do |f| %>
+<%= form_for :profile ,remote: true, :url => {:controller => "profiles" , :action => "update_field", :id => @profile.id , :title => :lname} do |f| %>
   <% if @profile.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
@@ -46,7 +46,7 @@
 <% end %>
 
 
-<%= form_for :profile , :url => {:controller => "profiles" , :action => "update_field", :id => @profile.id , :title => :email} do |f| %>
+<%= form_for :profile ,remote: true, :url => {:controller => "profiles" , :action => "update_field", :id => @profile.id , :title => :email} do |f| %>
   <% if @profile.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
@@ -69,7 +69,7 @@
 <% end %>
 
 
-<%= form_for :profile , :url => {:controller => "profiles" , :action => "update_field", :id => @profile.id , :title => :username} do |f| %>
+<%= form_for :profile ,remote: true, :url => {:controller => "profiles" , :action => "update_field", :id => @profile.id , :title => :username} do |f| %>
   <% if @profile.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
