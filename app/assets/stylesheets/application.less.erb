@@ -23,6 +23,14 @@
     font-weight: 400;
     src: url(<%= asset_data_uri 'BYekan.woff' %>) format('woff');
 }
+@font-face {
+    font-family: 'Dastnevis';
+    font-style: normal;
+    font-weight: 400;
+    src: url(<%= asset_data_uri 'DastNevis.eot' %>);
+    src: url(<%= asset_data_uri 'DastNevis.eot' %>) format('embedded-opentype'), url(<%= asset_data_uri 'DastNevis.woff' %>) format('woff'), url(<%= asset_data_uri 'DastNevis.ttf' %>) format('truetype'), url(<%= asset_data_uri 'DastNevis.svg' %>) format('svg');
+
+}
 
 html, body{
     height: 100%;
@@ -48,7 +56,7 @@ body {
     .main-container {
         height: 100%;
         .above-space {
-            padding-top: 100px;
+            padding-top: 95px;
         }
     }
     .left-pad {
@@ -100,7 +108,16 @@ body {
 
     /*}*/
 }
-
+.user-list-box {
+    .list-header {
+        font-family: 'Dastnevis',  Arial, Sans-serif;
+        text-align: center;
+        font-size: 15px;
+        font-weight: bold;
+        border-bottom: 10px @esm-black solid;
+    }
+    /*border-bottom: 1px black solid;*/
+}
 
 .right-pad-wrapper {
     opacity: 0.9;
