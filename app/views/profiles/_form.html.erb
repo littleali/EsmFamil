@@ -1,24 +1,40 @@
 <div id="hp-signup-form">
   <%= form_for(@profile) do |f| %>
-  <div class="form-group" id="hp-input-fields">
+    <div class="form-group" id="hp-input-fields">
     <% if @profile.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(@profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
-
         <ul>
-        <% @profile.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
+          <% @profile.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
         </ul>
       </div>
     <% end %>
-    <%= best_in_place @profile, :fname, tabindex: "1" %>
-    <br>
-    <%= best_in_place @profile, :lname, tabindex: "1" %>
+
+    <div class="row" >
+      <div class="col-md-8">
+        <div class="form-group" id="best-in-place-input-fields">
+      <%= best_in_place @profile, :fname, tabindex: "1" , :nil => "نام خود را وارد کنید." %>
+        </div>
+      </div>
+      <div class="col-md-4" id="best-in-place-label">
+        نام :
+      </div>
+    </div>
+    
+    <div class="row" >
+      <div class="col-md-8">
+        <div class="form-group" id="best-in-place-input-fields">
+          <%= best_in_place @profile, :lname, tabindex: "1" , :nil => "نام خانوادگی خود را وارد کنید"%>
+        </div>
+      </div>
+      <div class="col-md-4" id="best-in-place-label">
+        نام خانوادگی :
+      </div>
+    </div>
   </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+  <% end %>
+</div>
 
 

@@ -51,16 +51,19 @@
       <div class="col-md-4">
         <div class="panel panel-primary">
   				<div class="panel-heading">لیست اعضای اتاق (<%= @room.players.size%> نفر)</div>
+          <div class="panel-body"> <% if @room.players.size > 0 %>
 				  <table class="table table-hover table-striped">
             <tbody>
 						  <% @room.players.each do |player| %>
 							<tr>
-                <td><h4><%=player.username%></h4> <h1> </h1> <%= link_to 'حذف کاربر', "/rooms/#{@room.id}/kick_out/#{player.id}",
-            :confirm => 'آیا مطمئن هستید?', :method => :delete %></td>
+                <td><%=player.username%></td><td><%= link_to 'حذف کاربر', "/rooms/#{@room.id}/kick_out/#{player.id}",
+            :confirm => 'آیا مطمئن هستید?', :method => :delete , :class => "kick-out-link"%></td>
               </tr>
 						  <% end %>
             </tbody>
 				  </table>
+          <% end %>
+        </div>
         </div>
       </div>
     </div>

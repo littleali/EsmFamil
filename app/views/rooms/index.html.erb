@@ -16,9 +16,7 @@
         <tbody>
           <% @rooms.each do |room| %>
             <tr  class="success">
-              <td><%= best_in_place room, :name, tabindex: "1" %></td>
-              <td><%= best_in_place room, :name, :type => :input %></td>
-
+              <td><%= room.name %></td>
               <td><%= room.admin.username %></td>
               <td><%= room.capacity %></td>
               <%if room.enabled? %>
@@ -43,4 +41,5 @@
     <div class="col-md-4"></div>
     <div class="col-md-4"></div>
   </div>
+    </div>
 </div>

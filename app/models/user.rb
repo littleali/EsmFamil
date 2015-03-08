@@ -59,7 +59,7 @@ class User
   field :locked_at,       type: Time
 
   class << self
-    def self.serialize_from_session(key, salt)
+    def serialize_from_session(key, salt)
       record = to_adapter.get(key[0].as_json["$oid"])
       record if record && record.authenticatable_salt == salt
     end

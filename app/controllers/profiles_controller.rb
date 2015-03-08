@@ -7,7 +7,7 @@ class ProfilesController < ApplicationController
     # @profiles = Profile.all
     if user_signed_in?
       @profile = current_user.profile
-      render :show
+      render :edit
     else
       #TODO remove it
       redirect_to :new_user_registration
