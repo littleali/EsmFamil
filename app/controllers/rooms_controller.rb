@@ -1,6 +1,6 @@
 class RoomsController < ApplicationController
   load_and_authorize_resource
-  before_action :set_room, only: [:show, :edit, :update, :destroy]
+  before_action :set_room, only: [:show, :edit, :update, :destroy , :kick_out]
 
   # GET /rooms
   # GET /rooms.json
@@ -20,6 +20,11 @@ class RoomsController < ApplicationController
     render 'rooms/show'
   end
 
+  def kick_out
+    kicked_out = User.find(params[:user_id])
+    @room.players.delete(kicked_out)
+    render 'rooms/show'
+  end
   #for URLs
   #def to_param
   #  name
@@ -42,6 +47,7 @@ class RoomsController < ApplicationController
     @room = Room.new(room_params)
     @room.admin = current_user
     @room.players << current_user
+    @room.enabled = true
     respond_to do |format|
       if @room.save
         format.html { redirect_to @room, notice: 'اتاق با موفقیت ساخته شد.' }
@@ -70,9 +76,10 @@ class RoomsController < ApplicationController
   # DELETE /rooms/1
   # DELETE /rooms/1.json
   def destroy
-    @room.destroy
+    @room.enabled = false
+    @room.update
     respond_to do |format|
-      format.html { redirect_to rooms_url, notice: 'اتاق با موفقیت حذف شد.' }
+      format.html { redirect_to rooms_url, notice: 'اتاق با موفقیت غیر فعال شد.' }
       format.json { head :no_content }
     end
   end
@@ -85,7 +92,7 @@ class RoomsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def room_params
-      params.require(:room).permit(:name, :capacity, :enabled)
+      params.require(:room).permit(:name, :capacity)
     end
 
 end

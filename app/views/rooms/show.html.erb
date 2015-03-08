@@ -55,14 +55,8 @@
             <tbody>
 						  <% @room.players.each do |player| %>
 							<tr>
-                <td><h4><%=player.username%></h4></td>
-              <!--  <% if current_user.id != player.id  %>
-                  <td><h4>گفت‌وگو</h4></td>
-                <%end%>
-                 <% if current_user.id == @room.admin.id && current_user.id != player.id %>
-                  <td><h4>حذف</h4></td>
-                <%end%>
-               -->
+                <td><h4><%=player.username%></h4> <h1> </h1> <%= link_to 'حذف کاربر', "/rooms/#{@room.id}/kick_out/#{player.id}",
+            :confirm => 'آیا مطمئن هستید?', :method => :delete %></td>
               </tr>
 						  <% end %>
             </tbody>
