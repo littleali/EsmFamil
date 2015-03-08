@@ -10,15 +10,16 @@
 
 
 <%= render 'layouts/partials/navbar' %>
-<div class="row">
-  <div class="col-md-1 right-pad"></div>
-  <div class="col-md-10">
+
+<div class="row main-row" >
+  <div class="col-md-1 left-pad" ></div>
+  <div class="col-md-10 main-container">
     <div class="above-space"></div>
-    <div class="main-container">
+    <div>
       <%= yield %>
     </div>
   </div>
-  <div class="col-md-1 left-pad"></div>
+  <div class="col-md-1 right-pad" ></div>
 </div>
 
 

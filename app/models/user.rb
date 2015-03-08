@@ -59,9 +59,14 @@ class User
   field :locked_at,       type: Time
 
   class << self
-    def serialize_from_session(key, salt)
-      record = to_adapter.get(key[0]['$oid'])
+    def self.serialize_from_session(key, salt)
+      record = to_adapter.get(key[0].as_json["$oid"])
       record if record && record.authenticatable_salt == salt
+    end
+    def serialize_from_cookie(id, remember_token)
+      record = to_adapter.get(id.to_s)
+      record if record && !record.remember_expired? &&
+          Devise.secure_compare(record.rememberable_value, remember_token)
     end
   end
 

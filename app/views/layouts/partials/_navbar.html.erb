@@ -12,11 +12,11 @@
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#"><%= I18n.t("home_page")%></a></li>
+        <li class="esm-active"><a href="/"><%= I18n.t("home_page")%></a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <% if current_user %>
-            <li class="dropdown">
+            <li class="dropdown esm-dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%= current_user.username%><span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
                 <li>
