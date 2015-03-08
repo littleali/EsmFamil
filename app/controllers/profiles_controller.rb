@@ -49,18 +49,30 @@ class ProfilesController < ApplicationController
   # PATCH/PUT /profiles/1
   # PATCH/PUT /profiles/1.json
   def update
+    @prfile = Profile.find params[:id]
     respond_to do |format|
-      @profile.user.username = params[:username]
-      @profile.user.email = params[:email]
       if @profile.update(profile_params)
-        format.html { redirect_to @profile, notice: 'Profile was successfully updated.' }
-        format.json { render :show, status: :ok, location: @profile }
+        format.html { redirect_to @profile, notice: 'اتاق با موفقیت به‌روز شد' }
+        format.json { respond_with_bip(@profile) }
       else
         format.html { render :edit }
-        format.json { render json: @profile.errors, status: :unprocessable_entity }
+        format.json { respond_with_bip(@profile) }
       end
     end
   end
+  # def update
+  #   respond_to do |format|
+  #     @profile.user.username = params[:username]
+  #     @profile.user.email = params[:email]
+  #     if @profile.update(profile_params)
+  #       format.html { redirect_to @profile, notice: 'Profile was successfully updated.' }
+  #       format.json { render :show, status: :ok, location: @profile }
+  #     else
+  #       format.html { render :edit }
+  #       format.json { render json: @profile.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # DELETE /profiles/1
   # DELETE /profiles/1.json
