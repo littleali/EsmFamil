@@ -24,32 +24,83 @@
     src: url(<%= asset_data_uri 'BYekan.woff' %>) format('woff');
 }
 
-body { 
-	font-family: 'BYekan',  Arial, Sans-serif;
+html, body{
     height: 100%;
+    min-height: 100%
+}
+body {
+	font-family: 'BYekan',  Arial, Sans-serif;
+
     background: url(<%= asset_data_uri 'paper.jpg' %>);
     /*background-repeat: no-repeat;*/
-    background-size: 100% auto;
-    /*background-position: center top;*/
+    /*background-size: 85% 100%;*/
+    background-position: center top;
     /*background-attachment: fixed;*/
 }
-.above-space {
-    padding-top: 70px;
-}
-.main-container {
-
-    /*background-color: @esm-white;*/
+.main-row {
     height: 100%;
+    .right-pad {
+        height: 100%;
+        border-left: 5px double @vertical-red;
+    }
+
+
+    .main-container {
+        height: 100%;
+        .above-space {
+            padding-top: 100px;
+        }
+    }
+    .left-pad {
+        height: 100%;
+        border-right: 5px double @vertical-red;
+    }
 }
+
+
 
 .esm-navbar {
-    /*background-color: @esm-green;*/
-    border-color: @esm-green;
-    border-width: 2px 2px 0 2px;
-    /*border-bottom: 1px black;*/
-    /*border-bottom: 2px;*/
+    background-color: white;
+    border-bottom: 5px double @vertical-red;
+    height: 80px;
     opacity: 0.95;
+    .navbar-brand {
+        font-size: 25px;
+    }
+    .esm-active {
+        height: 74px;
+        font-size: 20px;
+        border-left: 2px groove black;
+        border-right: 2px groove black;
+        text-shadow: 1px 2px 0px rgba(40,40,40,0.4);
+        background-color: @esm-white;
+    }
+    .esm-dropdown {
+        font-size: 25px;
+    }
+    /*.container {*/
+        /*height: 100%;*/
+        /*.navbar-header {*/
+            /*height: 100%;*/
+            /*font-size: 30px;*/
+        /*}*/
+        /*.navbar-collapse.collapse{*/
+            /*height: 120px;*/
+            /*background-color: black;*/
+            /*.nav.navbar-nav {*/
+                /*height: 120px;*/
+                /*.li {*/
+                    /*border: 3px solid black;*/
+                /*}*/
+                /*.active {*/
+                    /*height: 120px;*/
+                /*}*/
+            /*}*/
+        /*}*/
+
+    /*}*/
 }
+
 
 .right-pad-wrapper {
     opacity: 0.9;
