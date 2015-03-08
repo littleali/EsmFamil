@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'welcome#home'
 
+  delete 'rooms/:id/kick_out/:user_id' => 'rooms#kick_out'
    # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
