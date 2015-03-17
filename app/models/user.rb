@@ -28,10 +28,7 @@ class User
   field :bdate,              type: String
   field :birthday,           type: Date
 
-  ## one-to-many relation with room
-  has_many :owned_rooms , class_name: 'Room' , inverse_of: :admin
-  has_and_belongs_to_many :playing_rooms , class_name: 'Room' , inverse_of: :players
-
+  
 
   ## Recoverable
   field :reset_password_token,   type: String

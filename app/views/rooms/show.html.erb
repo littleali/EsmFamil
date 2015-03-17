@@ -4,7 +4,7 @@
       <div class="well " id ="room-well">
         <div class= "row">
           <div class="col-md-2">
-            <% if current_user.id == @room.admin.id  %>
+            <% if current_user.id == @room.admin.user.id %>
             <%= button_to 'حذف اتاق', @room, method: :delete, data: { confirm: 'مطمئن هستید؟' } , :class=>"btn btn-default room-edit-btn"%>
             <%end%>
           </div>
@@ -21,7 +21,7 @@
             ظرفیت اتاق: <%= @room.capacity %> نفر
           </div>
           <div class="col-md-3">
-            مدیر اتاق: <%= @room.admin.username %>
+            مدیر اتاق: <%= @room.admin.user.username %>
           </div>
           <div class="col-md-2">
             نام اتاق: <%= @room.name %>
@@ -56,7 +56,7 @@
             <tbody>
 						  <% @room.players.each do |player| %>
 							<tr>
-                <td><%=player.username%></td><td><%= link_to 'حذف کاربر', "/rooms/#{@room.id}/kick_out/#{player.id}",
+                <td><%=player.user.username%></td><td><%= link_to 'حذف کاربر', "/rooms/#{@room.id}/kick_out/#{player.id}",
             :confirm => 'آیا مطمئن هستید?', :method => :delete , :class => "kick-out-link"%></td>
               </tr>
 						  <% end %>
@@ -70,26 +70,7 @@
   </div>
 </div>
      
-<!--
-<p>
-  <strong>Name:</strong>
-  <%= @room.name %>
-</p>
 
-<p>
-  <strong>Admin:</strong>
-  <%= @room.admin.username %>
-</p>
-
-<p>
-  <strong>Capacity:</strong>
-  <%= @room.capacity %>
-</p>
-
-<p>
-  <strong>Enabled:</strong>
-  <%= @room.enabled %>
-</p>
 
 <%= link_to 'Edit', edit_room_path(@room) %> |
 <%= link_to 'Back', rooms_path %>

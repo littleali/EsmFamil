@@ -37,7 +37,7 @@ class Ability
     can :destroy, Room, :admin_id => user.id
     can :edit, Room, :admin_id => user.id
     can :update, Room, :admin_id => user.id
-    can :kick_out, Room, :admin_id =>user.id
+    can :kick_out, Room, :admin_id =>user.profile.id
 
     #Profile
     can :edit, Profile, :user_id => user.id

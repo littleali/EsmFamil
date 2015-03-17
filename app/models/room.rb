@@ -3,8 +3,8 @@ class Room
   field :name, type: String
   field :capacity, type: Integer
   field :enabled, type: Mongoid::Boolean
-  has_and_belongs_to_many :players , class_name: 'User' , inverse_of: :playing_rooms
-  belongs_to :admin, class_name: 'User', inverse_of: :owned_rooms
+  has_and_belongs_to_many :players , class_name: 'Profile' , inverse_of: :playing_rooms
+  belongs_to :admin, class_name: 'Profile', inverse_of: :owned_rooms
   validates_uniqueness_of :name
   validates_presence_of :name
   validates_presence_of :admin

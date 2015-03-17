@@ -21,7 +21,7 @@ class RoomsController < ApplicationController
   end
 
   def kick_out
-    kicked_out = User.find(params[:user_id])
+    kicked_out = Profile.find(params[:user_id])
     @room.players.delete(kicked_out)
     render 'rooms/show'
   end
@@ -45,8 +45,8 @@ class RoomsController < ApplicationController
   # POST /rooms.json
   def create
     @room = Room.new(room_params)
-    @room.admin = current_user
-    @room.players << current_user
+    @room.admin = current_user.profile
+    @room.players << current_user.profile
     @room.enabled = true
     respond_to do |format|
       if @room.save
