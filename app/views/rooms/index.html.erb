@@ -17,7 +17,7 @@
           <% @rooms.each do |room| %>
             <tr  class="success">
               <td><%= room.name %></td>
-              <td><%= room.admin.username %></td>
+              <td><%= room.admin.user.username %></td>
               <td><%= room.capacity %></td>
               <%if room.enabled? %>
                 <td> فعال است</td>
