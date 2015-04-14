@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :papers
+
   resources :games
 
   resources :profiles
