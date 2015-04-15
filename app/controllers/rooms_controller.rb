@@ -50,7 +50,7 @@ class RoomsController < ApplicationController
         format.html { redirect_to @room, notice: 'Game was successfully created.' }
         format.json { render :show, status: :created, location: @room }
       else
-        format.html { render :new }
+        format.html { redirect_to @room ,notice: 'Game was not saved.'  }
         format.json { render json: @game.errors, status: :unprocessable_entity }
       end
     end
