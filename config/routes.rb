@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :papers
+  #resources :papers
 
   #resources :games
 
@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   get 'gamerooms/:name/game/new' => 'rooms#new_game'
   post 'rooms/:name/create_game' => 'rooms#create_game'
-
+  get 'gamerooms/:room_name/:game_title/papers' => 'games#show_papers'
   # devise_for :users
   devise_for :users, controllers: { registrations: 'registrations' }
   get 'welcome/index' => 'welcome#index'

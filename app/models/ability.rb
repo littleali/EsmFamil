@@ -41,6 +41,7 @@ class Ability
     can :new_game, Room, :admin_id =>user.profile.id
     can :create_game, Room, :admin_id =>user.profile.id
 
+    can :show_papers, Game
     #Profile
     can :edit, Profile, :user_id => user.id
     can :show, Profile

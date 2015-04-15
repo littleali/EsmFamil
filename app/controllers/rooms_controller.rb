@@ -36,8 +36,17 @@ class RoomsController < ApplicationController
     @game = Game.new(game_params)
     @room = Room.find_by(:name => params[:name])
     @game.room = @room
+
+    (@room.players).each do |p|
+      paper = Paper.new
+      paper.owner = p
+      paper.game = @game
+    end
     respond_to do |format|
       if @game.save
+        (@game.papers).each do |p|
+          p.save
+        end
         format.html { redirect_to @room, notice: 'Game was successfully created.' }
         format.json { render :show, status: :created, location: @room }
       else
@@ -46,6 +55,8 @@ class RoomsController < ApplicationController
       end
     end
   end
+
+
   #for URLs
   #def to_param
   #  name
