@@ -25,6 +25,27 @@ class RoomsController < ApplicationController
     @room.players.delete(kicked_out)
     render 'rooms/show'
   end
+
+  def new_game
+   @game = Game.new
+   render 'games/new'
+
+  end
+
+  def create_game
+    @game = Game.new(game_params)
+    @room = Room.find_by(:name => params[:name])
+    @game.room = @room
+    respond_to do |format|
+      if @game.save
+        format.html { redirect_to @room, notice: 'Game was successfully created.' }
+        format.json { render :show, status: :created, location: @room }
+      else
+        format.html { render :new }
+        format.json { render json: @game.errors, status: :unprocessable_entity }
+      end
+    end
+  end
   #for URLs
   #def to_param
   #  name
@@ -112,6 +133,11 @@ class RoomsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def room_params
       params.require(:room).permit(:name, :capacity)
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def game_params
+      params.require(:game).permit(:title)
     end
 
 end
