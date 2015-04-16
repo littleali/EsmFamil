@@ -1,6 +1,14 @@
 class GamesController < ApplicationController
   before_action :set_game, only: [:show, :edit, :update, :destroy]
 
+
+  def show_papers
+    @room = Room.find_by(:name => params[:room_name])
+    @room_games = Game.where(:room_id => @room.id)
+    @game = @room_games.where(:title => params[:game_title]).first
+    @papers = Paper.where(:game_id => @game.id)
+    render 'papers/index'
+  end
   # GET /games
   # GET /games.json
   def index
