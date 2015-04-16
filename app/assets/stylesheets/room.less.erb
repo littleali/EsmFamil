@@ -15,6 +15,7 @@
         padding: 5px;
         .list-row {
             margin-top: 3px;
+            /*width:px 100%;*/
             /*padding: 5px;*/
             /*background-color: @trans-yellow;*/
 
@@ -41,6 +42,78 @@
                 border: none;
                 text-align: center;
                 margin-top: 1%;
+            }
+        }
+    }
+}
+
+
+.room-list-container {
+    border: 2px dashed black;
+    background-color: @trans-white;
+    .list-body {
+        tr {
+            font-family: 'Dastnevis', 'EDastnevis';
+            text-align: center;
+
+        }
+        td {
+            font-family: 'Dastnevis', 'EDastnevis', Sans-serif;
+            text-align: center;
+        }
+    }
+
+    .rooms-list-box {
+        .list-header {
+            font-family: 'Dastnevis', 'EDastnevis', Sans-serif;
+            text-align: center;
+            font-size: 21px;
+            font-weight: bold;
+            margin-bottom: 1%;
+            color: @esm-red;
+
+        }
+        h4 {
+            font-family: 'Dastnevis', 'EDastnevis', Sans-serif;
+            text-align: center;
+
+
+        }
+        td {
+            font-family: 'Dastnevis', 'EDastnevis', Sans-serif;
+            text-align: center;
+            background-color: lightgray;
+        }
+
+        .list-container {
+
+            padding: 5px;
+            .list-row {
+                margin-top: 3px;
+                /*width:px 100%;*/
+                /*padding: 5px;*/
+                /*background-color: @trans-yellow;*/
+
+                .new-btn {
+                    margin: 0px;
+                    border: none;
+                    font-family: 'Dastnevis', 'EDastnevis', Sans-serif;
+                    font-size: 24px;
+                    text-align: center;
+                    color: @esm-black;
+                    width: 100%;
+                    /*border: 1px solid ;*/
+                    /*box-shadow: 1px 0px 0px;*/
+
+                    .light-orange {
+                        background-color: @esm-light-orange;
+
+                    }
+                    .sharp-orange {
+                        background-color: @esm-sharp-orange;
+                    }
+                }
+
             }
         }
     }
