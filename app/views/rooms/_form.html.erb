@@ -13,25 +13,37 @@
     <% end %>
     <div class="form-group" id="hp-input-fields">
       <div class="row">
-        <div class="col-md-8">
-          <%= f.text_field :name, autofocus: true , :placeholder => :'نام اتاق' ,:class => 'form-control', :id=>'hp-inner-input-fields' %>
+        <div class="col-md-8 list-row adaptable_font">
+          <div class="font-small">
+            <%= f.text_field :name, autofocus: true , :placeholder => :'نام اتاق' ,:class => 'form-control', :id=>'hp-inner-input-fields' %>
+          </div>
         </div>
-        <div class="col-md-4">
-          <%= f.label :capacity,'نام اتاق', :class =>'cap-num' %>
+        <div class="col-md-4 adaptable_font">
+          <div class="font-medium font-color-red">
+            <%= f.label :capacity,I18n.t("room_name"), :class =>'cap-num' %>
+          </div>
         </div>
       </div>
     </div>
-    <div class="form-group" id="hp-input-fields">
-      <div class="row">
-        <div class="col-md-8">
+    <div class="form-group " id="hp-input-fields ">
+      <div class="row ">
+        <div class="list-row adaptable_font col-md-8">
           <%= f.number_field :capacity,:class => 'form-control', :id=>'hp-inner-input-fields' %>
         </div>
-        <div class="col-md-4">
-          <%= f.label :capacity,'ظرفیت اتاق', :class =>'cap-num' %>
+        <div class="col-md-4 adaptable_font">
+          <div class="font-medium font-color-red">
+            <%= f.label :capacity,'ظرفیت اتاق', :class =>'cap-num' %>
+          </div>
         </div>
       </div>
     </div>
-    <%= f.submit 'بساز',:class=>"btn btn-default btn-block" ,:id=>"login-btn" %>
+      <div class="new-room-list-box">
+        <div class="list-row">
+          <div class="new-btn">
+            <%= f.submit 'بساز',:class=>"btn  btn-block light-orange"  %>
+          </div>
+        </div>
+      </div>
   </div>
   <% end %>
 </div>

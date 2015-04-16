@@ -16,6 +16,12 @@ fa:
           attributes:
             email:
               taken: 'شما قبلا با این پست الکترونیکی ثبت نام کرده‌اید'
+        room:
+          attributes:
+            name:
+              blank: 'نام اتاق نمی‌تواند خالی باشد'
+            capacity:
+              not_a_number: 'ظرفیت اتاق را لطفا با عدد مشخص کنید'
   online_status: "آنلاین"
   users: "کاربران"
   information: "اطلاعات"
@@ -31,3 +37,4 @@ fa:
   my_friends: "دوستان من"
   make_new_room: "ساخت اتاق جدید"
   challenges: "چالش‌ها"
+  room_name: "نام اتاق"
