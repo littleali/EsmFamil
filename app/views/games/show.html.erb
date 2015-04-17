@@ -4,6 +4,43 @@
   <strong>Title:</strong>
   <%= @game.title %>
 </p>
+<p>	
+	<strong>date:</strong>
+  <%= @game.start_time %>
+  <%= stylesheet_link_tag "jquery.countdown" %>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <%= javascript_include_tag "jquery.plugin" %>
+  <%= javascript_include_tag "jquery.countdown" %>
+  <%= javascript_include_tag "jquery.countdown-fa" %>
+  <% if @game.start_time %>
+  		<% if @game.start_time < DateTime.now %>
+			<script>
+				$(function () {
+					var finishTime = new Date();
+					var v = new Date();
+					finishTime.setMinutes(v.getMinutes()+1);
+					// finishTime = finishTime + (finishTime.getSeconds() + 50)
+					$('#beforeStartCountDown').countdown({until: finishTime, 
+					format: 'S', description: 'شروع بازی'});
+				});
+			</script>
+			<div id="beforeStartCountDown"></div>
+		<% else %>
+			<script>
+				$(function () {
+					var finishTime = new Date();
+					var v = new Date();
+					finishTime.setMinutes(v.getMinutes()+1);
+					// finishTime = finishTime + (finishTime.getSeconds() + 50)
+					$('#afterStartCountDown').countdown({until: finishTime, 
+					format: 'S', description: 'پایان بازی'});
+				});
+			</script>
+			<div id="afterStartCountDown"></div>
+		<% end %>
+  <%end %>
+</p>
 
 <%= link_to 'Edit', edit_game_path(@game) %> |
 <%= link_to 'Back', games_path %>

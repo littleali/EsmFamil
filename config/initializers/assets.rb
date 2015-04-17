@@ -1,1 +1,5 @@
 Rails.application.config.assets.precompile += %w( cal.js )
+Rails.application.config.assets.precompile += %w( jquery.countdown.css )
+Rails.application.config.assets.precompile += %w( jquery.plugin.js )
+Rails.application.config.assets.precompile += %w( jquery.countdown.js )
+Rails.application.config.assets.precompile += %w( jquery.countdown-fa.js )
