@@ -1,0 +1,27 @@
+
+<ul id="chat">
+  <% @chat_messages.each do |chat_message| %>
+    <li>
+      <%= chat_message.created_at.strftime('%-d/%-m/%Y %k:%M:%S') %> - <%= chat_message.message %>
+    </li>
+  <% end %>
+</ul>
+<hr>
+<%= form_for :alaki,  {:url => '/chat/write', :remote => true}  do |f| %>
+<!--<form target="/alaki" data-remote="true">-->
+
+  <input id='message' name='message' type='text'>
+  <input id='submit' type='submit' value='Post'>
+<!--</form>-->
+    <% end %>
+
+<script type="text/javascript">
+    client = new Faye.Client('/faye');
+
+    client.subscribe ('/chat/3', function(payload){
+      time = 'Alaki';
+      $('#chat').append("<li>" + time + ": " + payload.message + "</li>");
+    });
+
+</script>
+
