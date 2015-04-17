@@ -45,10 +45,11 @@
 html, body {
     height: 100%;
     min-height: 100%
+
 }
 
 body {
-    font-family: 'BYekan', Arial, Sans-serif;
+    font-family: 'BYekan';
 
     background: url(<%= asset_data_uri 'paper.jpg' %>);
     /*background-repeat: no-repeat;*/
@@ -81,6 +82,7 @@ body {
     border-bottom: 5px double @vertical-red;
     height: 80px;
     opacity: 0.95;
+    font-family:'BYekan' ;
     .navbar-brand {
         font-size: 25px;
     }
@@ -91,6 +93,7 @@ body {
         border-right: 2px groove black;
         text-shadow: 1px 2px 0px rgba(40, 40, 40, 0.4);
         background-color: @esm-white;
+        font-family:'BYekan' ;
     }
     .esm-dropdown {
         font-size: 25px;
@@ -258,6 +261,8 @@ body {
     }
 }
 
+
+
 .right-pad-wrapper {
     opacity: 0.9;
 
@@ -378,3 +383,49 @@ body {
 .room-unavailable {
     color: @esm-red;
 }
+
+.adaptable_font{
+    font-family: 'Dastnevis', 'EDastnevis';
+    .font-small{
+        font-size: 12px;
+    }
+    .font-medium{
+        font-size: 24px;
+    }
+    .font-large{
+        font-size: 30px;
+    }
+    .font-color-red{
+        color: @esm-red;
+    }
+    .font-color-green{
+        color: @esm-green;
+    }
+
+
+}
+
+.yekan-font{
+    font-family: 'BYekan';
+    line-height: 200%;
+    .font-small{
+        font-size: 12px;
+    }
+    .font-medium{
+        font-size: 20px;
+    }
+    .font-large{
+        font-size: 30px;
+    }
+    .font-color-red{
+        color: @esm-red;
+    }
+    .font-color-green{
+        color: @esm-green;
+    }
+}
+
+.centered-align{
+    text-align: center;
+}
+

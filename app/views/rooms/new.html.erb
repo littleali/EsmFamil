@@ -1,16 +1,53 @@
+<!--
 <div class="row">
   <div class="col-md-4"></div>
     <div class="col-md-4" id="hp-signup-form">
       <div class="jumbotron" id = "hp-main-jumbotron" >
         <h2 id="signin-form-head">اتاق جدید</h2>
         <div class="container" >
-        	<%= render 'form' %>
+        	<%#= render 'form' %>
           	<div id= "hp-links">
-           		<%= link_to 'لیست اتاق‌ها', rooms_path ,:class=>"btn btn-default btn-block" ,:id=>"login-btn"%>
+           		<%#= link_to 'لیست اتاق‌ها', rooms_path ,:class=>"btn btn-default btn-block" ,:id=>"login-btn"%>
           	</div>
         </div>
       <div class="col-md-4"></div>
     </div>
   </div>
 </div>
+-->
+
+<div class="col-md-offset-3 col-md-6 col-md-offset-3">
+  <div class="new-room-list-box">
+    <div class="list-header adaptable_font">
+      <div class="font-large">
+        <%= I18n.t("new_room") %>
+      </div>
+    </div>
+      <div class="list-container">
+    <div class="list-row">
+      <div class="row">
+        <div class="adaptable_font">
+          <div class="font-medium font-color-red">
+            <%=  I18n.t("make_new_room") %>
+          </div>
+        </div>
+      </div>
+
+
+        <%= render 'form' %>
+          <div class="new-room-list-box">
+            <div class="list-row">
+              <div class="new-btn">
+                <%= link_to I18n.t("rooms_list"), rooms_path ,:class=>" btn  btn-block sharp-orange "%>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    </div>
+</div>
+
+
+
+
 

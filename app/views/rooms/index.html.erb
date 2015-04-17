@@ -1,30 +1,50 @@
-<div class="jumbotron" id = "hp-main-jumbotron">
-  <div class="container">
-    <h2 id="hp-signup-form-head">لیست اتاق‌های بازی</h2>
+<div class="jumbotron room-list-container" >
+  <div class="container rooms-list-box">
+    <div class="list-header">
+    <h2 >
+      <%= I18n.t("rooms_list") %>
+    </h2>
+    </div>
     <br>
     <div class="table-responsive">
       <table class="table table-hover table-bordered">
         <thead>
           <tr>
-            <td><h4>نام اتاق</h4></td>
-            <td><h4>مدیر اتاق</h4></td>
-            <td><h4>ظرفیت اتاق</h4></td>
-            <td><h4>وضعیت فعال بودن اتاق</h4></td>
-            <td><h4>مشاهده‌ی اتاق</h4></td>
+            <td id="table-header"><h4> <%= I18n.t("room_name") %> </h4></td>
+            <td id="table-header"><h4> <%= I18n.t("room_admin") %> </h4></td>
+            <td id="table-header"><h4> <%= I18n.t("room_capacity") %> </h4></td>
+            <td id="table-header"><h4> <%= I18n.t("room_enable") %> </h4></td>
           </tr>
         </thead>
         <tbody>
           <% @rooms.each do |room| %>
-            <tr  class="success">
-              <td><%= room.name %></td>
-              <td><%= room.admin.user.username %></td>
-              <td><%= room.capacity %></td>
+            <tr  >
+              <td>
+                <div class="adaptable_font centered-align">
+                  <%= link_to room.name, room %>
+                </div>
+              </td>
+              <td>
+                <div class="adaptable_font centered-align">
+                    <%= room.admin.user.username %>
+                </div>
+              <td>
+                <div class="adaptable_font centered-align">
+                    <%= room.capacity %>
+                </div>
+              </td>
+
               <%if room.enabled? %>
-                <td> فعال است</td>
+                <td>
+                  <div class="adaptable_font centered-align">
+                    <%= I18n.t("room_is_enable") %>
+                  </div>
                 <% else %>
-                <td> فعال نیست </td>
+                  <div class="adaptable_font centered-align">
+                    <%= I18n.t("room_not_enable") %>
+                  </div>
+                  </td>
                 <%end%>
-              <td><%= button_to 'برو', room ,:method => "get", :class => "btn btn-success"%></td>
             </tr>
           <% end %>
         </tbody>
@@ -33,13 +53,15 @@
     <div class="row">
       <div class="col-md-4">
         <div class="row">
-          <div class="col-md-4">    
-          <%= button_to 'ایجاد اتاق جدید', new_room_path , { :method => "get",:class => "btn btn-info btn-block"}%>
+          <div class="col-md-6">
+            <div class="new-btn">
+                <%= button_to 'ایجاد اتاق جدید', new_room_path , { :method => "get",:class => "btn  btn-block sharp-orange", :id=>"orange"}%>
+            </div>
           </div>
         </div>
       </div>
-    <div class="col-md-4"></div>
-    <div class="col-md-4"></div>
+      <div class="col-md-offset-6"></div>
+
   </div>
     </div>
 </div>
