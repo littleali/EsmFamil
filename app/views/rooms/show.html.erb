@@ -1,3 +1,7 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<%= javascript_include_tag "jquery.plugin" %>
+<%= javascript_include_tag "jquery.countdown" %>
+<%= javascript_include_tag "jquery.countdown-fa" %>
 <div class="jumbotron" id = "hp-main-jumbotron">
 	<div class="container">
     <div class="row">
@@ -33,7 +37,53 @@
       <div class="col-md-4">
         <div class="panel panel-info">
           <div class="panel-heading">سابقه‌ی بازی‌های اتاق</div>
-          <div class="panel-body"></div>
+          <div class="panel-body">
+            <table class="table table-hover table-striped">
+              <% @room.games.each do |game| %>
+
+              <tr>
+                <td> <%= game.title%></td>
+                <td> 
+                  <% if game.start_time %>
+                    <% if game.start_time < DateTime.now %>
+                      <script>
+                        $(function () {
+                          var finishTime = new Date();
+                          var v = new Date();
+                          finishTime.setMinutes(v.getMinutes()+1);
+                          // finishTime = finishTime + (finishTime.getSeconds() + 50)
+                          $('#afterStartCountDown').countdown({until: finishTime, 
+                          format: 'S', description: 'پایان بازی'});
+                        });
+                      </script>
+                      <div id="afterStartCountDown"></div>
+                    <% else %>
+                      <script>
+                        $(function () {
+                          var finishTime = <%= game.start_time %>;
+                          var v = new Date();
+                          finishTime.setMinutes(v.getMinutes()+1);
+                          // finishTime = finishTime + (finishTime.getSeconds() + 50)
+                          $('#beforeStartCountDown').countdown({until: finishTime, 
+                          format: 'S', description: 'شروع بازی'});
+                        });
+                      </script>
+                      <div id="beforeStartCountDown"></div>      
+                    <% end %>
+
+                  <% else%>
+                    <%= 'شروع نشده' %>
+                  <% end %>
+                </td>
+              </tr>
+
+              <%end%>
+            </table>
+
+            <br>
+              <%= link_to 'ایجاد بازی' , "/gamerooms/#{@room.name}/game/new",:method => :get,:class=>"btn btn-success"%>
+            <br>
+          </div>
         </div>
 
       </div>
@@ -63,6 +113,8 @@
             </tbody>
 				  </table>
           <% end %>
+          
+
         </div>
         </div>
       </div>
@@ -76,4 +128,6 @@
 <%= link_to 'Back', rooms_path %>
 <%= link_to 'Destroy', @room, method: :delete, data: { confirm: 'Are you sure?' } %>
 
--->
+
+
+
