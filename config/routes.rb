@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'chat/index'
+  post 'chat/write' => 'chat#write'
   #resources :papers
 
   #resources :games

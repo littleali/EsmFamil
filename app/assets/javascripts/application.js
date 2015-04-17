@@ -22,6 +22,9 @@
 //= require calendar-fa
 //= require pnotify.custom.min
 
+//= require faye
+
+//= require chat
 
 //= require jquery
 //= require best_in_place

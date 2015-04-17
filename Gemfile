@@ -6,6 +6,13 @@ gem 'rails', '4.1.0'
 #Mongoid
 gem "mongoid", "~> 4.0.0"
 
+#Thin
+gem 'thin'
+
+#Faye
+gem 'faye-rails'
+gem 'momentjs-rails'
+
 # Use LESS for stylesheets
 gem 'less-rails'
 gem 'therubyracer', platforms: :ruby
