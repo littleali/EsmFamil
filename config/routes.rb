@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'chat/index'
-  post 'chat/write' => 'chat#write'
   #resources :papers
 
   #resources :games
@@ -27,7 +25,8 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'welcome#home'
 
-  delete 'rooms/:id/kick_out/:user_id' => 'rooms#kick_out'
+  patch 'rooms/:id/add_member/:profile_id' => 'rooms#add_member'
+  delete 'rooms/:id/kick_out/:profile_id' => 'rooms#kick_out'
    # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

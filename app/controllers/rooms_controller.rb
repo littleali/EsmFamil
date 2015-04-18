@@ -20,10 +20,18 @@ class RoomsController < ApplicationController
     render 'rooms/show'
   end
 
+  def add_member
+    new_member = Profile.find(params[:profile_id])
+    @room.players << new_member
+    @player = new_member
+    render 'rooms/add_member.js.erb'
+  end
+
   def kick_out
-    kicked_out = Profile.find(params[:user_id])
+    kicked_out = Profile.find(params[:profile_id])
     @room.players.delete(kicked_out)
-    render 'rooms/show'
+    @player = kicked_out
+    render 'rooms/kick_out.js.erb'
   end
 
   def new_game

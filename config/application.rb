@@ -28,7 +28,7 @@ module EsmFamil
     # config.time_zone = 'Central Time (US & Canada)'
     config.middleware.delete Rack::Lock
     config.middleware.use FayeRails::Middleware, mount: '/faye', :timeout => 25 do
-      map '/chat/*' => RealtimeChatController
+      map '/rooms/*' => RealtimeRoomController
       map default: :block
     end
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.

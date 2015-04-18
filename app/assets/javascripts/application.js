@@ -35,3 +35,6 @@ $(document).ready(function() {
     jQuery(".best_in_place").best_in_place();
 });
 $('.best_in_place').bind("ajax:success", function () {$(this).closest('tr').effect('highlight'); });
+
+client = new Faye.Client('/faye');
+window.client = client;
