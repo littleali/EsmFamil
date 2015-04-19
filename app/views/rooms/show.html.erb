@@ -1,15 +1,12 @@
-<div class="jumbotron" id="hp-main-jumbotron">
-  <div class="container">
+<div class="jumbotron room-features-list-box" >
+  <div class="container ">
     <div class="row">
-      <div class="well " id="room-well">
-        <div class="row">
-          <div class="col-md-2">
-            <% if current_user.id == @room.admin.user.id %>
-                <%= button_to 'حذف اتاق', @room, method: :delete, data: {confirm: 'مطمئن هستید؟'}, :class => "btn btn-default room-edit-btn" %>
-            <% end %>
-          </div>
-
-          <div class="col-md-2">
+      <div class = "list-header">
+        مشخصات اتاق
+      </div>
+      <div class="well  " id="room-well">
+        <div class="row adaptable_font">
+          <div class="col-md-3 font-medium">
             اتاق فعال
             <% if @room.enabled? %>
                 است
@@ -17,40 +14,40 @@
                 نیست
             <% end %>
           </div>
-          <div class="col-md-3">
+          <div class="col-md-3 font-medium">
             ظرفیت اتاق: <%= @room.capacity %> نفر
           </div>
-          <div class="col-md-3">
+          <div class="col-md-3 font-medium">
             مدیر اتاق: <%= @room.admin.user.username %>
           </div>
-          <div class="col-md-2">
+          <div class="col-md-3 font-medium">
             نام اتاق: <%= @room.name %>
           </div>
         </div>
       </div>
     </div>
-    <div class="row">
+    <div class = "row">
       <div class="col-md-4">
-        <div class="panel panel-info">
-          <div class="panel-heading">سابقه‌ی بازی‌های اتاق</div>
-          <div class="panel-body"></div>
-        </div>
+      <div class = "list-table">
+        <div class = "list-row">
+          <%= link_to 'بازگشت به لیست اتاق‌ها', rooms_path, method: :get, :class => "" %>
+          </div>
+        <div class = "list-row">
+          <%= link_to 'مرا به این اتاق اضافه کن', "/rooms/#{@room.id}/add_member/#{current_user.profile.id}", :method => :patch, :remote => true %>
 
-      </div>
-      <div class="col-md-4">
-        <div class="panel panel-default">
-          <div class="panel-heading">گفت‌وگوها</div>
-          <div class="panel-body"></div>
         </div>
-        <div class="col-md-4"></div>
-        <div class="col-md-4">
-          <%= button_to 'لیست اتاق‌ها', rooms_path, method: :get, :class => "btn btn-success" %>
+        <div class = "list-row">
+          <% if current_user.id == @room.admin.user.id %>
+              <%= link_to 'این اتاق را حذف کن', @room, method: :delete, data: {confirm: 'مطمئن هستید؟'}%>
+          <% end %>
+
         </div>
-        <div class="col-md-4"></div>
+        </div>
       </div>
+      <div class="col-md-4"> </div>
       <div class="col-md-4">
-        <div class="panel panel-primary">
-          <div class="panel-heading">لیست اعضای اتاق (<%= @room.players.size %> نفر)</div>
+        <div class="panel panel-primary panel-default" >
+          <div class="panel-heading panel-heading-custom">لیست اعضای اتاق (<%= @room.players.size %> نفر)</div>
           <div class="panel-body">
             <% if @room.players.size > 0 %>
                 <table class="table table-hover table-striped">
@@ -64,19 +61,34 @@
           </div>
         </div>
       </div>
+
+      </div>
+    <!--<div class="row">-->
+      <!--<div class="col-md-offset-4">-->
+        <!--&lt;!&ndash;<div class="panel panel-info">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="panel-heading">سابقه‌ی بازی‌های اتاق</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="panel-body"></div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+      <!--</div>-->
+      <!--<div class="col-md-offset-4">-->
+        <!--&lt;!&ndash;<div class="panel panel-default">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="panel-heading">گفت‌وگوها</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="panel-body"></div>&ndash;&gt;-->
+      <!--</div> -->
+      <!--<div class="col-md-4">-->
+
+      <!--</div>-->
+    <!--</div>-->
+
     </div>
   </div>
 </div>
 
 
 
-<%= link_to 'Edit', edit_room_path(@room) %> |
-<%= link_to 'Back', rooms_path %>
-<%= link_to 'Destroy', @room, method: :delete, data: {confirm: 'Are you sure?'} %>
-
 <%= %>
 <!--link_to 'Add to this room', {:controller => :rooms, :action => :add_member, :room_id => @room.id.to_s, :profile_id => current_user.profile.id.to_s, :method => :patch} %>-->
-<%= link_to 'Add to this room', "/rooms/#{@room.id}/add_member/#{current_user.profile.id}", :method => :patch, :remote => true %>
 
 <script type="text/javascript">
 
