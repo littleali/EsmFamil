@@ -28,6 +28,7 @@ module EsmFamil
     # config.time_zone = 'Central Time (US & Canada)'
     config.middleware.delete Rack::Lock
     config.middleware.use FayeRails::Middleware, mount: '/faye', :timeout => 25 do
+    # config.middleware.use FayeRails::Middleware, mount: '/faye', :timeout => 25, server: 'passenger', engine: {type: Faye::Redis, host: 'localhost'} do
       map '/rooms/*' => RealtimeRoomController
       map default: :block
     end

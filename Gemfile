@@ -12,7 +12,7 @@ gem 'thin'
 #Faye
 gem 'faye-rails'
 gem 'momentjs-rails'
-
+gem 'faye-redis'
 # Use LESS for stylesheets
 gem 'less-rails'
 gem 'therubyracer', platforms: :ruby
