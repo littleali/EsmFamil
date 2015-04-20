@@ -29,6 +29,9 @@
 //= require best_in_place
 //= require best_in_place.jquery-ui
 
+//= require jquery.countdown
+//= require jquery.countdown-fa
+
 $(document).ready(function() {
     /* Activating Best In Place */
     jQuery(".best_in_place").best_in_place();
