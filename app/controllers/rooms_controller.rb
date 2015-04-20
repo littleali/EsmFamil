@@ -55,10 +55,10 @@ class RoomsController < ApplicationController
         (@game.papers).each do |p|
           p.save
         end
-        format.html { redirect_to @room, notice: 'Game was successfully created.' }
+        format.html { redirect_to @room, notice: 'بازی جدید با موفقیت ساخته شد.' }
         format.json { render :show, status: :created, location: @room }
       else
-        format.html { redirect_to @room ,notice: 'Game was not saved.'  }
+        format.html { redirect_to @room ,notice: 'بازی جدید ساخته نشد :('  }
         format.json { render json: @game.errors, status: :unprocessable_entity }
       end
     end

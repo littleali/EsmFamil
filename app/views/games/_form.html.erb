@@ -1,4 +1,6 @@
+<div id="hp-signup-form">
 <%= form_for @game,url: {action: 'create_game', } do |f| %>
+  <div class="form-group" id="hp-input-fields">
   <% if @game.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@game.errors.count, "error") %> prohibited this game from being saved:</h2>
@@ -10,12 +12,29 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
+    <div class="form-group" id="hp-input-fields">
+      <div class="row">
+        <div class="col-md-8 list-row adaptable_font">
+          <div class="font-small">
+            <%= f.text_field :title, autofocus: true , :placeholder => :'نام بازی' ,:class => 'form-control', :id=>'hp-inner-input-fields' %>
+              </div>
+        </div>
+        <div class="col-md-4 adaptable_font">
+          <div class="font-medium font-color-red">
+            <%= f.label :capacity,I18n.t("game_title"), :class =>'cap-num' %>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+<div class="new-room-list-box">
+        <div class="list-row">
+          <div class="new-btn">
+      
+    <%= f.submit 'بساز',:class=>"btn  btn-block light-orange"  %>
+ </div>
+        </div>
+  </div>
   </div>
 <% end %>
+</div>

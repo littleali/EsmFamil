@@ -1,2 +1,15 @@
-<h1>New game</h1>
-<%= render 'games/form' %>
+<div class="col-md-offset-3 col-md-6 col-md-offset-3">
+  <div class="new-room-list-box">
+    <div class="list-header adaptable_font">
+      <div class="font-large">
+        <%= I18n.t("new_game") %>
+      </div>
+    </div>
+      <div class="list-container">
+    <div class="list-row">
+        <%= render 'games/form' %>
+      </div>
+    </div>
+    </div>
+</div>
+
