@@ -9,9 +9,9 @@ Rails.application.routes.draw do
   resources :rooms
 
   get 'gamerooms/:name' => 'rooms#show_with_name'
-
   get 'gamerooms/:name/game/new' => 'rooms#new_game'
   post 'rooms/:name/create_game' => 'rooms#create_game'
+  get 'profile' => 'room#update'
   get 'gamerooms/:room_name/games/:game_id/papers' => 'games#show_papers'
   post 'gamerooms/:room_name/games/:game_id/start' => 'games#start'
   get 'gamerooms/:room_name/games/:game_id' => 'games#show'
