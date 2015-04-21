@@ -1,5 +1,5 @@
 <div id="hp-signup-form">
-<%= form_for @game,url: {action: 'create_game', } do |f| %>
+<%= form_for @game,url: {action: 'create_game', }, remote: true do |f| %>
   <div class="form-group" id="hp-input-fields">
   <% if @game.errors.any? %>
     <div id="error_explanation">

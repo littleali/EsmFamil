@@ -39,7 +39,7 @@
   
   <% else %>
   	<td>بازی شروع نشده </td>
-  	<td><%= link_to 'شروع بازی' , "/gamerooms/#{@room.name}/games/#{game.id}/start",:method => :post%></td>
+  	<td><%= link_to 'شروع بازی' , "/gamerooms/#{@room.name}/games/#{game.id}/start",:method => :post, :remote => true%></td>
   <% end %>
 
 </tr>

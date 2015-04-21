@@ -50,18 +50,30 @@ class RoomsController < ApplicationController
       paper.owner = p
       paper.game = @game
     end
-    respond_to do |format|
-      if @game.save
-        (@game.papers).each do |p|
-          p.save
-        end
-        format.html { redirect_to @room, notice: 'بازی جدید با موفقیت ساخته شد.' }
-        format.json { render :show, status: :created, location: @room }
-      else
-        format.html { redirect_to @room ,notice: 'بازی جدید ساخته نشد :('  }
-        format.json { render json: @game.errors, status: :unprocessable_entity }
+    if @game.save
+      (@game.papers).each do |p|
+        p.save
       end
+      render 'create_game.js.erb'
+    else
+      render 'create_game.js.erb'
     end
+    # respond_to do |format|
+    #   if @game.save
+    #     (@game.papers).each do |p|
+    #       p.save
+    #     end
+    #     render 'create_game.js.erb'
+    #     # return
+    #     # format.html { redirect_to @room, notice: 'بازی جدید با موفقیت ساخته شد.' }
+    #     # format.json { render :show, status: :created, location: @room }
+    #   else
+    #     render 'create_game.js.erb'
+    #
+    #     # format.html { redirect_to @room ,notice: 'بازی جدید ساخته نشد :('  }
+    #     # format.json { render json: @game.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
 
