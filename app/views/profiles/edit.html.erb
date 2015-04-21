@@ -1,13 +1,13 @@
 <div class="col-md-4"></div>
-<div class="col-md-4">
-<div class="jumbotron" id = "hp-main-jumbotron">
-  <div class="container">
-    <h2 id="hp-signup-form-head">پروفایل</h2>
-		<%= render 'form' %>
-	</div>
-	<div id="hp-links">
-		<%= link_to 'تغییر گذرواژه', edit_user_registration_path , :class=>"btn btn-default btn-block" ,:id=>"login-btn" %>
-	</div>
-</div>
+<div class="col-md-4 edit-profile-list-box">
+    <div class="jumbotron" >
+      <div class="container">
+        <h2 id="hp-signup-form-head">پروفایل</h2>
+            <%= render 'form' %>
+        </div>
+        <div >
+            <%= link_to 'تغییر گذرواژه', edit_user_registration_path , :class=>"btn btn-default btn-block" ,:id=>"login-btn" %>
+        </div>
+    </div>
 </div>
 <div class="col-md-4"></div>
