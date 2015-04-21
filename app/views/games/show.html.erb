@@ -1,8 +1,13 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @game.title %>
-</p>
-
-<%= link_to 'Back', @game.room %>
+<div class="game-show-list-box">
+     <div class = "list-header ">
+       بازی
+       <div class="game-name">
+        <%= @game.title %>
+       </div>
+      با موفقیت شروع شد، شاید در اسپرینت بعدی بتوانید بازی کنید
+       پیشاپیش از صبر و شکیبایی شما سپاس‌گزاریم
+    </div>
+  <div class = "list-row">
+    <%= link_to 'بازگشت', @game.room %>
+  </div>
+</div>
