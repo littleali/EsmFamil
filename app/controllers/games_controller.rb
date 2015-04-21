@@ -1,5 +1,5 @@
 class GamesController < ApplicationController
-  before_action :set_game, only: [:show, :edit, :update, :destroy]
+  before_action :set_game, only: [:edit, :update, :destroy]
 
 
   def show_papers
@@ -27,6 +27,8 @@ class GamesController < ApplicationController
   # GET /games/1
   # GET /games/1.json
   def show
+    @room = Room.find_by(:name => params[:room_name])
+    @game = Game.find_by(:id => params[:game_id])
   end
 
   # GET /games/new

@@ -3,7 +3,7 @@
 
   <% if game.is_finished%>
   	<td>بازی تمام شده</td>
-  	<td>نتیجه‌ی بازی</td>
+  	<td><%= link_to 'مشاهده‌ی بازی' , "/gamerooms/#{@room.name}/games/#{game.id}",:method => :get%></td>
 
   <% elsif game.is_starting%>
   	<td>بازی در حال شروع شدن است</td>
@@ -13,8 +13,8 @@
 	          var finishTime = new Date("<%=game.start_time%>");
 	          
 	          // finishTime = finishTime + (finishTime.getSeconds() + 50)
-	          $("#game_start_count_down<%=game.id%>").countdown({until: finishTime, 
-	          format: 'S',});
+	          $("#game_start_count_down<%=game.id%>").countdown({until: finishTime,  expiryUrl: "<%="/gamerooms/#{@room.name}/games/#{game.id}"%>" ,
+	          format: 'S'});
 	        });
       	</script>
       <div id="game_start_count_down<%=game.id%>"></div>

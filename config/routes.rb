@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   post 'rooms/:name/create_game' => 'rooms#create_game'
   get 'gamerooms/:room_name/games/:game_id/papers' => 'games#show_papers'
   post 'gamerooms/:room_name/games/:game_id/start' => 'games#start'
+  get 'gamerooms/:room_name/games/:game_id' => 'games#show'
   # devise_for :users
   devise_for :users, controllers: { registrations: 'registrations' }
   get 'welcome/index' => 'welcome#index'
