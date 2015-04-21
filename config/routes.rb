@@ -12,7 +12,8 @@ Rails.application.routes.draw do
 
   get 'gamerooms/:name/game/new' => 'rooms#new_game'
   post 'rooms/:name/create_game' => 'rooms#create_game'
-  get 'gamerooms/:room_name/:game_title/papers' => 'games#show_papers'
+  get 'gamerooms/:room_name/games/:game_id/papers' => 'games#show_papers'
+  post 'gamerooms/:room_name/games/:game_id/start' => 'games#start'
   # devise_for :users
   devise_for :users, controllers: { registrations: 'registrations' }
   get 'welcome/index' => 'welcome#index'

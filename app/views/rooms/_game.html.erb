@@ -1,0 +1,45 @@
+<tr id="tr_<%=game.id%>">
+  <td><%= game.title %></td>
+
+  <% if game.is_finished%>
+  	<td>بازی تمام شده</td>
+  	<td>نتیجه‌ی بازی</td>
+
+  <% elsif game.is_starting%>
+  	<td>بازی در حال شروع شدن است</td>
+  	<td>
+  		<script>
+	        $(function () {
+	          var finishTime = new Date("<%=game.start_time%>");
+	          
+	          // finishTime = finishTime + (finishTime.getSeconds() + 50)
+	          $("#game_start_count_down<%=game.id%>").countdown({until: finishTime, 
+	          format: 'S',});
+	        });
+      	</script>
+      <div id="game_start_count_down<%=game.id%>"></div>
+  	</td>	
+
+
+  <% elsif game.is_runing%>
+  	<td>بازی در حال انجام است</td>
+  	<<td>
+  		<script>
+	        $(function () {
+	          var finishTime = new Date("<%=game.start_time + 1.minute%>");
+	          
+	          // finishTime = finishTime + (finishTime.getSeconds() + 50)
+	          $("#game_end_count_down<%=game.id%>").countdown({until: finishTime, 
+	          format: 'S',});
+	        });
+      	</script>
+      <div id="game_end_count_down<%=game.id%>"></div>
+  	</td>
+
+  
+  <% else %>
+  	<td>بازی شروع نشده </td>
+  	<td><%= link_to 'شروع بازی' , "/gamerooms/#{@room.name}/games/#{game.id}/start",:method => :post%></td>
+  <% end %>
+
+</tr>

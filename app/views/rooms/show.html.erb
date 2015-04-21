@@ -1,3 +1,7 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<%= javascript_include_tag "jquery.plugin" %>
+<%= javascript_include_tag "jquery.countdown" %>
+<%= javascript_include_tag "jquery.countdown-fa" %>
 <div class="jumbotron room-features-list-box" >
   <div class="container ">
     <div class="row">
@@ -28,30 +32,50 @@
     </div>
     <div class = "row">
       <div class="col-md-4">
-      <div class = "list-table">
-        <div class = "list-row">
-          <%= link_to 'بازگشت به لیست اتاق‌ها', rooms_path, method: :get, :class => "" %>
+        <div class = "list-table">
+          <div class = "list-row">
+            <%= link_to 'بازگشت به لیست اتاق‌ها', rooms_path, method: :get, :class => "" %>
+            </div>
+          <div class = "list-row">
+            <%= link_to 'مرا به این اتاق اضافه کن', "/rooms/#{@room.id}/add_member/#{current_user.profile.id}", :method => :patch, :remote => true %>
+
           </div>
-        <div class = "list-row">
-          <%= link_to 'مرا به این اتاق اضافه کن', "/rooms/#{@room.id}/add_member/#{current_user.profile.id}", :method => :patch, :remote => true %>
-
-        </div>
-        <div class = "list-row">
           <% if current_user.id == @room.admin.user.id %>
-              <%= link_to 'این اتاق را حذف کن', @room, method: :delete, data: {confirm: 'مطمئن هستید؟'}%>
-          <% end %>
+            <div class = "list-row">
+                  <%= link_to 'این اتاق را حذف کن', @room, method: :delete, data: {confirm: 'مطمئن هستید؟'}%>
 
-        </div>
+            </div>
+              <div class = "list-row">
+                  <%= link_to 'ایجاد بازی' , "/gamerooms/#{@room.name}/game/new",:method => :get%>
+                
+              </div>
+          <% end %>
         </div>
       </div>
-      <div class="col-md-4"> </div>
+      <div class="col-md-4"> 
+        <div class="panel panel-primary panel-default" >
+          <div class="panel-heading panel-heading-custom">لیست بازی‌های اتاق (<%= @room.games.size %> بازی)</div>
+          <div class="panel-body">
+            <% if @room.games.size > 0 %>
+                <table class="table table-hover table-striped">
+                  <tbody id="room_tbody_games_<%=@room.id%>">
+                    <% @room.games.each do |game| %>
+                        <%= render :partial => 'rooms/game', :locals => {:room => @room, :game => game} %>
+                    <% end %>
+                  </tbody>
+                </table>
+                
+            <% end %>
+          </div>
+        </div>
+      </div>
       <div class="col-md-4">
         <div class="panel panel-primary panel-default" >
           <div class="panel-heading panel-heading-custom">لیست اعضای اتاق (<%= @room.players.size %> نفر)</div>
           <div class="panel-body">
             <% if @room.players.size > 0 %>
                 <table class="table table-hover table-striped">
-                  <tbody id="room_tbody_<%=@room.id%>">
+                  <tbody id="room_tbody_player<%=@room.id%>">
                   <% @room.players.each do |player| %>
                         <%= render :partial => 'rooms/member', :locals => {:room => @room, :player => player} %>
                   <% end %>

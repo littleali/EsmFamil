@@ -4,11 +4,20 @@ class GamesController < ApplicationController
 
   def show_papers
     @room = Room.find_by(:name => params[:room_name])
-    @room_games = Game.where(:room_id => @room.id)
-    @game = @room_games.where(:title => params[:game_title]).first
+    @game = Game.find_by(:id => params[:game_id])
     @papers = Paper.where(:game_id => @game.id)
     render 'papers/index'
   end
+
+
+  def start
+    @room = Room.find_by(:name => params[:room_name])
+    @game = Game.find_by(:id => params[:game_id])
+    @game.start_time = DateTime.now + 1.minute
+    @game.update
+    redirect_to @room
+  end
+
   # GET /games
   # GET /games.json
   def index
@@ -77,6 +86,6 @@ class GamesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def game_params
-      params.require(:game).permit(:title)
+      params.require(:game).permit(:title, :game_id , :room_name)
     end
 end
