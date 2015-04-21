@@ -75,7 +75,7 @@
           <div class="panel-body">
             <% if @room.players.size > 0 %>
                 <table class="table table-hover table-striped">
-                  <tbody id="room_tbody_player<%=@room.id%>">
+                  <tbody id="room_tbody_players_<%=@room.id%>">
                   <% @room.players.each do |player| %>
                         <%= render :partial => 'rooms/member', :locals => {:room => @room, :player => player} %>
                   <% end %>
@@ -123,8 +123,11 @@
         }
 
         else
-            $("#room_tbody_<%=@room.id%>").append(" <tr id='tr_" + payload.player_id + "'>" +
+            $("#room_tbody_players_<%=@room.id%>").append(" <tr id='tr_" + payload.player_id + "'>" +
                 "<td>" + payload.player_username + "</td>" +
         "<td>" + "<a class='kick-out-link' confirm='آیا مطمئن هستید?' data-remote='true' data-method='delete' href='/rooms/<%=@room.id%>/kick_out/" + payload.player_id +  "' rel='nofollow'>حذف کاربر</a>" + "</td><tr>");
+    });
+    window.client.subscribe('/games/create/<%=@room.id%>', function (payload) {
+        window.location.reload();
     });
 </script>

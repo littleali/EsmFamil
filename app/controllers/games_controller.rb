@@ -15,7 +15,8 @@ class GamesController < ApplicationController
     @game = Game.find_by(:id => params[:game_id])
     @game.start_time = DateTime.now + 1.minute
     @game.update
-    redirect_to @room
+    render 'rooms/start_game'
+    # redirect_to @room
   end
 
   # GET /games

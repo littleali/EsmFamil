@@ -1,0 +1,8 @@
+var publication = window.client.publish('/games/create/<%=@room.id%>', {action: 'alaki'});
+publication.then(function(){
+    window.location.reload();
+}, function(error){
+
+});
+
+
