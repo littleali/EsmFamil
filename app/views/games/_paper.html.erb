@@ -1,7 +1,40 @@
-<% game.item_names.each do |item_name| %>
-	<p>
-		<%= item_name %>
-		<%= paper.item_values[item_name] %>
-	</p>
+<%= form_for game, url: {action: 'show'}, remote: true do |f| %>
+	<div class="form-group" id="hp-input-fields">
+		<% if game.errors.any? %>
+	      <div id="error_explanation">
+	        <h2><%= pluralize(game.errors.count, "error") %> prohibited this room from being saved:</h2>
+	        <ul>
+	          <% game.errors.full_messages.each do |message| %>
+	            <li><%= message %></li>
+	          <% end %>
+	        </ul>
+	      </div>
+    	<% end %>
+		<% game.item_names.each do |item_name| %>
+		<div class="form-group" id="hp-input-fields">
+	      <div class="row">
+			<div class="col-md-8 list-row adaptable_font">
+	          <div class="font-small">
+	            <%= text_field_tag "paper.item_values["+item_name+"]",paper.item_values[item_name] , autofocus: true , :class => 'form-control', :id=>'hp-inner-input-fields' %>
+	          </div>
+	        </div>		
+	  		<div class="col-md-4 adaptable_font">
+	          <div class="font-medium font-color-red">
+	            <%= f.label item_name, :class =>'cap-num' %>
+	          </div>
+	        </div>
+	        
+	      </div>
+	    </div>
+		<% end %>
+		<div class="new-room-list-box">
+	        <div class="list-row">
+	          <div class="new-btn">
+	            <%= f.submit 'استپ!',:class=>"btn btn-block light-orange"  %>
+	          </div>
+	        </div>
+      	</div>
 
-<% end %>
+
+	</div>
+<%end%>
