@@ -11,7 +11,7 @@
       <% end %>
     </div>
   <div class = "list-row">
-    <%= link_to 'پایان', :action => :end_game, remote: true%>
+    <%= link_to 'پایان', :action => :end_game, :controller => :games, :id => @game.id %>
 
   </div>
   <div class = "list-row">

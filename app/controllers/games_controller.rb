@@ -1,5 +1,5 @@
 class GamesController < ApplicationController
-  before_action :set_game, only: [:edit, :update, :destroy]
+  before_action :set_game, only: [:edit, :update, :destroy, :end_game]
 
 
   def show_papers
@@ -86,8 +86,7 @@ class GamesController < ApplicationController
   end
 
   def end_game
-    format.html { redirect_to @game, notice: 'بازی جدید با موفقیت ساخته شد' }
-    # @game = Game.find_by(:id => params[:game_id])
+    redirect_to @game, notice: 'بازی جدید با موفقیت ساخته شد'
     # if(@game.first_stopped and current_user.id != stop_id)
     #   @game.stop = true
     #   format.html { redirect_to @game, notice: 'Game was successfully ended.' }
