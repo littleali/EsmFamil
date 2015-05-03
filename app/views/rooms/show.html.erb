@@ -36,10 +36,12 @@
           <div class = "list-row">
             <%= link_to 'بازگشت به لیست اتاق‌ها', rooms_path, method: :get, :class => "" %>
             </div>
+            <% if !(@room.players.include? current_user.profile ) %>
           <div class = "list-row">
             <%= link_to 'مرا به این اتاق اضافه کن', "/rooms/#{@room.id}/add_member/#{current_user.profile.id}", :method => :patch, :remote => true %>
 
           </div>
+          <%end%>
           <% if current_user.id == @room.admin.user.id %>
             <div class = "list-row">
                   <%= link_to 'این اتاق را حذف کن', @room, method: :delete, data: {confirm: 'مطمئن هستید؟'}%>
