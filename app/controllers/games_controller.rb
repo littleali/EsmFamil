@@ -86,16 +86,17 @@ class GamesController < ApplicationController
   end
 
   def end_game
-    redirect_to @game, notice: 'بازی جدید با موفقیت ساخته شد'
-    # if(@game.first_stopped and current_user.id != stop_id)
-    #   @game.stop = true
-    #   format.html { redirect_to @game, notice: 'Game was successfully ended.' }
-    # else
-    #     current_user.id != stop_id
-    #     @game.first_stop = true
-    # end
+    #redirect_to @game, notice: 'بازی جدید با موفقیت ساخته شد'
+    stop_id = 0
+    if(@game.first_stopped and current_user.id != stop_id)
+      @game.stopped = true
+      #redirect_to @game, notice: 'Game was successfully updated.'
+    else
+        if(current_user.id != stop_id)
+          @game.first_stop = true
+        end
+    end
   end
-  helper_method :end_game
 
   private
     # Use callbacks to share common setup or constraints between actions.
