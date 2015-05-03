@@ -9,7 +9,7 @@ class Game
   has_many :papers , class_name: 'Paper' , inverse_of: :game
   validates :title, :uniqueness => {:scope => :room_id}
   def is_starting
-  	if self.start_time and not self.is_stopped and not self.is_runing
+  	if self.start_time and not self.is_stopped and not self.is_running
   		return true
   	end
   	return false
