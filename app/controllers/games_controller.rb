@@ -86,7 +86,6 @@ class GamesController < ApplicationController
   end
 
   def end_game
-
     format.html { redirect_to @game, notice: 'بازی جدید با موفقیت ساخته شد' }
     # @game = Game.find_by(:id => params[:game_id])
     # if(@game.first_stopped and current_user.id != stop_id)
