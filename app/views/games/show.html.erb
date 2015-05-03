@@ -11,6 +11,10 @@
       <% end %>
     </div>
   <div class = "list-row">
+    <%= link_to 'پایان', :action => :end_game, remote: true%>
+
+  </div>
+  <div class = "list-row">
     <%= link_to 'بازگشت', @game.room %>
   </div>
 </div>

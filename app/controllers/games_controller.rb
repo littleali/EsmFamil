@@ -37,6 +37,8 @@ class GamesController < ApplicationController
   # GET /games/new
   def new
     @game = Game.new
+    @game.stopped = false
+    @game.first_stopped = false
   end
 
   # GET /games/1/edit
@@ -83,6 +85,20 @@ class GamesController < ApplicationController
     end
   end
 
+  def end_game
+
+    format.html { redirect_to @game, notice: 'بازی جدید با موفقیت ساخته شد' }
+    # @game = Game.find_by(:id => params[:game_id])
+    # if(@game.first_stopped and current_user.id != stop_id)
+    #   @game.stop = true
+    #   format.html { redirect_to @game, notice: 'Game was successfully ended.' }
+    # else
+    #     current_user.id != stop_id
+    #     @game.first_stop = true
+    # end
+  end
+  helper_method :end_game
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_game
@@ -91,6 +107,6 @@ class GamesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def game_params
-      params.require(:game).permit(:title, :game_id , :room_name)
+      params.require(:game).permit(:title, :game_id , :room_name, :stopped, :first_stopped)
     end
 end
