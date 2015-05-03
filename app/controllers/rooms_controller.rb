@@ -58,29 +58,10 @@ class RoomsController < ApplicationController
     else
       render 'create_game.js.erb'
     end
-    # respond_to do |format|
-    #   if @game.save
-    #     (@game.papers).each do |p|
-    #       p.save
-    #     end
-    #     render 'create_game.js.erb'
-    #     # return
-    #     # format.html { redirect_to @room, notice: 'بازی جدید با موفقیت ساخته شد.' }
-    #     # format.json { render :show, status: :created, location: @room }
-    #   else
-    #     render 'create_game.js.erb'
-    #
-    #     # format.html { redirect_to @room ,notice: 'بازی جدید ساخته نشد :('  }
-    #     # format.json { render json: @game.errors, status: :unprocessable_entity }
-    #   end
-    # end
+
   end
 
 
-  #for URLs
-  #def to_param
-  #  name
-  #end
 
   # GET /rooms/new
   def new
@@ -128,21 +109,6 @@ class RoomsController < ApplicationController
     end
   end
 
-=begin
-  def update
-    @user = User.find params[:id]
-
-    respond_to do |format|
-      if @user.update_attributes(params[:user])
-        format.html { redirect_to(@user, :notice => 'User was successfully updated.') }
-        format.json { respond_with_bip(@user) }
-      else
-        format.html { render :action => "edit" }
-        format.json { respond_with_bip(@user) }
-      end
-    end
-  end
-=end
 
   # DELETE /rooms/1
   # DELETE /rooms/1.json

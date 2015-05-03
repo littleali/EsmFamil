@@ -30,6 +30,8 @@ class GamesController < ApplicationController
   def show
     @room = Room.find_by(:name => params[:room_name])
     @game = Game.find_by(:id => params[:game_id])
+    #TODO CREATE PAPER IF THERE IS NO
+    @paper = Paper.where(:game_id => @game.id , :owner_id => current_user.profile.id).first
   end
 
   # GET /games/new

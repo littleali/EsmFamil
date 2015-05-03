@@ -1,11 +1,14 @@
 <div class="game-show-list-box">
      <div class = "list-header ">
-       بازی
+       بازی 
+       <br>
+       <br>
        <div class="game-name">
         <%= @game.title %>
        </div>
-      با موفقیت شروع شد، شاید در اسپرینت بعدی بتوانید بازی کنید
-       پیشاپیش از صبر و شکیبایی شما سپاس‌گزاریم
+      <% if @game.is_running %>
+        <%= render :partial => 'games/paper' , :locals => {:game => @game , :paper => @paper} %>
+      <% end %>
     </div>
   <div class = "list-row">
     <%= link_to 'بازگشت', @game.room %>
