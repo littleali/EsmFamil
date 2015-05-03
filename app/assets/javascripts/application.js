@@ -43,11 +43,42 @@ window.client = client;
 
 
 //
+//$(function() {
+//    $('span.best_in_place').each(function() {
+//        var attrs, el;
+//        el = $(this);
+//        attrs = el.data('html-attrs');
+//        if (attrs && attrs['tabindex']) {
+//            el.attr('tabindex', attrs['tabindex']);
+//        }
+//    }).focus(function() {
+//        var el;
+//        el = $(this);
+//        el.click();
+//    });
+//});
+
+//$(function() {
+//    $('.best_in_place[data-html-attrs]').each(function() {
+//        var attrs, el;
+//        el = $(this);
+//        attrs = el.data('html-attrs');
+//        if (attrs && attrs['tabindex']) {
+//            el.attr('tabindex', attrs['tabindex']);
+//        }
+//    }).focus(function() {
+//        var el;
+//        el = $(this);
+//        el.click();
+//    });
+//});
+
+
 $(function() {
-    $('span.best_in_place').each(function() {
+    $('span.best_in_place[data-bip-html-attrs]').each(function() {
         var attrs, el;
         el = $(this);
-        attrs = el.data('html-attrs');
+        attrs = el.data('bip-html-attrs');
         if (attrs && attrs['tabindex']) {
             el.attr('tabindex', attrs['tabindex']);
         }
@@ -57,22 +88,4 @@ $(function() {
         el.click();
     });
 });
-
-
-
-//$(function() {
-//    $('span.best_in_place[data-bip-html-attrs]').each(function() {
-//        var attrs, el;
-//        el = $(this);
-//        attrs = el.data('bip-html-attrs');
-//        if (attrs && attrs['tabindex']) {
-//            el.attr('tabindex', attrs['tabindex']);
-//        }
-//        el.click();
-//    }).focus(function() {
-//        var el;
-//        el = $(this);
-//        el.click();
-//    });
-//});
 

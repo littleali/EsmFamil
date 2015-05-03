@@ -89,11 +89,11 @@ class GamesController < ApplicationController
     #redirect_to @game, notice: 'بازی جدید با موفقیت ساخته شد'
     stop_id = 0
     if(@game.first_stopped and current_user.id != stop_id)
-      @game.stopped = true
+      @game.update(:stopped => true)
       #redirect_to @game, notice: 'Game was successfully updated.'
     else
         if(current_user.id != stop_id)
-          @game.first_stop = true
+          @game.update(:first_stop => true)
         end
     end
   end
