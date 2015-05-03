@@ -15,8 +15,9 @@
     <div class="row" >
       <div class="col-md-8">
         <div class="form-group" id="best-in-place-input-fields">
-      <%= best_in_place @profile, :fname, tabindex: "1" , :nil => "نام خود را وارد کنید." %>
+        <%= best_in_place @profile, :fname, :tabindex=>"1", :as=> :input , :nil => "نام خود را وارد کنید." %>
         </div>
+
       </div>
       <div class="col-md-4" id="best-in-place-label">
         نام :
@@ -26,7 +27,7 @@
     <div class="row" >
       <div class="col-md-8">
         <div class="form-group" id="best-in-place-input-fields">
-          <%= best_in_place @profile, :lname, tabindex: "1" , :nil => "نام خانوادگی خود را وارد کنید"%>
+          <%= best_in_place @profile, :lname, :tabindex => "2" , :nil => "نام خانوادگی خود را وارد کنید"%>
         </div>
       </div>
       <div class="col-md-4" id="best-in-place-label">
