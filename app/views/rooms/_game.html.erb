@@ -1,7 +1,7 @@
 <tr id="tr_<%=game.id%>">
   <td><%= game.title %></td>
 
-  <% if game.is_finished%>
+  <% if game.is_stopped%>
   	<td>بازی تمام شده</td>
   	<td><%= link_to 'مشاهده‌ی بازی' , "/gamerooms/#{@room.name}/games/#{game.id}",:method => :get%></td>
 
@@ -23,17 +23,10 @@
 
   <% elsif game.is_runing%>
   	<td>بازی در حال انجام است</td>
-  	<<td>
-  		<script>
-	        $(function () {
-	          var finishTime = new Date("<%=game.start_time + 1.minute%>");
-	          
-	          // finishTime = finishTime + (finishTime.getSeconds() + 50)
-	          $("#game_end_count_down<%=game.id%>").countdown({until: finishTime, 
-	          format: 'S',});
-	        });
-      	</script>
-      <div id="game_end_count_down<%=game.id%>"></div>
+  	<td>
+        <script type="text/javascript">
+          window.location.href="<%="/gamerooms/#{@room.name}/games/#{game.id}"%>"  // put your correct path in a string here
+        </script>
   	</td>
 
   
