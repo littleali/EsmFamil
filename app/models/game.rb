@@ -27,9 +27,6 @@ class Game
     self.stopped = true
   end
 
-  def first_stopped
-    self.first_stopped = true
-  end
 
   def is_first_stopped
     self.is_stopped
