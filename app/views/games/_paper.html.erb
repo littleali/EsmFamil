@@ -1,5 +1,7 @@
-<%= form_for game, url: {action: 'show'}, remote: true do |f| %>
-	<div class="form-group" id="hp-input-fields">
+<div class = "container-fluid">
+  <div class = "row">
+
+        <%= form_for game, url: {action: 'show'}, remote: true do |f| %>
 		<% if game.errors.any? %>
 	      <div id="error_explanation">
 	        <h2><%= pluralize(game.errors.count, "error") %> prohibited this room from being saved:</h2>
@@ -10,23 +12,48 @@
 	        </ul>
 	      </div>
     	<% end %>
-		<% game.item_names.each do |item_name| %>
-		<div class="form-group" id="hp-input-fields">
-	      <div class="row">
-			<div class="col-md-8 list-row adaptable_font">
-	          <div class="font-small">
-	            <%= text_field_tag "paper.item_values["+item_name+"]",paper.item_values[item_name] , autofocus: true , :class => 'form-control', :id=>'hp-inner-input-fields' %>
-	          </div>
-	        </div>		
-	  		<div class="col-md-4 adaptable_font">
-	          <div class="font-medium font-color-red">
-	            <%= f.label item_name, :class =>'cap-num' %>
-	          </div>
-	        </div>
-	        
-	      </div>
-	    </div>
-		<% end %>
+
+        <div class = "table-responsive">
+          <table class="table">
+            <tbody>
+            <% counter = game.item_names.length %>
+            <%(0..counter).step(3) do |n| %>
+            <tr>
+             <% (n..n+2).each do |m| %>
+                  <%if(m >= counter)%>
+                      <% break %>
+                  <%end%>
+              <th>
+                  <table>
+                    <tr>
+                    <%= f.label game.item_names[m] %>
+                    </tr>
+                    <tr>
+                    <%= text_field_tag "paper.item_values["+game.item_names[m]+"]",paper.item_values[game.item_names[m]] , autofocus: true %>
+                    </tr>
+                  </table>
+              </th>
+              <% end %>
+            </tr>
+
+            </tbody>
+            <%end%>
+
+            <!---->
+            <!--<tr>-->
+              <!--<%# game.item_names.each do |item_name| %>-->
+              <!--<td>-->
+                <!--<%#= text_field_tag "paper.item_values["+item_name+"]",paper.item_values[item_name] , autofocus: true  %>-->
+                <!--&lt;!&ndash;<%#= best_in_place game, :stopped %>&ndash;&gt;-->
+                <!--&lt;!&ndash;<%#= best_in_place paper.item_values[item_name], paper.item_values[item_name] , autofocus: true  %>&ndash;&gt;-->
+              <!--</td>-->
+              <!--<#% end %>-->
+            <!--</tr>-->
+
+        </table>
+        </div>
+
+        </div>
 		<div class="new-room-list-box">
 	        <div class="list-row">
 	          <div class="new-btn">
@@ -34,7 +61,7 @@
 	          </div>
 	        </div>
       	</div>
+    <%end%>
 
-
-	</div>
-<%end%>
+</div>
+<!--<%#= text_field_tag "paper.item_values["+item_name+"]",paper.item_values[item_name] , autofocus: true  %> -->

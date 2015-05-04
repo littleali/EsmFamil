@@ -5,6 +5,7 @@ class Paper
   belongs_to :owner, class_name: 'Profile', inverse_of: :papers
   field :item_values, type: Hash
 
+
   private
   	def initial_field_values
   		self.item_values = Hash.new
