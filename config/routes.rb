@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   post 'game/end_game/:id' => 'games#end_game'
 
   get 'game/end_game/:id' => 'games#end_game', as: :end_game
+#  post 'games/:game_id/paper/:paper_id/:item_name' => 'games#save_paper_field'
+  post 'games/:game_id/paper/:paper_id/' => 'games#save_paper_field'
+
   # get 'profile' => 'room#update'
   get 'gamerooms/:room_name/games/:game_id/papers' => 'games#show_papers'
   post 'gamerooms/:room_name/games/:game_id/start' => 'games#start'

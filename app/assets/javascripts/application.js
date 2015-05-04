@@ -35,6 +35,33 @@
 $(document).ready(function() {
     /* Activating Best In Place */
     jQuery(".best_in_place").best_in_place();
+    // $(document).ready(function() {
+    // $( "#Main" ).tabs();
+
+    $('[id^=i_]').keydown(function(e) {
+        var code = e.keyCode || e.which;
+
+        if (code === 9) {  
+            // e.preventDefault();
+            var tabId = $(this).attr('id');
+            var formId = 'f' + tabId.substring(1);
+            $('#' + formId).submit();
+            // alert('it works!');
+        }
+    });
+    // $('[id^=i_]').click(function() {
+    //     var tabId = $(this).attr('id');
+    //     alert('Tab clicked: ' + tabId );
+
+    //     // if (tabId == 'i') {
+    //     //     $('#LoginForm').submit();
+    //     // }else if (tabId == 'ui-id-2') {
+    //     //     $('#form2').submit();
+    //     // }else if (tabId == 'ui-id-3') {
+    //     //     $('#form3').submit();
+    //     // }
+    // });
+    // });
 });
 $('.best_in_place').bind("ajax:success", function () {$(this).closest('tr').effect('highlight'); });
 

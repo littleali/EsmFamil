@@ -34,6 +34,36 @@ class GamesController < ApplicationController
     @paper = Paper.where(:game_id => @game.id , :owner_id => current_user.profile.id).first
   end
 
+
+  # post /games/1/paper/1/item_name
+  def save_paper_field
+    @game = Game.find_by(:id => params[:game_id])
+    @paper = Paper.find_by(:id => params[:paper_id])
+    @paper.item_values = @paper.item_values.merge(params["paper.item_values"].to_h)
+    @paper.save
+  end
+
+  # post /games/1/paper/1
+  def submit_paper
+
+  end
+
+  # PATCH/PUT /papers/1
+  # PATCH/PUT /papers/1.json
+  def update
+    respond_to do |format|
+      if @paper.update(paper_params)
+        format.html { redirect_to @paper, notice: 'Paper was successfully updated.' }
+        format.json { render :show, status: :ok, location: @paper }
+      else
+        format.html { render :edit }
+        format.json { render json: @paper.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+
+
   # GET /games/new
   def new
     @game = Game.new

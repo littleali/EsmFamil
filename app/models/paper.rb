@@ -1,6 +1,6 @@
 class Paper
   include Mongoid::Document
-  before_save :initial_field_values
+  after_create :initial_field_values
   belongs_to :game, class_name: 'Game', inverse_of: :papers
   belongs_to :owner, class_name: 'Profile', inverse_of: :papers
   field :item_values, type: Hash
@@ -12,4 +12,5 @@ class Paper
   			self.item_values[name] = ""
   		end
   	end
+ 
 end
