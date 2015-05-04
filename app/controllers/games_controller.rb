@@ -32,6 +32,12 @@ class GamesController < ApplicationController
     @game = Game.find_by(:id => params[:game_id])
     #TODO CREATE PAPER IF THERE IS NO
     @paper = Paper.where(:game_id => @game.id , :owner_id => current_user.profile.id).first
+    if not @paper
+      @paper = Paper.new
+      @paper.owner = current_user.profile
+      @paper.game = @game
+      @paper.save
+    end
   end
 
 
