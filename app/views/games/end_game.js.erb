@@ -1,1 +1,11 @@
-alert("salam");
+
+//client = new Faye.Client('/faye');
+<% if @game.stopped %>
+    var publication = window.client.publish('/games/end_game/<%=@game.id%>', {action: 'end'});
+    publication.then(function(){
+
+    }, function(error){
+
+    });
+
+<% end %>

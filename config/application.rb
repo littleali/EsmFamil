@@ -31,6 +31,7 @@ module EsmFamil
     # config.middleware.use FayeRails::Middleware, mount: '/faye', :timeout => 25, server: 'passenger', engine: {type: Faye::Redis, host: 'localhost'} do
       map '/rooms/*' => RealtimeRoomController
       map '/games/create/*' => RealtimeCreateGameController
+      map '/games/end_game/*' => RealtimeEndGameController
       map default: :block
     end
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.

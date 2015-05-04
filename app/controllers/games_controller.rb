@@ -37,8 +37,7 @@ class GamesController < ApplicationController
   # GET /games/new
   def new
     @game = Game.new
-    @game.stopped = false
-    @game.first_stopped = false
+
   end
 
   # GET /games/1/edit
