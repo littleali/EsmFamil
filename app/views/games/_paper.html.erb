@@ -15,27 +15,41 @@
 
         <div class = "table-responsive">
           <table class="table">
-            <thead>
+            <tbody>
+            <% counter = game.item_names.length %>
+            <%(0..counter).step(3) do |n| %>
             <tr>
-             <% game.item_names.each do |item_name| %>
+             <% (n..n+2).each do |m| %>
+                  <%if(m >= counter)%>
+                      <% break %>
+                  <%end%>
               <th>
-                <%= f.label item_name %>
+                  <table>
+                    <tr>
+                    <%= f.label game.item_names[m] %>
+                    </tr>
+                    <tr>
+                    <%= text_field_tag "paper.item_values["+game.item_names[m]+"]",paper.item_values[game.item_names[m]] , autofocus: true %>
+                    </tr>
+                  </table>
               </th>
               <% end %>
             </tr>
-            </thead>
 
-            <tbody>
-            <tr>
-              <% game.item_names.each do |item_name| %>
-              <td>
-                <%= text_field_tag "paper.item_values["+item_name+"]",paper.item_values[item_name] , autofocus: true  %>
-                <!--<%#= best_in_place game, :stopped %>-->
-                <!--<%#= best_in_place paper.item_values[item_name], paper.item_values[item_name] , autofocus: true  %>-->
-              </td>
-              <% end %>
-            </tr>
             </tbody>
+            <%end%>
+
+            <!---->
+            <!--<tr>-->
+              <!--<%# game.item_names.each do |item_name| %>-->
+              <!--<td>-->
+                <!--<%#= text_field_tag "paper.item_values["+item_name+"]",paper.item_values[item_name] , autofocus: true  %>-->
+                <!--&lt;!&ndash;<%#= best_in_place game, :stopped %>&ndash;&gt;-->
+                <!--&lt;!&ndash;<%#= best_in_place paper.item_values[item_name], paper.item_values[item_name] , autofocus: true  %>&ndash;&gt;-->
+              <!--</td>-->
+              <!--<#% end %>-->
+            <!--</tr>-->
+
         </table>
         </div>
 
