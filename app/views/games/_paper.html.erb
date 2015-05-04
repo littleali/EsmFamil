@@ -1,26 +1,40 @@
-	<div class="form-group" id="hp-input-fields">
-		
-		<% game.item_names.each do |item_name| %>
-			<div class="form-group" id="hp-input-fields">
-		      <div class="row">
-				<div class="col-md-8 list-row adaptable_font">
-		          <div class="font-small">
-		          	<%= form_for :tf , url: {action: 'save_paper_field' , controller: 'games' , paper_id: paper.id } , :remote => true, :html =>{:id => "f_#{item_name}"}  do
-		          		|f2| %>
-			            <%= text_field_tag "paper.item_values["+item_name+"]",paper.item_values[item_name] , autofocus: true , :class => 'form-control', :id=>"i_#{item_name}" %>
-		            <% end %>
-		          </div>
-		        </div>		
-		  		<div class="col-md-4 adaptable_font">
-		          <div class="font-medium font-color-red">
-		            <%= item_name %>
-		          </div>
-		        </div>
-		        
-		      </div>
-		    </div>
-		<% end %>
-		
 
+<div class = "container-fluid">
+  <div class = "row">
+	<!--<div class="form-group" id="hp-input-fields">-->
+
+      <div class = "table-responsive">
+        <table class="table">
+          <tbody>
+          <% counter = game.item_names.length %>
+          <%(0..counter).step(3) do |n| %>
+              <tr>
+                <% (n..n+2).each do |m| %>
+                    <%if(m >= counter)%>
+                        <% break %>
+                    <%end%>
+                    <th>
+                      <table>
+                        <tr>
+                          <%= game.item_names[m] %>
+                        </tr>
+                        <tr>
+                          <%= form_for :tf , url: {action: 'save_paper_field' , controller: 'games' , paper_id: paper.id } , :remote => true, :html =>{:id => "f_#{game.item_names[m]}"}  do
+                          |f2| %>
+                              <%= text_field_tag "paper.item_values["+game.item_names[m]+"]",paper.item_values[game.item_names[m]] , autofocus: true , :class => 'form-control', :id=>"i_#{game.item_names[m]}" %>
+                          <% end %>
+                        </tr>
+                      </table>
+                    </th>
+                <% end %>
+              </tr>
+
+
+          <%end%>
+          </tbody>
+
+        </table>
+      </div>
 
 	</div>
+  </div>
