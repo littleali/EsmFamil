@@ -1,5 +1,5 @@
-<div class="game-show-list-box">
-     <div class = "list-header ">
+<div class="game-show-list-box jumbotron">
+     <div class = "list-header  ">
        <br>
        بازی 
        <br>
@@ -8,7 +8,9 @@
         <%= @game.title %>
        </div>
        <br>
+
       <% if @game.is_running %>
+
         <%= render :partial => 'games/paper' , :locals => {:game => @game , :paper => @paper} %>
       <% end %>
     </div>
