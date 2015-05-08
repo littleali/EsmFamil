@@ -1,1 +1,15 @@
-alert("salam");
+
+//client = new Faye.Client('/faye');
+<% if @game.is_running %>
+    window.location.href = '<%= url_for root_path%>'
+<% end %>
+
+<% if @game.is_stopped %>
+    var publication = window.client.publish('/games/end_game/<%=@game.id%>', {action: 'end'});
+    publication.then(function(){
+    }, function(error){
+//        alert("ERROR!" );
+        alert("ERROR! " + error );
+    });
+
+<% end %>
