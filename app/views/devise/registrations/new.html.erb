@@ -102,11 +102,14 @@
                       <%= flash[:alert] %>
                     </div>
                 <% end %>
-                <div class="form-group" id="hp-captcha">
-
-                  <%= recaptcha_tags :display => { :theme => "white" }%>
-                  
+                <div class="container">
+                  <div class = "row">
+                    <div class="col-md-offset-2 col-md-8 col-md-offset-2">
+                        <%= show_simple_captcha(:label => "",:class => 'test') %>
+                    </div>
+                  </div>
                 </div>
+
                 <div>
                   <%= f.submit "ثبت نام", :class=>"btn btn-default btn-block" ,:id=>"hp-signup-btn"%>
                 </div>

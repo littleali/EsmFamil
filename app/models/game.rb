@@ -3,9 +3,9 @@ class Game
   before_create :set_default_names
   field :title, type: String
   field :start_time, type: DateTime
-  field :stopped, type: Boolean
-  field :first_stopped, type: Boolean
-  field :item_names, type: Array 
+  field :stopped, type: Boolean, default: false
+  field :first_stopped, type: Boolean, default: false
+  field :item_names, type: Array
   belongs_to :room, class_name: 'Room', inverse_of: :games
   has_many :papers , class_name: 'Paper' , inverse_of: :game
   validates :title, :uniqueness => {:scope => :room_id}
@@ -27,9 +27,6 @@ class Game
     self.stopped = true
   end
 
-  def first_stopped
-    self.first_stopped = true
-  end
 
   def is_first_stopped
     self.is_stopped

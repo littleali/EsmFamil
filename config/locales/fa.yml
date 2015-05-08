@@ -9,6 +9,13 @@ fa:
   copy_right: "تمامی حقوق برای گروه اسم‌فامیل محفوظ است."
   date:
     order: 'ترتیب'
+  simple_captcha:
+    placeholder: 'متن بالا را وارد کنید'
+    label: 'متن نوشته شده در تصویر را وارد کنید.'
+    refresh_button_text: "تصویر جدید"
+    message:
+      default: "کد تصویر اشتباه است."
+      user: "کد تصویر اشتباه است."
   mongoid:
     errors:
       models:

@@ -1,7 +1,8 @@
 class RegistrationsController < Devise::RegistrationsController
+  include SimpleCaptcha::ControllerHelpers
   def create
     params[:user].update(:bdate => params[:date][:year].to_s + "-" + params[:date][:month].to_s + "-"+ params[:date][:day].to_s, :birthday => params[:date])
-    if verify_recaptcha
+    if simple_captcha_valid?
       puts "Try to create"
       super
       #redirect_to :new_user_registration
