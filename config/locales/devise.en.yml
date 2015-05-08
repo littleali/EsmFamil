@@ -58,3 +58,5 @@ en:
       not_saved:
         one: "1 error prohibited this %{resource} from being saved:"
         other: "%{count} errors prohibited this %{resource} from being saved:"
+  forgot_password: 'Forgot your password?'
+  send_password_instruction: 'Send password recovery instruction!'
