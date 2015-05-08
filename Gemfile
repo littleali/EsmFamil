@@ -63,3 +63,4 @@ gem "best_in_place"
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+gem 'simple_captcha2', require: 'simple_captcha'
