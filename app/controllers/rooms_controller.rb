@@ -1,7 +1,8 @@
 class RoomsController < ApplicationController
+  before_action :authenticate_user!
   load_and_authorize_resource
-  before_action :set_room, only: [:show, :edit, :update, :destroy , :kick_out]
 
+  before_action :set_room, only: [:show, :edit, :update, :destroy , :kick_out]
   # GET /rooms
   # GET /rooms.json
   def index

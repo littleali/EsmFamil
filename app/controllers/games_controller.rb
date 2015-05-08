@@ -1,4 +1,5 @@
 class GamesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_game, only: [:edit, :update, :destroy, :end_game]
 
 
