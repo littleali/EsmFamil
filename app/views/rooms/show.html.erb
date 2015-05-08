@@ -124,10 +124,16 @@
             element.remove();
         }
 
-        else
+        else 
+        <% if (current_user.profile.id == @room.admin.id) %>
             $("#room_tbody_players_<%=@room.id%>").append(" <tr id='tr_" + payload.player_id + "'>" +
                 "<td>" + payload.player_username + "</td>" +
         "<td>" + "<a class='kick-out-link' confirm='آیا مطمئن هستید?' data-remote='true' data-method='delete' href='/rooms/<%=@room.id%>/kick_out/" + payload.player_id +  "' rel='nofollow'>حذف کاربر</a>" + "</td><tr>");
+        <% else %>
+          $("#room_tbody_players_<%=@room.id%>").append(" <tr id='tr_" + payload.player_id + "'>" +
+                "<td>" + payload.player_username + "</td>" +
+        "<td></td><tr>");
+        <% end %>
     });
     window.client.subscribe('/games/create/<%=@room.id%>', function (payload) {
         window.location.reload();
