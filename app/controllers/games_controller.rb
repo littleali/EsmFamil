@@ -13,7 +13,8 @@ class GamesController < ApplicationController
   def start
     @room = Room.find_by(:name => params[:room_name])
     @game = Game.find_by(:id => params[:game_id])
-    @game.start_time = DateTime.now + 1.minute
+    # @game.start_time = DateTime.now + 1.minute
+    @game.start_time = DateTime.now + 10.seconds
     @game.update
     render 'rooms/start_game'
     # redirect_to @room
@@ -86,14 +87,12 @@ class GamesController < ApplicationController
 
   def end_game
     #redirect_to @game, notice: 'بازی جدید با موفقیت ساخته شد'
-    #stop_id = 0
+    stop_id = 0
     if(@game.first_stopped )
-      puts "hiiiii"
       @game.update(:stopped => true)
       #redirect_to @game, notice: 'Game was successfully updated.'
     else
-      puts "avalinBar"
-          @game.update(:first_stopped => true)
+      @game.update(:first_stopped => true)
     end
   end
 
