@@ -1,4 +1,8 @@
+
 fa:
+  activerecord:
+    models:
+      name: 'نام'
   bdate:  'تاریخ تولد'
   Bdate:  'تاریخ تولد'
   esm_famil: "اسم فامیل"
@@ -17,6 +21,8 @@ fa:
       default: "کد تصویر اشتباه است."
       user: "کد تصویر اشتباه است."
   mongoid:
+    models:
+      name: 'نام اتاق'
     errors:
       models:
         user:
@@ -54,3 +60,5 @@ fa:
   room_not_enable: "فعال نیست"
   new_game: "بازی جدید"
   game_title: "نام بازی"
+  creat_new_room_error1: "نام اتاق نمی‌تواند خالی باشد"
+  creat_new_room_error2: "ظرفیت اتاق باید عدد باشد"
