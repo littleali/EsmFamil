@@ -12,15 +12,26 @@
       <% if @game.is_running %>
 
         <%= render :partial => 'games/paper' , :locals => {:game => @game , :paper => @paper} %>
-      <% end %>
+            <% end %>
     </div>
-    <% if @game.is_running == false%>
+
+  <% if @game.is_running %>
   <div class = "list-row">
     <%= link_to 'پایان', :action => :end_game, :controller => :games, :id => @game.id, remote: true %>
 
   </div>
+       <% end %>
   <div class = "list-row">
     <%= link_to 'بازگشت', @game.room %>
   </div>
-  <%end%>
 </div>
+
+
+
+<script type="text/javascript">
+
+    window.client.subscribe('/games/end_game/<%=@game.id%>', function (payload) {
+        window.location.reload();
+    });
+</script>
+
