@@ -14,8 +14,12 @@ class GamesController < ApplicationController
     @room = Room.find_by(:name => params[:room_name])
     @game = Game.find_by(:id => params[:game_id])
     # @game.start_time = DateTime.now + 1.minute
-    @game.start_time = DateTime.now + 10.seconds
-    @game.update
+    if @room.players.size < 3
+        flash[:alert] = "برای شروع بازی باید تعداد اعضای اتاق باید بیشتر از ۲ نفر باشد."
+    else
+      @game.start_time = DateTime.now + 10.seconds
+      @game.update
+    end
     render 'rooms/start_game'
     # redirect_to @room
   end
