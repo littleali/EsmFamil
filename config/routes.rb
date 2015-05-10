@@ -8,9 +8,10 @@ Rails.application.routes.draw do
 
   resources :rooms
 
-  get 'gamerooms/:name' => 'rooms#show_with_name'
-  get 'gamerooms/:name/game/new' => 'rooms#new_game'
-  post 'rooms/:name/create_game' => 'rooms#create_game'
+  # get 'gamerooms/:name' => 'rooms#show_with_name'
+  # get 'gamerooms/:name/game/new' => 'rooms#new_game'
+  get 'rooms/:id/game/new' => 'rooms#new_game'
+  post 'rooms/:id/create_game' => 'rooms#create_game'
   post 'game/end_game/:id' => 'games#end_game'
 
   get 'game/end_game/:id' => 'games#end_game', as: :end_game
@@ -18,9 +19,9 @@ Rails.application.routes.draw do
   post 'games/:game_id/paper/:paper_id/' => 'games#save_paper_field'
 
   # get 'profile' => 'room#update'
-  get 'gamerooms/:room_name/games/:game_id/papers' => 'games#show_papers'
-  post 'gamerooms/:room_name/games/:game_id/start' => 'games#start'
-  get 'gamerooms/:room_name/games/:game_id' => 'games#show'
+  get 'rooms/:id/games/:game_id/papers' => 'games#show_papers'
+  post 'rooms/:id/games/:game_id/start' => 'games#start'
+  get 'rooms/:id/games/:game_id' => 'games#show'
   # devise_for :users
   devise_for :users, controllers: { registrations: 'registrations' }
   get 'welcome/index' => 'welcome#index'

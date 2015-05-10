@@ -42,7 +42,7 @@ class RoomsController < ApplicationController
 
   def create_game
     @game = Game.new(game_params)
-    @room = Room.find_by(:name => params[:name])
+    @room = Room.find(params[:id])
     @game.room = @room
 
     (@room.players).each do |p|

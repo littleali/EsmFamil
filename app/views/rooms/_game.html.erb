@@ -3,7 +3,7 @@
 
   <% if game.is_stopped%>
   	<td>بازی تمام شده</td>
-  	<td><%= link_to 'مشاهده‌ی بازی' , "/gamerooms/#{@room.name}/games/#{game.id}",:method => :get%></td>
+  	<td><%= link_to 'مشاهده‌ی بازی' , "/rooms/#{@room.id}/games/#{game.id}",:method => :get%></td>
 
   <% elsif game.is_starting%>
   	<td>بازی در حال شروع شدن است</td>
@@ -13,7 +13,7 @@
 	          var finishTime = new Date("<%=game.start_time%>");
 	          
 	          // finishTime = finishTime + (finishTime.getSeconds() + 50)
-	          $("#game_start_count_down<%=game.id%>").countdown({until: finishTime,  expiryUrl: "<%="/gamerooms/#{@room.name}/games/#{game.id}"%>" ,
+	          $("#game_start_count_down<%=game.id%>").countdown({until: finishTime,  expiryUrl: "<%="/rooms/#{@room.id}/games/#{game.id}"%>" ,
 	          format: 'S'});
 	        });
       	</script>
@@ -25,14 +25,14 @@
   	<td>بازی در حال انجام است</td>
   	<td>
         <script type="text/javascript">
-          window.location.href="<%="/gamerooms/#{@room.name}/games/#{game.id}"%>"  // put your correct path in a string here
+          window.location.href="<%="/rooms/#{@room.id}/games/#{game.id}"%>"  // put your correct path in a string here
         </script>
   	</td>
 
   
   <% else %>
   	<td>بازی شروع نشده </td>
-  	<td><%= link_to 'شروع بازی' , "/gamerooms/#{@room.name}/games/#{game.id}/start",:method => :post, :remote => true%></td>
+  	<td><%= link_to 'شروع بازی' , "/rooms/#{@room.id}/games/#{game.id}/start",:method => :post, :remote => true%></td>
   <% end %>
 
 </tr>

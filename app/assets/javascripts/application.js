@@ -38,17 +38,30 @@ $(document).ready(function() {
     // $(document).ready(function() {
     // $( "#Main" ).tabs();
 
-    $('[id^=i_]').keydown(function(e) {
-        var code = e.keyCode || e.which;
+    //$('[id^=i_]').keydown(function(e) {
+    //    var code = e.keyCode || e.which;
+    //
+    //    if (code === 9) {
+    //        // e.preventDefault();
+    //        var tabId = $(this).attr('id');
+    //        var formId = 'f' + tabId.substring(1);
+    //        $('#' + formId).submit();
+    //        // alert('it works!');
+    //    }
+    //});
+    $('[id^=i_]').focusout(function(e) {
+        //var code = e.keyCode || e.which;
 
-        if (code === 9) {  
+        //if (code === 9) {
             // e.preventDefault();
             var tabId = $(this).attr('id');
             var formId = 'f' + tabId.substring(1);
             $('#' + formId).submit();
             // alert('it works!');
-        }
+        //}
     });
+
+
     // $('[id^=i_]').click(function() {
     //     var tabId = $(this).attr('id');
     //     alert('Tab clicked: ' + tabId );

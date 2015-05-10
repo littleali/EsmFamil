@@ -11,7 +11,7 @@ class GamesController < ApplicationController
 
 
   def start
-    @room = Room.find_by(:name => params[:room_name])
+    @room = Room.find(params[:id])
     @game = Game.find_by(:id => params[:game_id])
     # @game.start_time = DateTime.now + 1.minute
     @game.start_time = DateTime.now + 10.seconds
@@ -29,7 +29,7 @@ class GamesController < ApplicationController
   # GET /games/1
   # GET /games/1.json
   def show
-    @room = Room.find_by(:name => params[:room_name])
+    @room = Room.find(params[:id])
     @game = Game.find_by(:id => params[:game_id])
     #TODO CREATE PAPER IF THERE IS NO
     @paper = Paper.where(:game_id => @game.id , :owner_id => current_user.profile.id).first
