@@ -1,4 +1,5 @@
 class GamesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_game, only: [:edit, :update, :destroy, :end_game]
 
 
@@ -126,13 +127,14 @@ class GamesController < ApplicationController
   end
 
   def end_game
-    #redirect_to @game, notice: 'بازی جدید با موفقیت ساخته شد'
-    stop_id = 0
-    if(@game.first_stopped )
+    if(@game.first_stopped and @game.first_stop_player_id != current_user.profile.id.to_s )
       @game.update(:stopped => true)
-      #redirect_to @game, notice: 'Game was successfully updated.'
+      @game.update(:second_stop_player_id => current_user.profile.id.to_s)
     else
-      @game.update(:first_stopped => true)
+      if(@game.first_stopped == false)
+        @game.update(:first_stopped => true)
+        @game.update(:first_stop_player_id => current_user.profile.id.to_s)
+      end
     end
   end
 
@@ -144,6 +146,6 @@ class GamesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def game_params
-      params.require(:game).permit(:title, :game_id , :room_name, :stopped, :first_stopped)
+      params.require(:game).permit(:title, :game_id , :room_name, :stopped, :first_stopped, :first_stop_player_id, :second_stop_player_id)
     end
 end

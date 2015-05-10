@@ -3,11 +3,12 @@
     <div class="form-group" id="hp-input-fields">
     <% if @room.errors.any? %>
       <div id="error_explanation">
-        <h2><%= pluralize(@room.errors.count, "error") %> prohibited this room from being saved:</h2>
         <ul>
-          <% @room.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
+          <%# @room.errors.full_messages.each do |message| %>
+            <!--<li><%#= message %></li>-->
+          <%# end %>
+          <li>  <%= I18n.t("creat_new_room_error1") %></li>
+          <li>  <%= I18n.t("creat_new_room_error2") %></li>
         </ul>
       </div>
     <% end %>
