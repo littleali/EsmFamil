@@ -25,7 +25,9 @@
   	<td>بازی در حال انجام است</td>
   	<td>
         <script type="text/javascript">
+          <% if @room.players.include?(current_user.profile) %>
           window.location.href="<%="/rooms/#{@room.id}/games/#{game.id}"%>"  // put your correct path in a string here
+              <% end %>
         </script>
   	</td>
 
