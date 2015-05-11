@@ -13,11 +13,11 @@ class Paper
         pf = PaperField.new
         pf.paper = self
         pf.save
-  			self.item_values[name] =pf
+  			#self.item_values[name] =pf
 
   		end
 
-      self.update
+      #self.update
   	end
  
 end

@@ -42,6 +42,8 @@ class GamesController < ApplicationController
     end
   end
 
+  def judgement
+  end
 
   # post /games/1/paper/1/item_name
   def save_paper_field
