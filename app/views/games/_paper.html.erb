@@ -21,7 +21,7 @@
                         <tr>
                           <%= form_for :tf , url: {action: 'save_paper_field' , controller: 'games' , paper_id: paper.id } , :remote => true, :html =>{:id => "f_#{game.item_names[m]}"}  do
                           |f2| %>
-                              <%= text_field_tag "paper.item_values["+game.item_names[m]+"]",paper.item_values[game.item_names[m]] , autofocus: true , :class => 'form-control', :id=>"i_#{game.item_names[m]}" %>
+                              <%= text_field_tag "paper.item_values["+game.item_names[m]+"].value",paper.item_values[game.item_names[m]].value , autofocus: true , :class => 'form-control', :id=>"i_#{game.item_names[m]}" %>
                           <% end %>
                         </tr>
                       </table>
