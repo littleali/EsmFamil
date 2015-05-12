@@ -10,9 +10,8 @@
        <br>
 
       <% if @game.is_running %>
-
         <%= render :partial => 'games/paper' , :locals => {:game => @game , :paper => @paper} %>
-            <% end %>
+      <% end %>
     </div>
 
   <% if @game.is_running %>

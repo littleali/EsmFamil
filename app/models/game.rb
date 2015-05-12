@@ -7,7 +7,6 @@ class Game
   field :stopped, type: Boolean, default: false
   field :first_stopped, type: Boolean, default: false
   field :judged, type: Boolean, default: false
-  field :first_judged, type: Boolean, default: false
   field :item_names, type: Array
   field :first_stop_player_id, type: String
   field :second_stop_player_id, type: String
@@ -43,11 +42,6 @@ class Game
 
   def judge
     self.judged = true
-  end
-
-
-  def is_first_stopped
-    self.is_first_judged
   end
 
   def is_judged

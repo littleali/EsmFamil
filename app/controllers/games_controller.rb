@@ -47,10 +47,9 @@ class GamesController < ApplicationController
 
   # post /games/1/paper/1/item_name
   def save_paper_field
-    @game = Game.find_by(:id => params[:game_id])
-    @paper = Paper.find_by(:id => params[:paper_id])
-    @paper.item_values = @paper.item_values.merge(params["paper.item_values"].to_h)
-    @paper.save
+   @pf = PaperField.find_by(:id => params[:pf_id])
+   @pf.value = params["pf.value"]
+   @pf.save
   end
 
   # post /games/1/paper/1
@@ -132,6 +131,7 @@ class GamesController < ApplicationController
       if(@game.first_stopped == false)
         @game.update(:first_stopped => true)
         @game.update(:first_stop_player_id => current_user.profile.id.to_s)
+        
       end
     end
   end
