@@ -31,23 +31,24 @@ class Ability
 
     #Room
     if(user.profile != nil)
-    can :create, Room
-    can :index, Room
-    can :show, Room
-    can :show_with_name, Room
-    can :destroy, Room,  :admin_id => user.id
-    can :edit, Room, :admin_id => user.id
-    can :update, Room, :admin_id => user.id
-    can :kick_out, Room, :admin_id =>user.profile.id
-    can :add_member, Room
-    can :new_game, Room, :admin_id =>user.profile.id
-    can :create_game, Room, :admin_id =>user.profile.id
-    #can :start, Game, :room_name => user.profile.rooms
-    can :show_papers, Game
-    #Profile
-    can :edit, Profile, :user_id => user.id
-    can :show, Profile
-    cannot :destroy, Profile
-      end
+        can :create, Room
+        can :index, Room
+        can :show, Room
+        can :show_with_name, Room
+        can :destroy, Room,  :admin_id => user.id
+        can :edit, Room, :admin_id => user.id
+        can :update, Room, :admin_id => user.id
+        can :kick_out, Room, :admin_id =>user.profile.id
+        can :leave, Room
+        can :add_member, Room
+        can :new_game, Room, :admin_id =>user.profile.id
+        can :create_game, Room, :admin_id =>user.profile.id
+        #can :start, Game, :room_name => user.profile.rooms
+        can :show_papers, Game
+        #Profile
+        can :edit, Profile, :user_id => user.id
+        can :show, Profile
+        cannot :destroy, Profile
+    end
   end
 end

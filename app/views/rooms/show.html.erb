@@ -41,7 +41,14 @@
             <%= link_to 'مرا به این اتاق اضافه کن', "/rooms/#{@room.id}/add_member/#{current_user.profile.id}", :method => :patch, :remote => true %>
 
           </div>
+          <%elsif current_user.profile.id !=  @room.admin.id%>
+            <div class = "list-row">
+              <%= link_to 'مرا از اتاق حذف کن', "/rooms/#{@room.id}/leave",
+                    :confirm => 'آیا مطمئن هستید?', :method => :delete, :class => "kick-out-link" %>
+            </div>
           <%end%>
+
+
           <% if current_user.id == @room.admin.user.id %>
             <div class = "list-row">
                   <%= link_to 'این اتاق را حذف کن', @room, method: :delete, data: {confirm: 'مطمئن هستید؟'}%>

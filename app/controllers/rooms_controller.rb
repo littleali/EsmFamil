@@ -35,6 +35,12 @@ class RoomsController < ApplicationController
     render 'rooms/kick_out.js.erb'
   end
 
+  def leave
+    kicked_out = current_user.profile
+    @room.players.delete(kicked_out)
+    redirect_to @room
+  end
+
   def new_game
    @game = Game.new
    render 'games/new'
