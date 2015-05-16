@@ -88,13 +88,26 @@ class GamesController < ApplicationController
 
 
   def accept_field
-    @paper = Paper.find(:id => params[p_id])
-    @field = @paper.paper_fields.f
+    @paper = Paper.find(params[:p_id])
+    @field = @paper.paper_fields.find(params[:pf_id])
+    if(@field.first_accept == nil)
+      @field.update(:first_accept => true)
+    else
+      @field.update(:second_accept => true)
+    end
+    redirect_to :back
 
   end
 
-  def reject
-
+  def reject_field
+    @paper = Paper.find(params[:p_id])
+    @field = @paper.paper_fields.find(params[:pf_id])
+    if(@field.first_accept == nil)
+      @field.update(:first_accept => false)
+    else
+      @field.update(:second_accept => false)
+    end
+    redirect_to :back
   end
 
   # GET /games/new

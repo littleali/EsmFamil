@@ -27,7 +27,9 @@ Rails.application.routes.draw do
   get 'welcome/index' => 'welcome#index'
   get 'test' => 'welcome#test'
 
-  get 'games/accept' => 'games#accept'
+  get 'games/accept_field/:p_id/:pf_id' => 'games#accept_field'
+  get 'games/reject_field/:p_id/:pf_id' => 'games#reject_field'
+
   post 'profiles/:id/update_field/:title' => "profiles#update_field"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

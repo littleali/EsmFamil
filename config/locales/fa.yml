@@ -63,3 +63,6 @@ fa:
   creat_new_room_error1: "نام اتاق نمی‌تواند خالی باشد"
   creat_new_room_error2: "ظرفیت اتاق باید عدد باشد"
   you_stopped_already: "شما بازی را قبلا استپ کردید."
+  judgment1: "مورد داوری"
+  judgment2: "وضعیت"
+  field: "گزینه"

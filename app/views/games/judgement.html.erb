@@ -1,31 +1,37 @@
-<div class="game-show-list-box jumbotron">
+<div class="judgment-list-box jumbotron">
 
        <table class="table">
          <thead>
 
          </thead>
          <tbody>
-         <td><%=I18n.t("field") %></td>
-         <td><%=I18n.t("judgment1") %></td>
-         <td><%=I18n.t("judgment2") %></td>
-         td><%=I18n.t("judgment1") %></td>
-         <td><%=I18n.t("judgment2") %></td>
+         <div class = "list-header">
+             <td><%=I18n.t("field") %></td>
+             <td><%=I18n.t("judgment1") %></td>
+             <td><%=I18n.t("judgment2") %></td>
+             <td><%=I18n.t("judgment1") %></td>
+             <td><%=I18n.t("judgment2") %></td>
+         </div>
          <%@my_judgment_fields.each do |row|%>
          <tr>
            <td><%=row[0] %></td>
+
            <%row[1].each do |r|%>
             <td><%= r.value %>
-              <%if (r.first_accept == nil or r.second_accept == nil)%>
+              <%if ((r.first_accept == nil and r.first_judge == current_user.profile) or (r.second_accept == nil and r.second_judge == current_user.profile))%>
                   <td>
-                    <%= link_to "",{:controller => :games, :action => "accept_field", :p_id => r.paper.id, :pf_id=>r.id}, :class => "btn btn-circle-micro btn-success",:method => :get  %>
-              <a href="#aboutModal"  class="btn btn-circle-micro btn-success"> </a>
-              <a href="#aboutModal" data-toggle="modal" data-target="#myModal" class="btn btn-circle-micro btn-danger"> </a>
-                    </td>
-                      <% else %>
+                    <%= link_to "A",{:controller => :games, :action => "accept_field", :p_id => r.paper.id, :pf_id=>r.id}, :class => "btn btn-circle-micro btn-success"  %>
+                    <%= link_to "B",{:controller => :games, :action => "reject_field", :p_id => r.paper.id, :pf_id=>r.id}, :class => "btn btn-circle-micro btn-danger" %>
 
-               <td> داوری شده<td>
+                    </td>
+
+                      <% else %>
+               <td>
+                 داوری‌شده
+                   </td>
+
                <%end%>
-            </td>
+
            <%end%>
          </tr>
          <%end%>
