@@ -10,7 +10,6 @@ class GamesController < ApplicationController
     render 'papers/index'
   end
 
-
   def start
     @room = Room.find(params[:id])
     @game = Game.find_by(:id => params[:game_id])
@@ -36,13 +35,17 @@ class GamesController < ApplicationController
   def show
     @room = Room.find(params[:id])
     @game = Game.find_by(:id => params[:game_id])
-    #TODO CREATE PAPER IF THERE IS NO
-    @paper = Paper.where(:game_id => @game.id , :owner_id => current_user.profile.id).first
-    if not @paper
-      @paper = Paper.new
-      @paper.owner = current_user.profile
-      @paper.game = @game
-      @paper.save
+    if @game.is_stopped && @game.is_judged
+      render 'result'
+    else
+      #TODO CREATE PAPER IF THERE IS NO
+      @paper = Paper.where(:game_id => @game.id , :owner_id => current_user.profile.id).first
+      if not @paper
+        @paper = Paper.new
+        @paper.owner = current_user.profile
+        @paper.game = @game
+        @paper.save
+      end
     end
   end
 

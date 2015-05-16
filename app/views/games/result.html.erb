@@ -1,12 +1,10 @@
 <div class="game-show-list-box jumbotron">
     <div class = "list-header row">
-	    <div class="col-md-4">
+	    <div class="col-md-6">
 	    حرف بازی: <%= @game.letter %>
 	    </div>
-	    <div class="col-md-4">
-	    </div>
-	    <div class="col-md-4">
-	    زمان بازی: <%= @game.start_time.to_parsi %>
+	    <div class="col-md-6">
+	    زمان بازی: <%= @game.start_time.to_date.to_jalali %>
 	    </div>
 	</div>
 	<div class = "list-header row">
@@ -19,16 +17,16 @@
 	    </div>
 	</div>
 	<% @game.papers.each do |p| %>
-		<div class = "list-row">
-		    <div class="col-md-3">
+		<div class = "row result-list">
+		    <div class="col-md-2">
 		    </div>
-		    <div class="col-md-3">
-		    	<%= p.owner.user.user_name %>
+		    <div class="col-md-4">
+		    	0
 		    </div>
-		    <div class="col-md-3">
-		    	<%= p.score %>
+		     <div class="col-md-4">
+		    	<%= p.owner.user.username %>
 		    </div>
-		    <div class="col-md-3">
+		    <div class="col-md-2">
 		    </div>
 		</div>
 	<% end %>
