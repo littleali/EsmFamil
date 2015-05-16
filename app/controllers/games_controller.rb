@@ -55,7 +55,6 @@ class GamesController < ApplicationController
    paper_filed_ids = @paper.paper_fields.map {|obj| obj.id.to_s}
    @pf = @paper.paper_fields[paper_filed_ids.find_index(params[:pf_id])]
    @pf.value = params["pf.value"]
-   # byebug
    @pf.save
   end
 
