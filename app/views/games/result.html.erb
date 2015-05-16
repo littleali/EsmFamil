@@ -1,0 +1,36 @@
+<div class="game-show-list-box jumbotron">
+    <div class = "list-header row">
+	    <div class="col-md-6">
+	    حرف بازی: <%= @game.letter %>
+	    </div>
+	    <div class="col-md-6">
+	    زمان بازی: <%= @game.start_time.to_date.to_jalali %>
+	    </div>
+	</div>
+	<div class = "list-header row">
+	    <div class="col-md-4">
+	    </div>
+	    <div class="col-md-4">
+	    امتیازها:
+	    </div>
+	    <div class="col-md-4">
+	    </div>
+	</div>
+	<% @game.papers.each do |p| %>
+		<div class = "row result-list">
+		    <div class="col-md-2">
+		    </div>
+		    <div class="col-md-4">
+		    	0
+		    </div>
+		     <div class="col-md-4">
+		    	<%= p.owner.user.username %>
+		    </div>
+		    <div class="col-md-2">
+		    </div>
+		</div>
+	<% end %>
+	<div class = "list-row">
+    	<%= link_to 'بازگشت', @game.room %>
+  	</div>
+</div>
