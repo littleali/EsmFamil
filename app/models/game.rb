@@ -40,7 +40,7 @@ class Game
     self.stopped
   end
 
-  def judge
+  def finish_judge
     self.judged = true
   end
 
@@ -53,7 +53,11 @@ class Game
     end
 
     def set_letter
-      #TODO : random letter selection
-      self.letter = "م"
+
+      letters = ['آ','ب','پ','ت','ث','ج','چ','ح',
+                 'خ','د','ذ','ر','ز','ژ','س','ش',
+                 'ص','ض','ط','ظ','ع','غ','ف','ق',
+                 'ک','گ','ل','م','ن','و','ه','ی']
+      self.letter = letters.sample
     end
 end
