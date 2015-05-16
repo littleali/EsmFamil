@@ -1,18 +1,17 @@
 <div class="game-show-list-box jumbotron">
      <div class = "list-header  ">
-       <br>
-       بازی 
-       <br>
-       <br>
-       <div class="game-name">
-        <%= @game.title %>
-       </div>
+       
+       <% if @game.is_running %>
+      بازی در حال اجراست، با حرف <%= @game.letter %>
+      <%elsif @game.is_stopped && @game.is_judged%>
+       بازی تمام شده‌است!
+      <%end%>
+ 
        <br>
 
       <% if @game.is_running %>
-
         <%= render :partial => 'games/paper' , :locals => {:game => @game , :paper => @paper} %>
-            <% end %>
+      <% end %>
     </div>
 
   <% if @game.is_running %>
@@ -21,6 +20,11 @@
 
   </div>
        <% end %>
+    <% if @game.is_stopped && !@game.is_judged %>
+      <script type="text/javascript">
+        window.location.href="judgement/<%=@game.id%>"  
+      </script>
+    <%end%>
   <div class = "list-row">
     <%= link_to 'بازگشت', @game.room %>
   </div>

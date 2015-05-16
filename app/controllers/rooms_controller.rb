@@ -1,7 +1,8 @@
 class RoomsController < ApplicationController
+  before_action :authenticate_user!
   load_and_authorize_resource
-  before_action :set_room, only: [:show, :edit, :update, :destroy , :kick_out]
 
+  before_action :set_room, only: [:show, :edit, :update, :destroy , :kick_out]
   # GET /rooms
   # GET /rooms.json
   def index
@@ -32,6 +33,12 @@ class RoomsController < ApplicationController
     @room.players.delete(kicked_out)
     @player = kicked_out
     render 'rooms/kick_out.js.erb'
+  end
+
+  def leave
+    kicked_out = current_user.profile
+    @room.players.delete(kicked_out)
+    redirect_to @room
   end
 
   def new_game

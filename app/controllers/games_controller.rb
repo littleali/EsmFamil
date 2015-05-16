@@ -1,4 +1,5 @@
 class GamesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_game, only: [:edit, :update, :destroy, :end_game]
 
 
@@ -14,8 +15,12 @@ class GamesController < ApplicationController
     @room = Room.find(params[:id])
     @game = Game.find_by(:id => params[:game_id])
     # @game.start_time = DateTime.now + 1.minute
-    @game.start_time = DateTime.now + 10.seconds
-    @game.update
+    if @room.players.size < 3
+        flash[:alert] = "برای شروع بازی باید تعداد اعضای اتاق باید بیشتر از ۲ نفر باشد."
+    else
+      @game.start_time = DateTime.now + 10.seconds
+      @game.update
+    end
     render 'rooms/start_game'
     # redirect_to @room
   end
@@ -41,13 +46,14 @@ class GamesController < ApplicationController
     end
   end
 
+  def judgement
+  end
 
   # post /games/1/paper/1/item_name
   def save_paper_field
-    @game = Game.find_by(:id => params[:game_id])
-    @paper = Paper.find_by(:id => params[:paper_id])
-    @paper.item_values = @paper.item_values.merge(params["paper.item_values"].to_h)
-    @paper.save
+   @pf = PaperField.find_by(:id => params[:pf_id])
+   @pf.value = params["pf.value"]
+   @pf.save
   end
 
   # post /games/1/paper/1
@@ -122,13 +128,15 @@ class GamesController < ApplicationController
   end
 
   def end_game
-    #redirect_to @game, notice: 'بازی جدید با موفقیت ساخته شد'
-    stop_id = 0
-    if(@game.first_stopped )
+    if(@game.first_stopped and @game.first_stop_player_id != current_user.profile.id.to_s )
       @game.update(:stopped => true)
-      #redirect_to @game, notice: 'Game was successfully updated.'
+      @game.update(:second_stop_player_id => current_user.profile.id.to_s)
     else
-      @game.update(:first_stopped => true)
+      if(@game.first_stopped == false)
+        @game.update(:first_stopped => true)
+        @game.update(:first_stop_player_id => current_user.profile.id.to_s)
+        
+      end
     end
   end
 
@@ -140,6 +148,6 @@ class GamesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def game_params
-      params.require(:game).permit(:title, :game_id , :room_name, :stopped, :first_stopped)
+      params.require(:game).permit(:title, :game_id , :room_name, :stopped, :first_stopped, :first_stop_player_id, :second_stop_player_id)
     end
 end

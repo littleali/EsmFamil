@@ -6,22 +6,23 @@
       <div class = "table-responsive">
         <table class="table">
           <tbody>
-          <% counter = game.item_names.length %>
+          <% counter = paper.paper_fields.length %>
           <%(0..counter).step(3) do |n| %>
               <tr>
                 <% (n..n+2).each do |m| %>
                     <%if(m >= counter)%>
                         <% break %>
                     <%end%>
+                    <% pf = paper.paper_fields[m] %>
                     <th>
                       <table>
                         <tr>
-                          <%= game.item_names[m] %>
+                          <%= pf.name %>
                         </tr>
                         <tr>
-                          <%= form_for :tf , url: {action: 'save_paper_field' , controller: 'games' , paper_id: paper.id } , :remote => true, :html =>{:id => "f_#{game.item_names[m]}"}  do
+                          <%= form_for :tf , url: {action: 'save_paper_field' , controller: 'games' , pf_id: pf.id } , :remote => true  do
                           |f2| %>
-                              <%= text_field_tag "paper.item_values["+game.item_names[m]+"]",paper.item_values[game.item_names[m]] , autofocus: true , :class => 'form-control', :id=>"i_#{game.item_names[m]}" %>
+                              <%= text_field_tag "pf.value",pf.value , autofocus: true , :class => 'form-control' %>
                           <% end %>
                         </tr>
                       </table>

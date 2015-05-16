@@ -32,16 +32,23 @@
     </div>
     <div class = "row">
       <div class="col-md-4">
-        <div class = "list-table">
+        <div class = "list-table" id="room_links">
           <div class = "list-row">
             <%= link_to 'بازگشت به لیست اتاق‌ها', rooms_path, method: :get, :class => "" %>
             </div>
             <% if !(@room.players.include? current_user.profile ) %>
-          <div class = "list-row">
+          <div class = "list-row" id="add_to_room_link">
             <%= link_to 'مرا به این اتاق اضافه کن', "/rooms/#{@room.id}/add_member/#{current_user.profile.id}", :method => :patch, :remote => true %>
 
           </div>
+          <%elsif current_user.profile.id !=  @room.admin.id%>
+            <div class = "list-row" id="leave_the_room_link">
+              <%= link_to 'مرا از اتاق حذف کن', "/rooms/#{@room.id}/leave",
+                    :confirm => 'آیا مطمئن هستید?', :method => :delete, :class => "kick-out-link" %>
+            </div>
           <%end%>
+
+
           <% if current_user.id == @room.admin.user.id %>
             <div class = "list-row">
                   <%= link_to 'این اتاق را حذف کن', @room, method: :delete, data: {confirm: 'مطمئن هستید؟'}%>
@@ -108,10 +115,26 @@
             element.remove();
         }
 
-        else
+        else 
+        <% if (current_user.profile.id == @room.admin.id) %>
             $("#room_tbody_players_<%=@room.id%>").append(" <tr id='tr_" + payload.player_id + "'>" +
                 "<td>" + payload.player_username + "</td>" +
         "<td>" + "<a class='kick-out-link' confirm='آیا مطمئن هستید?' data-remote='true' data-method='delete' href='/rooms/<%=@room.id%>/kick_out/" + payload.player_id +  "' rel='nofollow'>حذف کاربر</a>" + "</td><tr>");
+        <% else %>
+          $("#add_to_room_link").hide();
+
+          $("#room_tbody_players_<%=@room.id%>").append(" <tr id='tr_" + payload.player_id + "'>" +
+                "<td>" + payload.player_username + "</td>" +
+        "<td></td><tr>");
+
+
+                    $("#room_links").append(
+            "<div class = 'list-row' id='leave_the_room_link'>"
+
+            + " <a class='kick-out-link' data-method='delete' href='" + "<%=leave_room_path(@room)%> " + "' rel='nofollow'>مرا از اتاق حذف کن</a>" + 
+            "</div>"
+            );
+        <% end %>
     });
     window.client.subscribe('/games/create/<%=@room.id%>', function (payload) {
         window.location.reload();

@@ -8,15 +8,21 @@
   <% elsif game.is_starting%>
   	<td>بازی در حال شروع شدن است</td>
   	<td>
-  		<script>
+        
+  		  <script>
 	        $(function () {
 	          var finishTime = new Date("<%=game.start_time%>");
 	          
 	          // finishTime = finishTime + (finishTime.getSeconds() + 50)
-	          $("#game_start_count_down<%=game.id%>").countdown({until: finishTime,  expiryUrl: "<%="/rooms/#{@room.id}/games/#{game.id}"%>" ,
+	          $("#game_start_count_down<%=game.id%>").countdown({until: finishTime,
+              <% if game.room.players.includes(@person) %>
+                expiryUrl: "<%="/rooms/#{@room.id}/games/#{game.id}"%>" ,
+              <% end %>
 	          format: 'S'});
 	        });
       	</script>
+
+
       <div id="game_start_count_down<%=game.id%>"></div>
   	</td>	
 
@@ -24,17 +30,25 @@
   <% elsif game.is_running%>
   	<td>بازی در حال انجام است</td>
   	<td>
-        <script type="text/javascript">
-          <% if @room.players.include?(current_user.profile) %>
-          window.location.href="<%="/rooms/#{@room.id}/games/#{game.id}"%>"  // put your correct path in a string here
-              <% end %>
-        </script>
+        <% players = game.room.players %>
+
+        <% if players.include?(current_user.profile) %>
+          <script type="text/javascript">
+            window.location.href="<%="/rooms/#{@room.id}/games/#{game.id}"%>"
+          </script>
+        <% end %>
   	</td>
 
   
   <% else %>
   	<td>بازی شروع نشده </td>
-  	<td><%= link_to 'شروع بازی' , "/rooms/#{@room.id}/games/#{game.id}/start",:method => :post, :remote => true%></td>
+  	<td>
+      <% players = game.room.players %>
+
+      <% if players.include?(current_user.profile) %>
+      <%= link_to 'شروع بازی' , "/rooms/#{@room.id}/games/#{game.id}/start",:method => :post, :remote => true%></td>
+      <% end %>
+
   <% end %>
 
 </tr>

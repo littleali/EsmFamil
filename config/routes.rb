@@ -13,11 +13,11 @@ Rails.application.routes.draw do
   get 'rooms/:id/game/new' => 'rooms#new_game'
   post 'rooms/:id/create_game' => 'rooms#create_game'
   post 'game/end_game/:id' => 'games#end_game'
-
   get 'game/end_game/:id' => 'games#end_game', as: :end_game
 #  post 'games/:game_id/paper/:paper_id/:item_name' => 'games#save_paper_field'
-  post 'games/:game_id/paper/:paper_id/' => 'games#save_paper_field'
+  post 'games/:game_id/paper/:pf_id/' => 'games#save_paper_field'
 
+  get 'gamerooms/:room_name/games/judgement/:id' => 'games#judgement'
   # get 'profile' => 'room#update'
   get 'rooms/:id/games/:game_id/papers' => 'games#show_papers'
   post 'rooms/:id/games/:game_id/start' => 'games#start'
@@ -35,7 +35,8 @@ Rails.application.routes.draw do
   root 'welcome#home'
 
   patch 'rooms/:id/add_member/:profile_id' => 'rooms#add_member'
-  delete 'rooms/:id/kick_out/:profile_id' => 'rooms#kick_out'
+  delete 'rooms/:id/kick_out/:profile_id' => 'rooms#kick_out' 
+  delete 'rooms/:id/leave' => 'rooms#leave', as: :leave_room
    # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

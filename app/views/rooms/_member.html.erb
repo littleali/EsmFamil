@@ -1,8 +1,15 @@
 <tr id="tr_<%=player.id%>">
   <td><%= player.user.username %></td>
 
-  <% if room.admin.id == current_user.profile.id && room.admin.id != player.id %>
-  <td><%= link_to 'حذف کاربر', "/rooms/#{room.id}/kick_out/#{player.id}",
-                  :confirm => 'آیا مطمئن هستید?', :method => :delete, :remote => true, :class => "kick-out-link" %></td>
-                  <%end%>
+  <% if (current_user.profile.id == room.admin.id &&room.admin.id == current_user.profile.id && room.admin.id != player.id)%>
+	  <td>
+
+	  	<%= link_to 'حذف کاربر', "/rooms/#{room.id}/kick_out/#{player.id}",
+	                  :confirm => 'آیا مطمئن هستید?', :method => :delete, :remote => true, :class => "kick-out-link" %>
+
+
+	  </td>
+  <% else %>
+  <td></td>
+  <% end %>
 </tr>
