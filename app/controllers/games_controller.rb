@@ -18,6 +18,14 @@ class GamesController < ApplicationController
         flash[:alert] = "برای شروع بازی باید تعداد اعضای اتاق باید بیشتر از ۲ نفر باشد."
     else
       @game.start_time = DateTime.now + 10.seconds
+      @game.room.players.each do |p|
+        unless @game.room.players.include? p
+          paper = Paper.new
+          paper.owner = p
+          paper.game = @game
+          paper.save
+        end
+      end
       @game.update
     end
     render 'rooms/start_game'

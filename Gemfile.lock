@@ -199,7 +199,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  best_in_place
+  best_in_place (~> 3.0.1)
   byebug
   cancancan (~> 1.10)
   coffee-rails (~> 4.0.0)
