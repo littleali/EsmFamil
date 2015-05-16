@@ -47,13 +47,23 @@ class GamesController < ApplicationController
   end
 
   def judgement
-    @my_judgment_fields = []
+    @my_judgment_fields = {}
     @game = Game.find_by(:id => params[:g_id])
-   papers = Paper.where(:game_id => @game.id)
+    @game.item_names.each do |item_name|
+      @my_judgment_fields[item_name] = []
+    end
+    papers = @game.papers
+    #papers = Paper.where(:game_id => @game.id)
+    puts(current_user.profile)
    papers.each do |p|
-     p.paper_fields do |pf|
+     puts(p.paper_fields.length)
+     p.paper_fields.each do |pf|
       if (pf.first_judge == current_user.profile or pf.second_judge == current_user.profile)
-        @my_judgment_fields<<pf
+        @my_judgment_fields[pf.name]<<pf
+      else
+        puts(pf.first_judge)
+        puts(pf.second_judge)
+
       end
      end
    end
@@ -86,6 +96,15 @@ class GamesController < ApplicationController
   end
 
 
+  def accept_field
+    @paper = Paper.find(:id => params[p_id])
+    @field = @paper.paper_fields.f
+
+  end
+
+  def reject
+
+  end
 
   # GET /games/new
   def new

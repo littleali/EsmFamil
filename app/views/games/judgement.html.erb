@@ -1,12 +1,36 @@
 <div class="game-show-list-box jumbotron">
-     <div class = "list-header  ">
-       <%= @my_judgment_fields.length %>
-       <% @my_judgment_fields.each do |jf| %>
-           <%= jf.name%>
-           <%= jf.value%>
-       <%end%>
-    </div>
 
+       <table class="table">
+         <thead>
+
+         </thead>
+         <tbody>
+         <td><%=I18n.t("field") %></td>
+         <td><%=I18n.t("judgment1") %></td>
+         <td><%=I18n.t("judgment2") %></td>
+         td><%=I18n.t("judgment1") %></td>
+         <td><%=I18n.t("judgment2") %></td>
+         <%@my_judgment_fields.each do |row|%>
+         <tr>
+           <td><%=row[0] %></td>
+           <%row[1].each do |r|%>
+            <td><%= r.value %>
+              <%if (r.first_accept == nil or r.second_accept == nil)%>
+                  <td>
+                    <%= link_to "",{:controller => :games, :action => "accept_field", :p_id => r.paper.id, :pf_id=>r.id}, :class => "btn btn-circle-micro btn-success",:method => :get  %>
+              <a href="#aboutModal"  class="btn btn-circle-micro btn-success"> </a>
+              <a href="#aboutModal" data-toggle="modal" data-target="#myModal" class="btn btn-circle-micro btn-danger"> </a>
+                    </td>
+                      <% else %>
+
+               <td> داوری شده<td>
+               <%end%>
+            </td>
+           <%end%>
+         </tr>
+         <%end%>
+         </tbody>
+       </table>
 
 
 
