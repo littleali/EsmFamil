@@ -49,8 +49,8 @@ gem 'recaptcha', '~> 0.3.6'
 #Autorization
 gem 'cancancan', '~> 1.10'
 
-gem "best_in_place"
 
+gem 'best_in_place', '~> 3.0.1'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
