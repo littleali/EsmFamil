@@ -58,6 +58,52 @@ class Game
     end
   end
 
+
+  def calculate_score
+    self.item_names.each do |item_name| 
+      item_hash = Hash.new
+      number_of_correct_answer = 0
+      self.papers.each do |paper| 
+        index = paper.paper_fields.find_index {|item| item.name == item_name}
+        # puts " before "
+        # puts (paper.paper_fields.map {|obj| obj.name == item_name}).find(item_name)
+        # puts " booogh "
+        item_value = paper.paper_fields[index].value
+        #puts index, "******"
+        if item_value
+          if item_hash.has_key? item_value
+            item_hash[item_value] = item_hash[item_value] + 1
+          else
+            item_hash[item_value] = 1
+          end
+          if item_value.is_accepted
+            number_of_correct_answer += 1
+          end
+        end
+      end
+
+      self.papers.each do |paper| 
+        index = paper.paper_fields.find_index {|item| item.name == item_name}
+        pf = paper.paper_fields[index]
+        if pf.is_accepted and pf.value
+          if item_hash[pf.value] > 1
+            pf.score = 5
+          else
+            pf.score = 10
+          end
+          bonus = self.papers.size - number_of_correct_answer
+          pf.score = pf.score + bonus * 10
+          pf.update
+        else
+          pf.update
+        end
+        paper.update_score
+      end
+    end
+
+  end
+
+
   private
     def set_default_names
       self.item_names = ["اسم" , "فامیل" , "شهر" , "کشور" , "خوراک" , "پوشاک"]
