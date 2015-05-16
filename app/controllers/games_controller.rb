@@ -10,7 +10,6 @@ class GamesController < ApplicationController
     render 'papers/index'
   end
 
-
   def start
     @room = Room.find(params[:id])
     @game = Game.find_by(:id => params[:game_id])
@@ -36,13 +35,17 @@ class GamesController < ApplicationController
   def show
     @room = Room.find(params[:id])
     @game = Game.find_by(:id => params[:game_id])
-    #TODO CREATE PAPER IF THERE IS NO
-    @paper = Paper.where(:game_id => @game.id , :owner_id => current_user.profile.id).first
-    if not @paper
-      @paper = Paper.new
-      @paper.owner = current_user.profile
-      @paper.game = @game
-      @paper.save
+    if @game.is_stopped && @game.is_judged
+      render 'result'
+    else
+      #TODO CREATE PAPER IF THERE IS NO
+      @paper = Paper.where(:game_id => @game.id , :owner_id => current_user.profile.id).first
+      if not @paper
+        @paper = Paper.new
+        @paper.owner = current_user.profile
+        @paper.game = @game
+        @paper.save
+      end
     end
   end
 
@@ -71,7 +74,9 @@ class GamesController < ApplicationController
 
   # post /games/1/paper/1/item_name
   def save_paper_field
-   @pf = PaperField.find_by(:id => params[:pf_id])
+   @paper = Paper.find(params[:p_id])
+   paper_filed_ids = @paper.paper_fields.map {|obj| obj.id.to_s}
+   @pf = @paper.paper_fields[paper_filed_ids.find_index(params[:pf_id])]
    @pf.value = params["pf.value"]
    @pf.save
   end
@@ -79,20 +84,6 @@ class GamesController < ApplicationController
   # post /games/1/paper/1
   def submit_paper
 
-  end
-
-  # PATCH/PUT /papers/1
-  # PATCH/PUT /papers/1.json
-  def update
-    respond_to do |format|
-      if @paper.update(paper_params)
-        format.html { redirect_to @paper, notice: 'Paper was successfully updated.' }
-        format.json { render :show, status: :ok, location: @paper }
-      else
-        format.html { render :edit }
-        format.json { render json: @paper.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
 

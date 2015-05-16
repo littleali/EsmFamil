@@ -50,13 +50,62 @@ class Game
 
   def assign_judges
     paper_owners = self.papers.all.map {|obj| {:id =>obj.id, :owner => obj.owner, :paper_fields =>obj.paper_fields}}
-    n = paper_owners.size
     paper_owners.each_with_index do |p,i|
-      p[:paper_fields].each do |pf|
-        pf.update(:first_judge => paper_owners[(i+1)%n][:owner], :second_judge => paper_owners[(i+2)%n][:owner])
+      other_players = paper_owners.clone()
+      other_players.delete_at(i)
+      n = other_players.size
+      p[:paper_fields].each_with_index do |pf, j|
+        pf.update(:first_judge => other_players[(j)%n][:owner], :second_judge => other_players[(j+1)%n][:owner])
       end
     end
   end
+
+
+  def calculate_score
+    if judged
+      return
+    end
+
+    self.item_names.each do |item_name| 
+      item_hash = Hash.new
+      number_of_correct_answer = 0
+      self.papers.each do |paper| 
+        index = paper.paper_fields.find_index {|item| item.name == item_name}
+        item_value = paper.paper_fields[index].value
+
+        if item_value
+          if item_hash.has_key? item_value
+            item_hash[item_value] = item_hash[item_value] + 1
+          else
+            item_hash[item_value] = 1
+          end
+          if paper.paper_fields[index].is_accepted
+            number_of_correct_answer += 1
+          end
+        end
+      end
+
+      self.papers.each do |paper| 
+        index = paper.paper_fields.find_index {|item| item.name == item_name}
+        pf = paper.paper_fields[index]
+        if pf.is_accepted and pf.value
+          if item_hash[pf.value] > 1
+            pf.score = 5
+          else
+            pf.score = 10
+          end
+          bonus = self.papers.size - number_of_correct_answer
+          pf.score = pf.score + bonus * 10
+          pf.update
+        else
+          pf.update
+        end
+        paper.update_score
+      end
+    end
+    return
+  end
+
 
   private
     def set_default_names
