@@ -50,10 +50,12 @@ class Game
 
   def assign_judges
     paper_owners = self.papers.all.map {|obj| {:id =>obj.id, :owner => obj.owner, :paper_fields =>obj.paper_fields}}
-    n = paper_owners.size
     paper_owners.each_with_index do |p,i|
-      p[:paper_fields].each do |pf|
-        pf.update(:first_judge => paper_owners[(i+1)%n][:owner], :second_judge => paper_owners[(i+2)%n][:owner])
+      other_players = paper_owners.clone()
+      other_players.delete_at(i)
+      n = other_players.size
+      p[:paper_fields].each_with_index do |pf, j|
+        pf.update(:first_judge => other_players[(j)%n][:owner], :second_judge => other_players[(j+1)%n][:owner])
       end
     end
   end
