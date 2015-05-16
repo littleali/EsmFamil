@@ -35,6 +35,7 @@ Rails.application.routes.draw do
   root 'welcome#home'
 
   patch 'rooms/:id/add_member/:profile_id' => 'rooms#add_member'
+  patch 'rooms/:id/join' => 'rooms#join', as: :join_room
   delete 'rooms/:id/kick_out/:profile_id' => 'rooms#kick_out' 
   delete 'rooms/:id/leave' => 'rooms#leave', as: :leave_room
    # Example of regular route:
