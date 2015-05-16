@@ -7,4 +7,6 @@ class PaperField
   belongs_to :paper, class_name: 'Paper' , inverse_of: :paper_fields
   field :value, type: String
   field :name, type: String
+
+  embedded_in :paper
 end

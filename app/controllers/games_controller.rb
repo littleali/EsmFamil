@@ -51,7 +51,9 @@ class GamesController < ApplicationController
 
   # post /games/1/paper/1/item_name
   def save_paper_field
-   @pf = PaperField.find_by(:id => params[:pf_id])
+   @paper = Paper.find(params[:p_id])
+   paper_filed_ids = @paper.paper_fields.map {|obj| obj.id.to_s}
+   @pf = @paper.paper_fields[paper_filed_ids.find_index(params[:pf_id])]
    @pf.value = params["pf.value"]
    @pf.save
   end
@@ -59,20 +61,6 @@ class GamesController < ApplicationController
   # post /games/1/paper/1
   def submit_paper
 
-  end
-
-  # PATCH/PUT /papers/1
-  # PATCH/PUT /papers/1.json
-  def update
-    respond_to do |format|
-      if @paper.update(paper_params)
-        format.html { redirect_to @paper, notice: 'Paper was successfully updated.' }
-        format.json { render :show, status: :ok, location: @paper }
-      else
-        format.html { render :edit }
-        format.json { render json: @paper.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
 
