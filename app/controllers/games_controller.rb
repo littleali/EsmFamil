@@ -131,6 +131,7 @@ class GamesController < ApplicationController
     if(@game.first_stopped and @game.first_stop_player_id != current_user.profile.id.to_s )
       @game.update(:stopped => true)
       @game.update(:second_stop_player_id => current_user.profile.id.to_s)
+      @game.assign_judges()
     else
       if(@game.first_stopped == false)
         @game.update(:first_stopped => true)
