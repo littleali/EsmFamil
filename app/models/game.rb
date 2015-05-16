@@ -62,23 +62,24 @@ class Game
 
 
   def calculate_score
+    if judged
+      return
+    end
+
     self.item_names.each do |item_name| 
       item_hash = Hash.new
       number_of_correct_answer = 0
       self.papers.each do |paper| 
         index = paper.paper_fields.find_index {|item| item.name == item_name}
-        # puts " before "
-        # puts (paper.paper_fields.map {|obj| obj.name == item_name}).find(item_name)
-        # puts " booogh "
         item_value = paper.paper_fields[index].value
-        #puts index, "******"
+
         if item_value
           if item_hash.has_key? item_value
             item_hash[item_value] = item_hash[item_value] + 1
           else
             item_hash[item_value] = 1
           end
-          if item_value.is_accepted
+          if paper.paper_fields[index].is_accepted
             number_of_correct_answer += 1
           end
         end
@@ -102,7 +103,7 @@ class Game
         paper.update_score
       end
     end
-
+    return
   end
 
 

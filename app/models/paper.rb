@@ -13,7 +13,6 @@ class Paper
   def update_score
     self.score = 0
     self.paper_fields.each do |pf|
-      #puts pf.score , "***"
       self.score = self.score + pf.score
     end 
     self.update
