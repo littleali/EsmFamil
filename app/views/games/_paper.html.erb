@@ -20,9 +20,13 @@
                           <%= pf.name %>
                         </tr>
                         <tr>
-                          <%= form_for :tf , url: {action: 'save_paper_field' , controller: 'games' , pf_id: pf.id } , :remote => true  do
+                          <%= form_for :tf , url: {action: 'save_paper_field' , controller: 'games' , pf_id: pf.id } , :remote => true, :html => {:id => "f_#{pf.name}"}  do
+
                           |f2| %>
-                              <%= text_field_tag "pf.value",pf.value , autofocus: true , :class => 'form-control' %>
+                              <% unless paper.game.first_stop_player_id.to_s == paper.owner.id.to_s %>
+                              <%= text_field_tag "pf.value",pf.value , autofocus: true , :class => 'form-control', :id => "i_#{pf.name}"%>
+                                <% end %>
+
                           <% end %>
                         </tr>
                       </table>

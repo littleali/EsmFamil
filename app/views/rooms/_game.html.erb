@@ -12,10 +12,9 @@
   		  <script>
 	        $(function () {
 	          var finishTime = new Date("<%=game.start_time%>");
-	          
 	          // finishTime = finishTime + (finishTime.getSeconds() + 50)
 	          $("#game_start_count_down<%=game.id%>").countdown({until: finishTime,
-              <% if game.room.players.includes(@person) %>
+              <% if game.room.players.include?(current_user.profile) %>
                 expiryUrl: "<%="/rooms/#{@room.id}/games/#{game.id}"%>" ,
               <% end %>
 	          format: 'S'});

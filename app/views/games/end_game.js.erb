@@ -1,7 +1,7 @@
 
 //client = new Faye.Client('/faye');
 <% if @game.is_running %>
-    window.location.href = '<%= url_for root_path%>'
+    window.location.href = '<%= url_for @game %>'
 <% end %>
 
 <% if @game.is_stopped %>

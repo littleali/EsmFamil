@@ -14,15 +14,19 @@
       <% end %>
     </div>
 
-  <% if @game.is_running %>
-  <div class = "list-row">
-    <%= link_to 'پایان', :action => :end_game, :controller => :games, :id => @game.id, remote: true %>
+  <% if @game.is_running  %>
 
+  <div class = "list-row">
+   <% if @game.first_stop_player_id != current_user.profile.id.to_s  %>
+        <%= link_to 'پایان', :action => :end_game, :controller => :games, :id => @game.id, remote: true %>
+    <% else %>
+        <%= I18n.t('you_stopped_already') %>
+    <% end %>
   </div>
        <% end %>
     <% if @game.is_stopped && !@game.is_judged %>
       <script type="text/javascript">
-        window.location.href="judgement/<%=@game.id%>"  
+        window.location.href="<%=@game.id%>/judgement"
       </script>
     <%end%>
   <div class = "list-row">

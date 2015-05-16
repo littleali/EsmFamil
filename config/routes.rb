@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 #  post 'games/:game_id/paper/:paper_id/:item_name' => 'games#save_paper_field'
   post 'games/:game_id/paper/:pf_id/' => 'games#save_paper_field'
 
-  get 'gamerooms/:room_name/games/judgement/:id' => 'games#judgement'
+  get 'rooms/:id/games/:g_id/judgement' => 'games#judgement', as: :judgement
   # get 'profile' => 'room#update'
   get 'rooms/:id/games/:game_id/papers' => 'games#show_papers'
   post 'rooms/:id/games/:game_id/start' => 'games#start'
