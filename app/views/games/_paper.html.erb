@@ -20,7 +20,7 @@
                           <%= pf.name %>
                         </tr>
                         <tr>
-                          <%= form_for :tf , url: {action: 'save_paper_field' , controller: 'games' , pf_id: pf.id } , :remote => true, :html => {:id => "f_#{pf.name}"}  do
+                          <%= form_for :tf , url: {action: 'save_paper_field' , controller: 'games' , pf_id: pf.id, p_id: paper.id } , :remote => true, :html => {:id => "f_#{pf.name}"}  do
 
                           |f2| %>
                               <% unless paper.game.first_stop_player_id.to_s == paper.owner.id.to_s %>

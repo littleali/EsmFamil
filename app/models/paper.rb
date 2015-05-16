@@ -3,7 +3,7 @@ class Paper
   after_create :initial_field_values
   belongs_to :game, class_name: 'Game', inverse_of: :papers
   belongs_to :owner, class_name: 'Profile', inverse_of: :papers
-  has_many :paper_fields, class_name: 'PaperField'
+  embeds_many :paper_fields, class_name: 'PaperField'
 
   private
   	def initial_field_values
@@ -12,7 +12,7 @@ class Paper
         pf.paper = self
         pf.name = name
         pf.save
-        self.paper_fields<<pf
+        # self.paper_fields<<pf
   		end
       self.update
  	end
