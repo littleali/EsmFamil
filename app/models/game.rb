@@ -10,6 +10,7 @@ class Game
   field :item_names, type: Array
   field :first_stop_player_id, type: String
   field :second_stop_player_id, type: String
+  field :scored, type:Boolean ,default: false
   belongs_to :room, class_name: 'Room', inverse_of: :games
   has_many :papers , class_name: 'Paper' , inverse_of: :game
   validates :title, :uniqueness => {:scope => :room_id}
@@ -40,12 +41,24 @@ class Game
     self.stopped
   end
 
+
+
   def finish_judge
     self.judged = true
   end
 
   def is_judged
-    self.judged
+    unless self.judged
+      self.papers.each do |paper|
+        paper.paper_fields.each do |pf|
+          if pf.first_accept == nil || pf.second_accept == nil
+            return false
+          end
+        end
+      end
+      self.judged = true
+    end
+    return self.judged
   end
 
   def assign_judges
@@ -62,7 +75,7 @@ class Game
 
 
   def calculate_score
-    if judged
+    if is_judged && self.scored
       return
     end
 
@@ -103,6 +116,8 @@ class Game
         paper.update_score
       end
     end
+    self.scored = true
+    self.update
     return
   end
 
