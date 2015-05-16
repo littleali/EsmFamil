@@ -22,17 +22,27 @@ class RoomsController < ApplicationController
   end
 
   def add_member
-    new_member = Profile.find(params[:profile_id])
-    @room.players << new_member
-    @player = new_member
-    render 'rooms/add_member.js.erb'
+    if (@room.players.length ==@room.capacity)
+      flash[:notice] ="ظرفیت اتاق تکمیل است"
+      render 'rooms/capacity_full.js.erb'
+    else
+      new_member = Profile.find(params[:profile_id])
+      @room.players << new_member
+      @player = new_member
+      render 'rooms/add_member.js.erb'
+    end
   end
 
   def join
-    new_member = current_user.profile
-    @room.players << new_member
-    @player = new_member
-    render 'rooms/join.js.erb'
+    if (@room.players.length ==@room.capacity)
+      flash[:notice] ="ظرفیت اتاق تکمیل است"
+      render 'rooms/capacity_full.js.erb'
+    else
+      new_member = current_user.profile
+      @room.players << new_member
+      @player = new_member
+      render 'rooms/join.js.erb'
+    end
   end
 
   def kick_out
