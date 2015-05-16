@@ -40,12 +40,24 @@ class Game
     self.stopped
   end
 
+
+
   def finish_judge
     self.judged = true
   end
 
   def is_judged
-    self.judged
+    unless self.judged
+      self.papers.each do |paper|
+        paper.paper_fields.each do |pf|
+          if pf.first_accept == nil || pf.second_accept == nil
+            return false
+          end
+        end
+      end
+      self.judged = true
+    end
+    return self.judged
   end
 
   def assign_judges
@@ -62,7 +74,7 @@ class Game
 
 
   def calculate_score
-    if judged
+    if is_judged
       return
     end
 
