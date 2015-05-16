@@ -40,6 +40,7 @@ class Ability
         can :update, Room, :admin_id => user.id
         can :kick_out, Room, :admin_id =>user.profile.id
         can :leave, Room
+        can :join, Room
         can :add_member, Room
         can :new_game, Room, :admin_id =>user.profile.id
         can :create_game, Room, :admin_id =>user.profile.id

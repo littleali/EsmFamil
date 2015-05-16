@@ -1,0 +1,8 @@
+
+//client = new Faye.Client('/faye');
+var publication = window.client.publish('/rooms/<%=@room.id%>', {player_id: '<%=@player.id%>', player_username: '<%= @player.user.username %>', action: 'kick'});
+publication.then(function(){
+	window.location.href = "<%= rooms_path %>"
+}, function(error){
+
+});

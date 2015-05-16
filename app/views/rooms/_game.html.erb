@@ -44,8 +44,15 @@
   	<td>
       <% players = game.room.players %>
 
-      <% if players.include?(current_user.profile) %>
+      <div class ="not_running_games" >
       <%= link_to 'شروع بازی' , "/rooms/#{@room.id}/games/#{game.id}/start",:method => :post, :remote => true%></td>
+      <div>
+
+      <% unless players.include?(current_user.profile) %>
+        <script type="text/javascript">
+          $(".not_running_games").hide();
+        </script>
+      
       <% end %>
 
   <% end %>

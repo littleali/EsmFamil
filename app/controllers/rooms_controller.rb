@@ -33,6 +33,13 @@ class RoomsController < ApplicationController
     end
   end
 
+  def join
+    new_member = current_user.profile
+    @room.players << new_member
+    @player = new_member
+    render 'rooms/join.js.erb'
+  end
+
   def kick_out
     kicked_out = Profile.find(params[:profile_id])
     @room.players.delete(kicked_out)
@@ -43,7 +50,8 @@ class RoomsController < ApplicationController
   def leave
     kicked_out = current_user.profile
     @room.players.delete(kicked_out)
-    redirect_to @room
+    @player = kicked_out
+    render 'rooms/leave.js.erb'
   end
 
   def new_game
