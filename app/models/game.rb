@@ -47,6 +47,17 @@ class Game
   def is_judged
     self.judged
   end
+
+  def assign_judges
+    paper_owners = self.papers.all.map {|obj| {:id =>obj.id, :owner => obj.owner, :paper_fields =>obj.paper_fields}}
+    n = paper_owners.size
+    paper_owners.each_with_index do |p,i|
+      p[:paper_fields].each do |pf|
+        pf.update(:first_judge => paper_owners[(i+1)%n][:owner], :second_judge => paper_owners[(i+2)%n][:owner])
+      end
+    end
+  end
+
   private
     def set_default_names
       self.item_names = ["اسم" , "فامیل" , "شهر" , "کشور" , "خوراک" , "پوشاک"]
