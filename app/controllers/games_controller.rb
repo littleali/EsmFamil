@@ -43,7 +43,8 @@ class GamesController < ApplicationController
   def show
     @room = Room.find(params[:id])
     @game = Game.find_by(:id => params[:game_id])
-    if @game.is_stopped && @game.is_judged
+    @game.calculate_score
+    if @game.is_stopped && @game.is_judged 
       render 'result'
     else
       #TODO CREATE PAPER IF THERE IS NO
