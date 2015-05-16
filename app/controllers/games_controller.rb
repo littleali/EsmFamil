@@ -47,6 +47,16 @@ class GamesController < ApplicationController
   end
 
   def judgement
+    @my_judgment_fields = []
+    @game = Game.find_by(:id => params[:g_id])
+   papers = Paper.where(:game_id => @game.id)
+   papers.each do |p|
+     p.paper_fields do |pf|
+      if (pf.first_judge == current_user.profile or pf.second_judge == current_user.profile)
+        @my_judgment_fields<<pf
+      end
+     end
+   end
   end
 
   # post /games/1/paper/1/item_name

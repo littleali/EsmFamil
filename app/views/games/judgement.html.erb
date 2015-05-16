@@ -1,6 +1,13 @@
 <div class="game-show-list-box jumbotron">
      <div class = "list-header  ">
+       <%= @my_judgment_fields.length %>
+       <% @my_judgment_fields.each do |jf| %>
+           <%= jf.name%>
+           <%= jf.value%>
+       <%end%>
+    </div>
 
-این‌جا صفحه‌ی داوری است!
-</div>
+
+
+
 </div>
