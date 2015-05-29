@@ -11,6 +11,6 @@ class PaperField
   embedded_in :paper
 
   def is_accepted
-  	return first_accept || second_accept
+  	return first_accept || second_accept || first_accept == nil || second_accept == nil
   end
 end

@@ -1,3 +1,6 @@
+<%= javascript_include_tag "jquery.plugin" %>
+<%= javascript_include_tag "jquery.countdown" %>
+<%= javascript_include_tag "jquery.countdown-fa" %>
 <div class="judgment-list-box jumbotron">
 
        <table class="table">
@@ -38,6 +41,24 @@
          </tbody>
        </table>
 
+       <div "list-row">
+    <script>
+            $(function () {
+              var finishTime = new Date("<%=@game.stop_time + 5.minutes%>");
+              // finishTime = finishTime + (finishTime.getSeconds() + 50)
+              $("#game_start_count_down<%=@game.id%>").countdown({until: finishTime,
+                expiryUrl: "<%="/rooms/#{@game.room.id}/games/#{@game.id}"%>" ,
+              format: 'S'});
+            });
+    </script> 
+
+    <div> 
+    <div id="game_start_count_down<%=@game.id%>"></div>
+    <% if @game.stop_time + 5.minutes < DateTime.now %>
+      <script type="text/javascript">
+            window.location.href="<%="/rooms/#{@game.room.id}/games/#{@game.id}"%>"
+      </script>
+    <%end %>
 
 
 </div>

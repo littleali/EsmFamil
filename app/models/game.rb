@@ -11,6 +11,7 @@ class Game
   field :first_stop_player_id, type: String
   field :second_stop_player_id, type: String
   field :scored, type:Boolean ,default: false
+  field :stop_time, type:DateTime
   belongs_to :room, class_name: 'Room', inverse_of: :games
   has_many :papers , class_name: 'Paper' , inverse_of: :game
   validates :title, :uniqueness => {:scope => :room_id}
@@ -48,16 +49,6 @@ class Game
   end
 
   def is_judged
-    unless self.judged
-      self.papers.each do |paper|
-        paper.paper_fields.each do |pf|
-          if pf.first_accept == nil || pf.second_accept == nil
-            return false
-          end
-        end
-      end
-      self.judged = true
-    end
     return self.judged
   end
 
@@ -75,10 +66,12 @@ class Game
 
 
   def calculate_score
-    if is_judged && self.scored
+    unless self.stop_time && DateTime.now > self.stop_time + 5.minutes 
       return
     end
-
+    if is_judged
+      return
+    end
     self.item_names.each do |item_name| 
       item_hash = Hash.new
       number_of_correct_answer = 0
@@ -92,7 +85,7 @@ class Game
           else
             item_hash[item_value] = 1
           end
-          if paper.paper_fields[index].is_accepted
+          if paper.paper_fields[index].is_accepted && paper.paper_fields[index].value && paper.paper_fields[index].value.to_s.strip.length > 0
             number_of_correct_answer += 1
           end
         end
@@ -101,7 +94,7 @@ class Game
       self.papers.each do |paper| 
         index = paper.paper_fields.find_index {|item| item.name == item_name}
         pf = paper.paper_fields[index]
-        if pf.is_accepted and pf.value
+        if pf.is_accepted && pf.value && pf.value.to_s.strip.length >0
           if item_hash[pf.value] > 1
             pf.score = 5
           else
@@ -111,12 +104,14 @@ class Game
           pf.score = pf.score + bonus * 10
           pf.update
         else
+          pf.score = 0
           pf.update
         end
         paper.update_score
       end
     end
     self.scored = true
+    self.judged = true
     self.update
     return
   end
