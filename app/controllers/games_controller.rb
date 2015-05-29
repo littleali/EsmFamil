@@ -99,24 +99,28 @@ class GamesController < ApplicationController
   def accept_field
     @paper = Paper.find(params[:p_id])
     @field = @paper.paper_fields.find(params[:pf_id])
-    if(@field.first_accept == nil)
+    if(@field.first_accept == nil and @field.first_judge == current_user.profile)
       @field.update(:first_accept => true)
     else
-      @field.update(:second_accept => true)
+      if(@field.second_accept == nil and @field.second_judge == current_user.profile)
+        @field.update(:second_accept => true)
+      end
     end
-    redirect_to :back
+    render 'games/judgement'
 
   end
 
   def reject_field
     @paper = Paper.find(params[:p_id])
     @field = @paper.paper_fields.find(params[:pf_id])
-    if(@field.first_accept == nil)
+    if(@field.first_accept == nil and @field.first_judge == current_user.profile)
       @field.update(:first_accept => false)
     else
-      @field.update(:second_accept => false)
+      if(@field.second_accept == nil and @field.second_judge == current_user.profile)
+        @field.update(:second_accept => false)
+      end
     end
-    redirect_to :back
+    render 'games/judgement'
   end
 
   # GET /games/new
@@ -173,6 +177,8 @@ class GamesController < ApplicationController
     if(@game.first_stopped and @game.first_stop_player_id != current_user.profile.id.to_s )
       @game.update(:stopped => true)
       @game.update(:second_stop_player_id => current_user.profile.id.to_s)
+      @game.update(:stop_time => DateTime.now)
+      @game.update(:stop_time => DateTime.now + 3.minutes)
       @game.assign_judges()
     else
       if(@game.first_stopped == false)

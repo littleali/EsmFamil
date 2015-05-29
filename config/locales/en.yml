@@ -43,3 +43,5 @@ en:
   make_new_room: "Make new room"
   challenges: "Challenges"
   you_stopped_already: "You stopped already"
+  username: "username"
+  total_score: "total score"

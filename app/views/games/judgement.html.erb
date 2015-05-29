@@ -1,3 +1,6 @@
+<%= javascript_include_tag "jquery.plugin" %>
+<%= javascript_include_tag "jquery.countdown" %>
+<%= javascript_include_tag "jquery.countdown-fa" %>
 <div class="judgment-list-box jumbotron">
 
        <table class="table">
@@ -19,14 +22,14 @@
            <%row[1].each do |r|%>
             <td><%= r.value %>
               <%if ((r.first_accept == nil and r.first_judge == current_user.profile) or (r.second_accept == nil and r.second_judge == current_user.profile))%>
-                  <td>
-                    <%= link_to "A",{:controller => :games, :action => "accept_field", :p_id => r.paper.id, :pf_id=>r.id}, :class => "btn btn-circle-micro btn-success"  %>
-                    <%= link_to "B",{:controller => :games, :action => "reject_field", :p_id => r.paper.id, :pf_id=>r.id}, :class => "btn btn-circle-micro btn-danger" %>
+                  <td id="q_pf_<%=r.id%>">
+                    <%= link_to "",{:controller => :games, :action => "accept_field", :p_id => r.paper.id, :pf_id=>r.id}, :remote => true, :class => "btn btn-circle-micro btn-success"  %>
+                    <%= link_to "",{:controller => :games, :action => "reject_field", :p_id => r.paper.id, :pf_id=>r.id}, :remote => true, :class => "btn btn-circle-micro btn-danger" %>
 
                     </td>
 
                       <% else %>
-               <td>
+               <td id="q_pf_#{r.id}">
                  داوری‌شده
                    </td>
 
@@ -38,6 +41,24 @@
          </tbody>
        </table>
 
+       <div "list-row">
+    <script>
+            $(function () {
+              var finishTime = new Date("<%=@game.finish_time %>");
+              // finishTime = finishTime + (finishTime.getSeconds() + 50)
+              $("#game_start_count_down<%=@game.id%>").countdown({until: finishTime,
+                expiryUrl: "<%="/rooms/#{@game.room.id}/games/#{@game.id}"%>" ,
+              format: 'S'});
+            });
+    </script> 
+
+    <div> 
+    <div id="game_start_count_down<%=@game.id%>"></div>
+    <% if @game.finish_time < DateTime.now %>
+      <script type="text/javascript">
+            window.location.href="<%="/rooms/#{@game.room.id}/games/#{@game.id}"%>"
+      </script>
+    <%end %>
 
 
 </div>
