@@ -109,8 +109,10 @@ class Game
           pf.update
         end
         paper.update_score
-        paper.profile.add_score(paper.score)
       end
+    end
+    self.papers.each do |paper|
+      paper.owner.add_score(paper.score)
     end
     self.scored = true
     self.judged = true

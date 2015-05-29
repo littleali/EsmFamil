@@ -71,13 +71,15 @@
   <div class="col-md-3 user-list-box">
     <div class="list-header">
 
-      <%= I18n.t("users") %>
+      <%= I18n.t("users_rank") %>
     </div>
     <table class="list-table">
-      <% User.all.each do |u| %>
+      <% Profile.order(total_score: :desc).each do |u| %>
           <tr class="list-row">
-            <td class="list-dray"><%= u.username %></td>
-            <td><span class="fa fa-circle fa-2x user-online"></span></td>
+            <td class="list-dray"><%= u.user.username %></td>
+            <td><span class="fa fa-circle fa-2x user-online">
+              <%= u.total_score %>
+            </span></td>
           </tr>
 
 
