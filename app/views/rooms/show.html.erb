@@ -28,6 +28,19 @@
             نام اتاق: <%= @room.name %>
           </div>
         </div>
+        <div class="row adaptable_font">
+          <div class="col-md-4"></div>
+          <div class="col-md-4 font-medium">
+            اتاق
+            <% if @room.is_private? %>
+                خصوصی
+            <% else %>
+                عمومی
+            <% end %>
+            است
+          </div>
+          <div class="col-md-4"></div>
+        </div>
       </div>
     </div>
     <div class = "row">

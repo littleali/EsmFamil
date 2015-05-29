@@ -38,6 +38,21 @@
         </div>
       </div>
     </div>
+        <div class="form-group" id="hp-input-fields">
+      <div class="row">
+        <div class="col-md-4 list-row adaptable_font">
+          <div class="font-small">
+            <%= f.check_box :is_private, autofocus: true  %>
+          </div>
+        </div>
+        <div class="col-md-8 adaptable_font">
+          <div class="font-medium font-color-red">
+            <%= f.label :capacity,I18n.t("room_is_private"), :class =>'cap-num' %>
+          </div>
+        </div>
+      </div>
+    </div>
+
       <div class="new-room-list-box">
         <div class="list-row">
           <div class="new-btn">

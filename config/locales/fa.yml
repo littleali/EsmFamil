@@ -51,6 +51,7 @@ fa:
   make_new_room: "ساخت اتاق جدید"
   challenges: "چالش‌ها"
   room_name: "نام اتاق"
+  room_is_private: "اتاق خصوصی باشد"
   rooms_list: "لیست اتاق‌ها"
   room_admin: "مدیر اتاق"
   room_capacity: "ظرفیت اتاق"
