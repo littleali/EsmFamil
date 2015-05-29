@@ -12,6 +12,7 @@ class Game
   field :second_stop_player_id, type: String
   field :scored, type:Boolean ,default: false
   field :stop_time, type:DateTime
+  field :finish_time, type:DateTime
   belongs_to :room, class_name: 'Room', inverse_of: :games
   has_many :papers , class_name: 'Paper' , inverse_of: :game
   validates :title, :uniqueness => {:scope => :room_id}
@@ -66,7 +67,7 @@ class Game
 
 
   def calculate_score
-    unless self.stop_time && DateTime.now > self.stop_time + 5.minutes 
+    unless self.stop_time && DateTime.now > self.finish_time 
       return
     end
     if is_judged
@@ -108,6 +109,7 @@ class Game
           pf.update
         end
         paper.update_score
+        paper.profile.add_score(paper.score)
       end
     end
     self.scored = true

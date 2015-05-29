@@ -44,7 +44,7 @@
        <div "list-row">
     <script>
             $(function () {
-              var finishTime = new Date("<%=@game.stop_time + 5.minutes%>");
+              var finishTime = new Date("<%=@game.finish_time %>");
               // finishTime = finishTime + (finishTime.getSeconds() + 50)
               $("#game_start_count_down<%=@game.id%>").countdown({until: finishTime,
                 expiryUrl: "<%="/rooms/#{@game.room.id}/games/#{@game.id}"%>" ,
@@ -54,7 +54,7 @@
 
     <div> 
     <div id="game_start_count_down<%=@game.id%>"></div>
-    <% if @game.stop_time + 5.minutes < DateTime.now %>
+    <% if @game.finish_time < DateTime.now %>
       <script type="text/javascript">
             window.location.href="<%="/rooms/#{@game.room.id}/games/#{@game.id}"%>"
       </script>

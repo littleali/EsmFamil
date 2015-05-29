@@ -178,6 +178,7 @@ class GamesController < ApplicationController
       @game.update(:stopped => true)
       @game.update(:second_stop_player_id => current_user.profile.id.to_s)
       @game.update(:stop_time => DateTime.now)
+      @game.update(:stop_time => DateTime.now + 3.minutes)
       @game.assign_judges()
     else
       if(@game.first_stopped == false)
