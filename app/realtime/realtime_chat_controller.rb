@@ -1,5 +1,5 @@
 class RealtimeChatController < FayeRails::Controller
-  channel '/chat' do
+  channel '/chat/*' do
     subscribe do
       Rails.logger.debug "Received on #{channel}: #{inspect}"
 
@@ -10,6 +10,7 @@ class RealtimeChatController < FayeRails::Controller
                    end
 
       ChatMessage.create(message: message['message'], created_at: created_at)
+      RoomMessage.create(message: message['message'], room_id: message['room_id'], profile_id: message['profile_id'], :created_at => created_at)
     end
   end
 end

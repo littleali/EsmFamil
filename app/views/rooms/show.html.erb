@@ -88,16 +88,17 @@
 
             <div>
               <ul id="chat">
-                  <% @chat_messages.each do |chat_message| %>
-                      <li>
-                          <%=chat_message.created_at.strftime('%-d/%-m/%Y %k:%M:%S')%>
+                  <% RoomMessage.where(:room_id => @room.id.to_s).reverse.first(5).reverse.each do |chat_message| %>
+                      <p>
+                          <%#=chat_message.created_at.strftime('%-d/%-m/%Y %k:%M:%S')%>
+                          <%= Profile.find(chat_message.profile_id).user.username %>
                           <%= ':'%>
                           <%= chat_message.message%>
-                      </li>
-                  <hr>
+                      </p>
+                  <!--<hr>-->
                 <% end %>
               </ul>
-              <form id="alaki_form">
+              <form id="chat_form" data-remote="true">
               <input type='text' id='message' name='message'>
               <input type='submit' id='submit' value='Post'>
               </form>
@@ -137,6 +138,27 @@
 <!--link_to 'Add to this room', {:controller => :rooms, :action => :add_member, :room_id => @room.id.to_s, :profile_id => current_user.profile.id.to_s, :method => :patch} %>-->
 
 <script type="text/javascript">
+
+    $(document).ready( function(){
+        input = $('#message');
+        button = $('#submit');
+        $('#chat_form').submit(function(event){
+            button.attr('disabled', 'disabled');
+            button.val('Posting...');
+//            client = new Faye.Client('/faye')
+            var publication = window.client.publish('/chat/<%=@room.id%>', {message: input.val(), room_id: '<%=@room.id%>', profile_id: '<%=current_user.profile.id%>', profile_name: '<%=current_user.username%>'});
+            publication.then(function(){
+                input.val('');
+                button.removeAttr('disabled');
+                button.val("Post");
+            }, function(error){
+                button.removeAttr('disabled');
+                button.val("Try Again");
+                event.preventDefault();
+            });
+        });
+    });
+
 
     window.client.subscribe('/rooms/<%=@room.id%>', function (payload) {
         if (payload.action == 'kick'){
@@ -196,6 +218,9 @@
     });
     window.client.subscribe('/games/create/<%=@room.id%>', function (payload) {
         window.location.reload();
+    });
+    window.client.subscribe('/chat/<%=@room.id%>', function (payload) {
+        $('#chat').append("<p>" + payload.profile_name + " : " + payload.message + "</p>")
     });
 
 </script>

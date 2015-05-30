@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  profile_id: 
+  room_id_id: 
+  message: 
+
+two:
+  profile_id: 
+  room_id_id: 
+  message: 
