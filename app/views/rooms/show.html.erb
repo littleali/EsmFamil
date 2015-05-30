@@ -49,10 +49,12 @@
             <%= link_to 'بازگشت به لیست اتاق‌ها', rooms_path, method: :get, :class => "" %>
             </div>
             <% if !(@room.players.include? current_user.profile ) %>
+            <% if @room.enabled? %>
           <div class = "list-row" id="add_to_room_link">
             <%= link_to 'مرا به این اتاق اضافه کن', join_room_path(@room), :method => :patch, :remote => true %>
 
           </div>
+          <%end%>
           <%elsif current_user.profile.id !=  @room.admin.id%>
             <div class = "list-row" id="leave_the_room_link">
               <%= link_to 'مرا از اتاق حذف کن', "/rooms/#{@room.id}/leave",
@@ -61,7 +63,7 @@
           <%end%>
 
 
-          <% if current_user.id == @room.admin.user.id %>
+          <% if current_user.id == @room.admin.user.id && @room.enabled%>
             <div class = "list-row">
                   <%= link_to 'این اتاق را حذف کن', @room, method: :delete, data: {confirm: 'مطمئن هستید؟'}%>
 

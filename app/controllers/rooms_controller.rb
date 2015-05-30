@@ -167,7 +167,7 @@ class RoomsController < ApplicationController
     @room.enabled = false
     @room.update
     respond_to do |format|
-      format.html { redirect_to rooms_url, notice: 'اتاق با موفقیت غیر فعال شد.' }
+      format.html { redirect_to rooms_url, notice: 'اتاق با موفقیت غیرفعال شد.' }
       format.json { head :no_content }
     end
   end
