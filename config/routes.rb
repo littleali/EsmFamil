@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   #resources :games
 
+  get 'profiles/search/'=> 'profiles#search', as: :user_search
+  
   resources :profiles
 
   resources :rooms
@@ -37,7 +39,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'welcome#home'
 
-  patch 'rooms/:id/add_member/:profile_id' => 'rooms#add_member'
+  patch 'rooms/:id/send_invitation/:profile_id' => 'rooms#send_invitation' , as: :send_invitation
   patch 'rooms/:id/join' => 'rooms#join', as: :join_room
   delete 'rooms/:id/kick_out/:profile_id' => 'rooms#kick_out' 
   delete 'rooms/:id/leave' => 'rooms#leave', as: :leave_room

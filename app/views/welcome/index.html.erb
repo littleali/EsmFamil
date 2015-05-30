@@ -53,7 +53,7 @@
     </div>
 
     <table class="list-table">
-      <% Room.all.each do |r| %>
+      <% @rooms.each do |r| %>
           <tr class="list-row">
             <td class="list-dray"><%= link_to r.name, r %> </td>
             <td class="room-capacity">

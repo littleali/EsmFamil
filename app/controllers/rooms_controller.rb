@@ -6,7 +6,7 @@ class RoomsController < ApplicationController
   # GET /rooms
   # GET /rooms.json
   def index
-    @rooms = Room.all
+    @rooms = Room.any_of( {:_id.in => current_user.profile.playing_rooms.map{ |u| u._id.to_s}}, {:is_private => false })
   end
 
   # GET /rooms/1
@@ -21,16 +21,19 @@ class RoomsController < ApplicationController
     # render 'rooms/show'
   end
 
-  def add_member
+  def send_invitation
+    new_member = Profile.find(params[:profile_id])
     if (@room.players.length ==@room.capacity)
       flash[:notice] ="ظرفیت اتاق تکمیل است"
       render 'rooms/capacity_full.js.erb'
-    else
-      new_member = Profile.find(params[:profile_id])
-      @room.players << new_member
+    elsif !(@room.pending_players.include? new_member)
+      @room.pending_players << new_member
       @player = new_member
-      render 'rooms/add_member.js.erb'
+      render 'rooms/invite_member.js.erb'
+    else 
+      render 'rooms/invitaion_already_sent.js.erb'
     end
+
   end
 
   def join
@@ -154,7 +157,7 @@ class RoomsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def room_params
-      params.require(:room).permit(:name, :capacity)
+      params.require(:room).permit(:name, :capacity,:is_private)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

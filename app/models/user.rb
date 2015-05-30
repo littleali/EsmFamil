@@ -113,4 +113,10 @@ class User
     self.profile = profile 
   end
 
+  def self.search(param)
+    query = /#{param}/
+    User.any_of({:username => query},{:email =>query})
+  end
+
 end
+
