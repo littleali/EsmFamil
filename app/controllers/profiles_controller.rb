@@ -20,6 +20,12 @@ class ProfilesController < ApplicationController
   def show
   end
 
+
+  def search
+    @users = User.search(params[:query])
+    @room = Room.find(params[:room_id])
+    render 'rooms/search_result'
+  end
   # GET /profiles/new
   def new
     @profile = Profile.new

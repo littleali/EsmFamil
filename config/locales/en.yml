@@ -45,3 +45,7 @@ en:
   you_stopped_already: "You stopped already"
   username: "username"
   total_score: "total score"
+  pending_invitations: "pending invitations"
+  from: "form"
+  to_room: "to room"
+  invite: "invite"

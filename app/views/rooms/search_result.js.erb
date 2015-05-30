@@ -1,0 +1,4 @@
+$('#user-search-result').html("");
+<% @users.each do |u| %>
+	$('#user-search-result').append("<%= u.username %>"+ "  " +'<%= link_to I18n.t('invite'), send_invitation_path(@room,u.profile) , :method => "patch" , :remote => true%> ');
+<%end%>

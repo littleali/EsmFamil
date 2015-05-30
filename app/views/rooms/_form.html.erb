@@ -16,7 +16,7 @@
       <div class="row">
         <div class="col-md-8 list-row adaptable_font">
           <div class="font-small">
-            <%= f.text_field :name, autofocus: true , :placeholder => :'نام اتاق' ,:class => 'form-control', :id=>'hp-inner-input-fields' %>
+            <%= f.text_field :name, autofocus: true ,:class => 'form-control', :id=>'hp-inner-input-fields' %>
           </div>
         </div>
         <div class="col-md-4 adaptable_font">
@@ -38,6 +38,21 @@
         </div>
       </div>
     </div>
+        <div class="form-group" id="hp-input-fields">
+      <div class="row">
+        <div class="col-md-4 list-row adaptable_font">
+          <div class="font-small">
+            <%= f.check_box :is_private %>
+          </div>
+        </div>
+        <div class="col-md-8 adaptable_font">
+          <div class="font-medium font-color-red">
+            <%= f.label :capacity,I18n.t("room_is_private"), :class =>'cap-num' %>
+          </div>
+        </div>
+      </div>
+    </div>
+
       <div class="new-room-list-box">
         <div class="list-row">
           <div class="new-btn">

@@ -3,7 +3,9 @@ class Room
   field :name, type: String
   field :capacity, type: Integer
   field :enabled, type: Mongoid::Boolean
+  field :is_private, type: Boolean, default: false
   has_and_belongs_to_many :players , class_name: 'Profile' , inverse_of: :playing_rooms
+  has_and_belongs_to_many :pending_players , class_name: 'Profile' , inverse_of: :pending_playing_rooms
   belongs_to :admin, class_name: 'Profile', inverse_of: :owned_rooms
   validates_uniqueness_of :name
   validates_presence_of :name

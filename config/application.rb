@@ -33,6 +33,7 @@ module EsmFamil
       map '/rooms/*' => RealtimeRoomController
       map '/games/create/*' => RealtimeCreateGameController
       map '/games/end_game/*' => RealtimeEndGameController
+      map '/profiles/*' => RealtimeProfileController
       map default: :block
     end
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.

@@ -1,0 +1,21 @@
+
+        <% if notice %>
+        new PNotify({
+            text: '<%= notice %>',
+            type: 'success',
+//            styling: 'fontawesome',
+            icon: false
+            <% if I18n.locale.to_s == 'fa' %>, addclass: 'text-fa'
+            <%end %>
+        });
+        <% end %>
+        <% if alert %>
+        new PNotify({
+            text: '<%= alert %>',
+            type: 'danger',
+//            styling: 'fontawesome',
+            icon: false
+            <% if I18n.locale.to_s == 'fa' %>, addclass: 'text-fa'
+            <%end %>
+        });
+        <% end %>

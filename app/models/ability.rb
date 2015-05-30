@@ -33,17 +33,23 @@ class Ability
     if(user.profile != nil)
         can :create, Room
         can :index, Room
-        can :show, Room
-        can :show_with_name, Room
-        can :destroy, Room,  :admin_id => user.id
+        can :show, Room  do |room| 
+            room.is_private == false || room.players.include?(user.profile)
+        end
+        can :show_with_name, Room do |room| 
+            room.is_private == false || room.players.include?(user.profile)
+        end
+        can :destroy, Room,  :admin_id => user.profile.id
         can :edit, Room, :admin_id => user.id
         can :update, Room, :admin_id => user.id
         can :kick_out, Room, :admin_id =>user.profile.id
         can :leave, Room
-        can :join, Room
-        can :add_member, Room
+        can :join, Room, :is_private => false
+        can :send_invitation, Room
         can :new_game, Room, :admin_id =>user.profile.id
         can :create_game, Room, :admin_id =>user.profile.id
+        can :accept_invitation, Room
+        can :reject_invitation, Room
         #can :start, Game, :room_name => user.profile.rooms
         can :show_papers, Game
         #Profile

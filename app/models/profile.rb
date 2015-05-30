@@ -8,6 +8,7 @@ class Profile
   has_many :owned_rooms , class_name: 'Room' , inverse_of: :admin
   has_many :papers , class_name: 'Paper' , inverse_of: :owner
   has_and_belongs_to_many :playing_rooms , class_name: 'Room' , inverse_of: :players
+  has_and_belongs_to_many :pending_playing_rooms , class_name: 'Room' , inverse_of: :pending_players
 
   def add_score(paper_score)
     puts "&&&&&&&&&&&&&&&&&&"

@@ -19,17 +19,18 @@
         <td class="list-dray">
           <%= link_to I18n.t("my_rooms"), "#" %>
         </td>
-        <td class="list-dray-info">
+        <td class="list-dray-info"style="font-size: 30px;">
           <%= Room.where(:admin => current_user.profile).count %>
         </td>
       </tr>
-      <tr class="list-row">
+      <!--<tr class="list-row">
         <td class="list-dray">
           <%= link_to I18n.t("my_friends"), "#" %>
         </td>
         <td class="list-dray-info">
           18
         </td>
+        -->
       </tr>
     </table>
   </div>
@@ -53,16 +54,21 @@
     </div>
 
     <table class="list-table">
-      <% Room.all.each do |r| %>
+      <% @rooms.each do |r| %>
           <tr class="list-row">
             <td class="list-dray"><%= link_to r.name, r %> </td>
+            <td class="room-privacy">
+            <%if r.is_private %>
+              <span class="fa fa-lock fa-2x room-unavailable"></span>
+            <%end%>
+            </td>
+
             <td class="room-capacity">
               <span class="fa-stack fa-lg">
               <i class="fa fa-circle fa-stack-2x"></i>
-              <i class="fa fa-inverse fa-stack-1x" style="font-size: 14px"><%= r.capacity %></i>
+              <i class="fa fa-inverse fa-stack-1x" style="font-size: 18px; font-family:'Dastnevis';"><%= r.capacity %></i>
               </span>
             </td>
-            <td class="room-privacy"><span class="fa fa-lock fa-2x room-unavailable"></span></td>
           </tr>
 
       <% end %>
@@ -77,7 +83,7 @@
       <% Profile.order(total_score: :desc).each do |u| %>
           <tr class="list-row">
             <td class="list-dray"><%= u.user.username %></td>
-            <td><span class="fa fa-circle fa-2x user-online">
+            <td><span class="fa  fa-2x user-online" style="font-family:'Dastnevis';">
               <%= u.total_score %>
             </span></td>
           </tr>
