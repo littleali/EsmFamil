@@ -60,7 +60,7 @@ class Game
       other_players.delete_at(i)
       n = other_players.size
       p[:paper_fields].each_with_index do |pf, j|
-        pf.update(:first_judge => other_players[(j)%n][:owner], :second_judge => other_players[(j+1)%n][:owner])
+        pf.update(:first_judge => other_players[(i+j)%n][:owner], :second_judge => other_players[(i+j+1)%n][:owner])
       end
     end
   end
