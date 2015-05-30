@@ -75,7 +75,7 @@
                <div class = "list-row">
                <%=  form_tag user_search_path , :method => 'get', :id =>'user_search', :remote => true do %>
                   <%= hidden_field_tag :room_id , @room.id %>
-                 <%=  text_field_tag :query , params[:query] %>
+                 <%=  text_field_tag :query , params[:query], :placeholder => 'نام کاربری یا ایمیل کاربر را وارد کنید' %>
                  <%= submit_tag "بیاب" , :name =>nil %>
                  <%#= render 'search_result' %>
                 <%end%>
