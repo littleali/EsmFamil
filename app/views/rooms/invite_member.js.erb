@@ -1,0 +1,35 @@
+
+        <% if notice %>
+        new PNotify({
+            text: '<%= notice %>',
+            type: 'success',
+//            styling: 'fontawesome',
+            icon: false
+            <% if I18n.locale.to_s == 'fa' %>, addclass: 'text-fa'
+            <%end %>
+        });
+        <% end %>
+        <% if alert %>
+        new PNotify({
+            text: '<%= alert %>',
+            type: 'danger',
+//            styling: 'fontawesome',
+            icon: false
+            <% if I18n.locale.to_s == 'fa' %>, addclass: 'text-fa'
+            <%end %>
+        });
+        <% end %>
+
+//client = new Faye.Client('/faye');
+var publication = window.client.publish('/profiles/<%=@player.id%>', {room_id: '<%=@room.id%>',
+  invitee_username: '<%= @player.user.username %>',
+  invitee_id: '<%= @player.id %>',
+  room_name: '<%=@room.name%>',
+  caller_id: '<%=@room.admin.id%>' ,
+  caller_name: '<%=@room.admin.user.username%>' ,
+  action: 'invite'} );
+publication.then(function(){
+
+}, function(error){
+    
+});

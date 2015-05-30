@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   #resources :games
 
+  get 'profiles/search/'=> 'profiles#search', as: :user_search
+  
   resources :profiles
 
   resources :rooms
@@ -30,6 +32,9 @@ Rails.application.routes.draw do
   get 'games/accept_field/:p_id/:pf_id' => 'games#accept_field'
   get 'games/reject_field/:p_id/:pf_id' => 'games#reject_field'
 
+  get 'rooms/accept_invitation/:p_id/:r_id' => 'rooms#accept_invitation'
+  get 'rooms/reject_invitation/:p_id/:r_id' => 'rooms#reject_invitation'
+
   post 'profiles/:id/update_field/:title' => "profiles#update_field"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -37,7 +42,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'welcome#home'
 
-  patch 'rooms/:id/add_member/:profile_id' => 'rooms#add_member'
+  patch 'rooms/:id/send_invitation/:profile_id' => 'rooms#send_invitation' , as: :send_invitation
   patch 'rooms/:id/join' => 'rooms#join', as: :join_room
   delete 'rooms/:id/kick_out/:profile_id' => 'rooms#kick_out' 
   delete 'rooms/:id/leave' => 'rooms#leave', as: :leave_room

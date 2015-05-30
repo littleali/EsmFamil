@@ -1,0 +1,9 @@
+$("#li-pending-<%=@room.name%>").remove();
+
+//client = new Faye.Client('/faye');
+var publication = window.client.publish('/rooms/<%=@room.id%>', {player_id: '<%=@profile.id%>', player_username: '<%= @profile.user.username %>', action: 'add'});
+publication.then(function(){
+
+}, function(error){
+    
+});

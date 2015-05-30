@@ -70,3 +70,7 @@ fa:
   username: "نام کاربری"
   total_score: "مجموع امتیازات"
   users_rank: "شاخ‌ترین کاربران"
+  pending_invitations: "درخواست‌های در انتظار"
+  from: "از"
+  to_room: "به اتاق "
+  invite: "دعوت کن"
