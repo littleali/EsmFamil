@@ -80,6 +80,35 @@
       </div>
       <div class="col-md-4">
         <div class="panel panel-primary panel-default" >
+
+          <div class="panel-heading panel-heading-custom">
+            گفت‌و‌گو
+          </div>
+          <div class="panel-body">
+
+            <div>
+              <ul id="chat">
+                  <% @chat_messages.each do |chat_message| %>
+                      <li>
+                          <%=chat_message.created_at.strftime('%-d/%-m/%Y %k:%M:%S')%>
+                          <%= ':'%>
+                          <%= chat_message.message%>
+                      </li>
+                  <hr>
+                <% end %>
+              </ul>
+              <form id="alaki_form">
+              <input type='text' id='message' name='message'>
+              <input type='submit' id='submit' value='Post'>
+              </form>
+
+            </div>
+
+
+          </div>
+        </div>
+        <div class="panel panel-primary panel-default" >
+
           <div class="panel-heading panel-heading-custom">لیست اعضای اتاق (<%= @room.players.size %> نفر)</div>
           <div class="panel-body">
             <% if @room.players.size > 0 %>
@@ -165,4 +194,8 @@
     window.client.subscribe('/games/create/<%=@room.id%>', function (payload) {
         window.location.reload();
     });
+    window.client.subscribe('/games/create/<%=@room.id%>', function (payload) {
+        window.location.reload();
+    });
+
 </script>

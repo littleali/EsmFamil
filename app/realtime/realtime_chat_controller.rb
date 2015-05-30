@@ -1,5 +1,5 @@
 class RealtimeChatController < FayeRails::Controller
-  channel '/chat/*' do
+  channel '/chat' do
     subscribe do
       Rails.logger.debug "Received on #{channel}: #{inspect}"
 
