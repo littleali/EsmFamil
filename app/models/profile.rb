@@ -10,6 +10,9 @@ class Profile
   has_and_belongs_to_many :playing_rooms , class_name: 'Room' , inverse_of: :players
 
   def add_score(paper_score)
-  	self.update(:total_score => :total_score + paper_score)
+    puts "&&&&&&&&&&&&&&&&&&"
+    puts paper_score
+    self.total_score = self.total_score + paper_score.to_i
+  	self.update
   end
 end
