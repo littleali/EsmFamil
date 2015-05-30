@@ -24,7 +24,7 @@ class RoomsController < ApplicationController
   def send_invitation
     new_member = Profile.find(params[:profile_id])
     if @room.players.include? new_member
-      flash[:notice] ="این کاربر جز اعضای اتاق است "
+      flash[:notice] ="این کاربر عضو اتاق است "
       render 'rooms/member_already_exist.js.erb'
     elsif (@room.players.length ==@room.capacity)
       flash[:notice] ="ظرفیت اتاق تکمیل است"

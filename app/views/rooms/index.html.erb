@@ -33,9 +33,9 @@
                     <%= room.capacity %>
                 </div>
               </td>
-
+              <td>
               <%if room.enabled? %>
-                <td>
+                
                   <div class="adaptable_font centered-align">
                     <%= I18n.t("room_is_enable") %>
                   </div>
@@ -43,8 +43,9 @@
                   <div class="adaptable_font centered-align">
                     <%= I18n.t("room_not_enable") %>
                   </div>
-                  </td>
+                  
                 <%end%>
+                </td>
             </tr>
           <% end %>
         </tbody>
