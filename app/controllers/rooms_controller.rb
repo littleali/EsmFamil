@@ -23,17 +23,40 @@ class RoomsController < ApplicationController
 
   def send_invitation
     new_member = Profile.find(params[:profile_id])
-    if (@room.players.length ==@room.capacity)
+    if @room.players.include? new_member
+      flash[:notice] ="این کاربر جز اعضای اتاق است "
+      render 'rooms/member_already_exist.js.erb'
+    elsif (@room.players.length ==@room.capacity)
       flash[:notice] ="ظرفیت اتاق تکمیل است"
       render 'rooms/capacity_full.js.erb'
     elsif !(@room.pending_players.include? new_member)
       @room.pending_players << new_member
       @player = new_member
+      flash[:notice] ="درخواست ارسال شد"
       render 'rooms/invite_member.js.erb'
     else 
+      flash[:notice] ="درخواست شما قبلا به این آدم ارسال شده است"
       render 'rooms/invitaion_already_sent.js.erb'
     end
 
+  end
+
+
+
+  def accept_invitation
+    @profile = Profile.find(params[:p_id])
+    @room = Room.find(params[:r_id])
+    @room.pending_players.delete(@profile)
+    @room.players << @profile
+    @room.update
+    render 'rooms/accept_invitation.js.erb'
+  end
+  def reject_invitation
+    @profile = Profile.find(params[:p_id])
+    @room = Room.find(params[:r_id])
+    @room.pending_players.delete(@profile)
+    @room.update
+    render 'rooms/reject_invitation.js.erb'
   end
 
   def join

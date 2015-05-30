@@ -48,7 +48,8 @@ class Ability
         can :send_invitation, Room
         can :new_game, Room, :admin_id =>user.profile.id
         can :create_game, Room, :admin_id =>user.profile.id
-
+        can :accept_invitation, Room
+        can :reject_invitation, Room
         #can :start, Game, :room_name => user.profile.rooms
         can :show_papers, Game
         #Profile

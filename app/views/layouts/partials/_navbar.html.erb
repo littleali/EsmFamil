@@ -21,8 +21,11 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%= I18n.t("pending_invitations")%><span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu" id = "pending-invitations-dropdown">
                 <% current_user.profile.pending_playing_rooms.each  do |room|%>
-                  <li>  
+                  <li id="li-pending-<%=room.name%>">  
                     <%= I18n.t("from")%> <%= room.admin.user.username %> <%= I18n.t("to_room")%><%=room.name%>
+
+                    <%= link_to "",{:controller => :rooms, :action => "accept_invitation", :p_id => current_user.profile.id, :r_id=>room.id}, :remote => true, :class => "btn btn-circle-micro btn-success"  %>
+                    <%= link_to "",{:controller => :rooms, :action => "reject_invitation", :p_id => current_user.profile.id, :r_id=>room.id}, :remote => true, :class => "btn btn-circle-micro btn-danger" %>
                   </li>
                 <% end %>
               </ul>
@@ -61,8 +64,15 @@
     window.client.subscribe('/profiles/<%=current_user.profile.id%>', function (payload) {
         if (payload.action == 'invite'){
           var element = $("#pending-invitations-dropdown");
-          element.append("<li><%=I18n.t('from')%>"+ payload.caller_name +"<%=I18n.t('to_room')%> "+
-          payload.room_name +"</li>");
+          element.append("<li  id='li-pending-"+payload.room_name+"'><%=I18n.t('from')%>"+ payload.caller_name +"<%=I18n.t('to_room')%> "+
+          payload.room_name +
+
+          "<a class='btn btn-circle-micro btn-success' href='/rooms/accept_invitation/" +payload.invitee_id +"/"+ payload.room_id + "' data-remote='true'></a><a class='btn btn-circle-micro btn-danger' href='/rooms/reject_invitation/" +payload.invitee_id + "/"+ payload.room_id + "' data-remote='true'></a>"
+
+
+
+
+          +"</li>");
         }
 
 

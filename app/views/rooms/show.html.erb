@@ -70,7 +70,8 @@
                   <%= link_to 'ایجاد بازی' , "/rooms/#{@room.id}/game/new",:method => :get%>
                 
               </div>
-            
+              
+              <% if @room.is_private %>              
                <div class = "list-row">
                <%=  form_tag user_search_path , :method => 'get', :id =>'user_search', :remote => true do %>
                   <%= hidden_field_tag :room_id , @room.id %>
@@ -83,6 +84,7 @@
                 </div>
 
                </div>
+               <%end%>
 
           <% end %>
         </div>
@@ -149,33 +151,34 @@
             }        
           }
         }
-        else 
-        <% if (current_user.profile.id == @room.admin.id) %>
+        else {
+          <% if (current_user.profile.id == @room.admin.id) %>
             if (!$("tr_" + payload.player_id).length) {
-            $("#room_tbody_players_<%=@room.id%>").append(" <tr id='tr_" + payload.player_id + "'>" +
-                "<td>" + payload.player_username + "</td>" +
-                "<td>" + "<a class='kick-out-link' confirm='آیا مطمئن هستید?' data-remote='true' data-method='delete' href='/rooms/<%=@room.id%>/kick_out/" + payload.player_id +  "' rel='nofollow'>حذف کاربر</a>" + "</td><tr>");
-            }
-        <% else %>
-          if (!$('#tr_'+payload.player_id).length ) {
               $("#room_tbody_players_<%=@room.id%>").append(" <tr id='tr_" + payload.player_id + "'>" +
-                "<td>" + payload.player_username + "</td>" +
-        "<td></td><tr>");
-          }
-           if(payload.player_id == "<%= current_user.profile.id.to_s %>"){
-            $(".not_running_games").show();
-            $("#add_to_room_link").remove();
-            if(!$("#leave_the_room_link").length){
-              $("#room_links").append(
-            "<div class = 'list-row' id='leave_the_room_link'>"
-
-            + " <a class='kick-out-link' data-method='delete' data-remote='true' href='" + "<%=leave_room_path(@room)%> " + "'  rel='nofollow'>مرا از اتاق حذف کن</a>" + 
-            "</div>"
-            );
+                  "<td>" + payload.player_username + "</td>" +
+                  "<td>" + "<a class='kick-out-link' confirm='آیا مطمئن هستید?' data-remote='true' data-method='delete' href='/rooms/<%=@room.id%>/kick_out/" + payload.player_id +  "' rel='nofollow'>حذف کاربر</a>" + "</td><tr>");
             }
+          <% else %>
+            if (!$('#tr_'+payload.player_id).length ) {
+                $("#room_tbody_players_<%=@room.id%>").append(" <tr id='tr_" + payload.player_id + "'>" +
+                  "<td>" + payload.player_username + "</td>" +
+          "<td></td><tr>");
+            }
+             if(payload.player_id == "<%= current_user.profile.id.to_s %>"){
+              $(".not_running_games").show();
+              $("#add_to_room_link").remove();
+              if(!$("#leave_the_room_link").length){
+                $("#room_links").append(
+              "<div class = 'list-row' id='leave_the_room_link'>"
+
+              + " <a class='kick-out-link' data-method='delete' data-remote='true' href='" + "<%=leave_room_path(@room)%> " + "'  rel='nofollow'>مرا از اتاق حذف کن</a>" + 
+              "</div>"
+              );
+              }
             
-                          
-        <% end %>
+                 }         
+          <% end %>
+        
       }
     });
     window.client.subscribe('/games/create/<%=@room.id%>', function (payload) {
