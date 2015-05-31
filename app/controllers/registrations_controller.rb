@@ -1,6 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
   include SimpleCaptcha::ControllerHelpers
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
   def create
     params[:user].update(:bdate => params[:date][:year].to_s + "-" + params[:date][:month].to_s + "-"+ params[:date][:day].to_s, :birthday => params[:date])
     if simple_captcha_valid?
